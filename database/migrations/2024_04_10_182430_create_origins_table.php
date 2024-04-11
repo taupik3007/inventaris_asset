@@ -17,9 +17,15 @@ return new class extends Migration
             $table->string('ori_name');
             $table->timestamps();
             $table->softDeletes();
-            $table->bigInteger('created_by')->nullable();
-            $table->bigInteger('deleted_by')->nullable();
-            $table->bigInteger('updated_by')->nullable();
+            $table->bigInteger('ori_created_by')->unsigned()->nullable();
+            $table->bigInteger('ori_deleted_by')->unsigned()->nullable();
+            $table->bigInteger('ori_updated_by')->unsigned()->nullable();
+
+            //foreign key
+                    
+            $table->foreign('ori_created_by')->references('usr_id')->on('users')->onDelete('cascade');
+            $table->foreign('ori_updated_by')->references('usr_id')->on('users')->onDelete('cascade');
+            $table->foreign('ori_deleted_by')->references('usr_id')->on('users')->onDelete('cascade');
         });
     }
 

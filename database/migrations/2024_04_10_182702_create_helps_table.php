@@ -17,9 +17,13 @@ return new class extends Migration
             $table->string('help_content')->text();
             $table->timestamps();
             $table->softDeletes();
-            $table->bigInteger('created_by')->nullable();
-            $table->bigInteger('deleted_by')->nullable();
-            $table->bigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('help_created_by')->unsigned()->nullable();
+            $table->unsignedBigInteger('help_deleted_by')->unsigned()->nullable();
+            $table->unsignedBigInteger('help_updated_by')->unsigned()->nullable();
+
+            $table->foreign('help_created_by')->references('usr_id')->on('users')->onDelete('cascade');
+            $table->foreign('help_updated_by')->references('usr_id')->on('users')->onDelete('cascade');
+            $table->foreign('help_deleted_by')->references('usr_id')->on('users')->onDelete('cascade');
         });
     }
 

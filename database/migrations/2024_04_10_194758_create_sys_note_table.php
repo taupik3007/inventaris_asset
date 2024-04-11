@@ -13,16 +13,27 @@ return new class extends Migration
     {
         Schema::create('sys_note', function (Blueprint $table) {
             $table->bigIncrements('note_id');
-            $table->bigInteger('note_user_id');
-            $table->bigInteger('note_category_id');
-            $table->bigInteger('note_origin_id');
-            $table->bigInteger('note_asset_id');
-            $table->bigInteger('note_asset_description_id');
-            $table->bigInteger('note_borrow_id');
-            $table->bigInteger('note_borrow_asset_id');
+            $table->unsignedBigInteger('note_user_id');
+            $table->unsignedBigInteger('note_category_id');
+            $table->unsignedBigInteger('note_origin_id');
+            $table->unsignedBigInteger('note_asset_id');
+            $table->unsignedBigInteger('note_asset_description_id');
+            $table->unsignedBigInteger('note_borrow_id');
+            $table->unsignedBigInteger('note_borrow_asset_id');
             $table->string('note_text')->text();
             $table->timestamps();
-            $table->bigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('created_by')->unsigned()->nullable();
+
+            $table->foreign('note_user_id')->references('usr_id')->on('users')->onDelete('cascade');
+            $table->foreign('note_category_id')->references('ctg_id')->on('categories')->onDelete('cascade');
+            $table->foreign('note_origin_id')->references('ori_id')->on('origins')->onDelete('cascade');
+            $table->foreign('note_asset_id')->references('ass_id')->on('assets')->onDelete('cascade');
+            $table->foreign('note_asset_description_id')->references('asd_id')->on('asset_descriptions')->onDelete('cascade');
+            $table->foreign('note_borrow_id')->references('brw_id')->on('borrows')->onDelete('cascade');
+            $table->foreign('note_borrow_asset_id')->references('bas_id')->on('borrow_assets')->onDelete('cascade');
+
+
+           
         });
     }
 

@@ -13,14 +13,13 @@ return new class extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->bigIncrements('notif_id');
-            $table->bigInteger('notif_user_id');
+            $table->unsignedBigInteger('notif_user_id');
             $table->string('notif_title');
             $table->string('notif_content')->text();
             $table->timestamps();
             $table->softDeletes();
-            $table->bigInteger('created_by')->nullable();
-            $table->bigInteger('deleted_by')->nullable();
-            $table->bigInteger('updated_by')->nullable();
+            
+            
         });
     }
 

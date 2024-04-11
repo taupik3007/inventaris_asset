@@ -13,18 +13,27 @@ return new class extends Migration
     {
         Schema::create('assets', function (Blueprint $table) {
             $table->bigIncrements('ass_id');
-            $table->bigInteger('ass_category_id');
-            $table->bigInteger('ass_origin_id');
+            $table->unsignedBigInteger('ass_category_id');
+            $table->unsignedBigInteger('ass_origin_id');
             $table->string('ass_year');
-            $table->string('ass_registration_code');
-            $table->string('ass_name');
-            $table->double('ass_price');
+            $table->string('ass_registration_code')->unique();
+            $table->string('ass_name')->unique();
+            $table->double('ass_price')->nullable();
             $table->boolean('ass_status');
             $table->timestamps();
             $table->softDeletes();
-            $table->bigInteger('created_by')->nullable();
-            $table->bigInteger('deleted_by')->nullable();
-            $table->bigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('ass_created_by')->unsigned()->nullable();
+            $table->unsignedBigInteger('ass_deleted_by')->unsigned()->nullable();
+            $table->unsignedBigInteger('ass_updated_by')->unsigned()->nullable();
+
+            //foreign key
+            $table->foreign('ass_category_id')->references('ctg_id')->on('categories')->onDelete('cascade');
+            $table->foreign('ass_origin_id')->references('ori_id')->on('origins')->onDelete('cascade');
+
+
+            $table->foreign('ass_created_by')->references('usr_id')->on('users')->onDelete('cascade');
+            $table->foreign('ass_updated_by')->references('usr_id')->on('users')->onDelete('cascade');
+            $table->foreign('ass_deleted_by')->references('usr_id')->on('users')->onDelete('cascade');
             
         });
     }

@@ -13,14 +13,21 @@ return new class extends Migration
     {
         Schema::create('asset_descriptions', function (Blueprint $table) {
             $table->bigIncrements('asd_id');
-            $table->bigInteger('asd_asset_id');
+            $table->unsignedBigInteger('asd_asset_id');
             $table->string('asd_description_name');
             $table->string('asd_description_value');
             $table->timestamps();
             $table->softDeletes();
-            $table->bigInteger('created_by')->nullable();
-            $table->bigInteger('deleted_by')->nullable();
-            $table->bigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('asd_created_by')->unsigned()->nullable();
+            $table->unsignedBigInteger('asd_deleted_by')->unsigned()->nullable();
+            $table->unsignedBigInteger('asd_updated_by')->unsigned()->nullable();
+
+            // foreign key
+            $table->foreign('asd_asset_id')->references('ass_id')->on('assets')->onDelete('cascade');
+
+            $table->foreign('asd_created_by')->references('usr_id')->on('users')->onDelete('cascade');
+            $table->foreign('asd_updated_by')->references('usr_id')->on('users')->onDelete('cascade');
+            $table->foreign('asd_deleted_by')->references('usr_id')->on('users')->onDelete('cascade');
         });
     }
 

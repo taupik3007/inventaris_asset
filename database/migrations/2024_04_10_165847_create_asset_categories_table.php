@@ -16,12 +16,20 @@ return new class extends Migration
             $table->string('ctg_code');
             $table->string('ctg_original_code');
             $table->string('ctg_name');
-            $table->bigInteger('ctg_parent_id')->nullable();
+            $table->unsignedBigInteger('ctg_parent_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
-            $table->bigInteger('created_by')->nullable();
-            $table->bigInteger('deleted_by')->nullable();
-            $table->bigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('ctg_created_by')->unsigned()->nullable();
+            $table->unsignedBigInteger('ctg_deleted_by')->unsigned()->nullable();
+            $table->unsignedBigInteger('ctg_updated_by')->unsigned()->nullable();
+
+            //foreign key
+            $table->foreign('ctg_parent_id')->references('ctg_id')->on('categories')->onDelete('cascade');           
+            $table->foreign('ctg_created_by')->references('usr_id')->on('users')->onDelete('cascade');
+            $table->foreign('ctg_updated_by')->references('usr_id')->on('users')->onDelete('cascade');
+            $table->foreign('ctg_deleted_by')->references('usr_id')->on('users')->onDelete('cascade');
+
+
         });
     }
 
