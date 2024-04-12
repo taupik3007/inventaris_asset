@@ -44,6 +44,7 @@ class RegisteredUserController extends Controller
             'usr_phone'=>$request->usr_phone,
             'usr_gender'=>$request->usr_gender,
         ]);
+        $user->assignRole('userLv1');
 
         event(new Registered($user));
 
