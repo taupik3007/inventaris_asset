@@ -1,11 +1,26 @@
 <x-guest-layout>
+    <style>
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+        
+        /* Firefox */
+        input[type=number] {
+          -moz-appearance: textfield;
+        }
+        </style>
+
+
     <form method="POST" action="{{ route('register') }}">
         @csrf
-
+       
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" inputmode="numeric" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
@@ -15,6 +30,19 @@
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
+
+        <div class="mt-4">
+            <x-input-label for="usr_phone" :value="__('Phone')" />
+            <x-text-input id="usr_phone" class="block mt-1 w-full" type="number" name="usr_phone" :value="old('usr_phone')" required autocomplete="usr_phone" />
+            <x-input-error :messages="$errors->get('usr_phone')" class="mt-2" />
+        </div>
+
+        <div class="mt-4">
+            <x-input-label for="usr_gender" :value="__('Gender')" />
+            <x-text-input id="usr_Gender" class="block mt-1 w-full" type="text" name="usr_gender" :value="old('usr_gender')" required autocomplete="usr_gender" />
+            <x-input-error :messages="$errors->get('usr_gender')" class="mt-2" />
+        </div>
+        
 
         <!-- Password -->
         <div class="mt-4">
@@ -49,4 +77,23 @@
             </x-primary-button>
         </div>
     </form>
+
+
+
+    <script>
+        var inputBox = document.getElementById("usr_phone");
+
+        var invalidChars = [
+        "-",
+        "+",
+        "e",
+        ];
+
+        inputBox.addEventListener("keydown", function(e) {
+        if (invalidChars.includes(e.key)) {
+            e.preventDefault();
+        }
+        });
+    </script>
+
 </x-guest-layout>

@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('usr_name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('usr_password');
+            $table->string('password');
             $table->bigInteger('usr_phone');
-            $table->string('gender');
+            $table->string('usr_gender');
             $table->bigInteger('usr_regis_number')->unique()->nullable();
             $table->string('usr_class')->nullable();
             $table->rememberToken();
