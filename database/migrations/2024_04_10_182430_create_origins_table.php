@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('origins', function (Blueprint $table) {
             $table->bigIncrements('ori_id');
-            $table->string('ori_code');
+            $table->string('ori_code')->unique();
             $table->string('ori_name');
             $table->timestamps();
             $table->softDeletes();
-            $table->bigInteger('ori_created_by')->unsigned()->nullable();
-            $table->bigInteger('ori_deleted_by')->unsigned()->nullable();
-            $table->bigInteger('ori_updated_by')->unsigned()->nullable();
+            $table->unsignedBigInteger('ori_created_by')->unsigned()->nullable();
+            $table->unsignedBigInteger('ori_deleted_by')->unsigned()->nullable();
+            $table->unsignedBigInteger('ori_updated_by')->unsigned()->nullable();
 
             //foreign key
                     
