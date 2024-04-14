@@ -11,17 +11,17 @@
     <link href="{{asset('vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
 @endpush
 @section('headTitle')
-Kategori Asset
+Asal
 @endsection
 @section('title')
-Kategori Asset
+Asal
 @endsection
 @section('content')
 <div class="row">
     <div class="col-md-12 col-sm-12 ">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Kategori Asset <small>List</small></h2>
+            <h2>Asal <small>List</small></h2>
             
             <div class="clearfix"></div>
           </div>
@@ -29,13 +29,13 @@ Kategori Asset
               <div class="row">
                   <div class="col-sm-12">
                     <div class="card-box table-responsive">
-                      <a href="/admin/assetCategory/tambah" class="btn btn-info mb-5">Tambah category</a>
+                      <a href="/admin/assetCategory/tambah" class="btn btn-info mb-5">Tambah asal</a>
                       <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                           <tr>
-                            <th>Name Kategori</th>
-                            <th>kode</th>
+                            <th>nomor</th>
                             <th>kode original</th>
+                            <th>nama asal</th>
                             <th>aksi</th>
                           </tr>
                         </thead>
@@ -43,7 +43,7 @@ Kategori Asset
 
                         <tbody>
                           <tr>
-                            <td>Tiger Nixon</td>
+                            <td>1</td>
                             <td>System Architect</td>
                             <td>Edinburgh</td>
                             <td><a href="" class="btn btn-primary">Edit</a>

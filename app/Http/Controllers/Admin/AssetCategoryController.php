@@ -20,7 +20,8 @@ class AssetCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.createAssetCategory');
+        
     }
 
     /**
@@ -44,7 +45,8 @@ class AssetCategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('admin.editAssetCategory');
+        
     }
 
     /**
