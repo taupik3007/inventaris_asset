@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\AssetCategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -25,6 +26,8 @@ require __DIR__.'/auth.php';
 
 
 Route::get('/admin/{id}/profile', [AdminProfileController::class, 'index'])->name('admin.profile.index');
+Route::get('/admin/assetCategory', [AssetCategoryController::class, 'index'])->name('admin.category.index');
+
 
 
 

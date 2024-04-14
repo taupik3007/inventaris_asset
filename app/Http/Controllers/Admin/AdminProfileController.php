@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class AdminProfileController extends Controller
 {
     public function index($id){
-        return view('admin.profile_detail',compact(['id']));
+        return view('admin.profileDetail',compact(['id']));
     }
 }
