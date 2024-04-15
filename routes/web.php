@@ -38,13 +38,25 @@ Route::get('/admin/assetCategory/{id}/destroy', [AssetCategoryController::class,
 
 
 //origin 
-Route::get('/admin/origin', [OriginController::class, 'index'])->name('admin.profile.index');
-Route::get('/admin/origin/create', [OriginController::class, 'create'])->name('admin.profile.index');
-Route::get('/admin/origin/create', [OriginController::class, 'store'])->name('admin.profile.store');
-Route::get('/admin/origin/{id}/edit', [OriginController::class, 'edit'])->name('admin.profile.edit');
-Route::post('/admin/origin/{id}/edit', [OriginController::class, 'update'])->name('admin.profile.update');
-Route::get('/admin/origin/{id}/destroy', [OriginController::class, 'destroy'])->name('admin.profile.destroy');
+Route::get('/admin/origin', [OriginController::class, 'index'])->name('admin.origin.index');
+Route::get('/admin/origin/create', [OriginController::class, 'create'])->name('admin.origin.index');
+Route::get('/admin/origin/create', [OriginController::class, 'store'])->name('admin.origin.store');
+Route::get('/admin/origin/{id}/edit', [OriginController::class, 'edit'])->name('admin.origin.edit');
+Route::post('/admin/origin/{id}/edit', [OriginController::class, 'update'])->name('admin.origin.update');
+Route::get('/admin/origin/{id}/destroy', [OriginController::class, 'destroy'])->name('admin.origin.destroy');
 
+
+
+//end origin
+
+//asset
+Route::get('/admin/asset', [AssetController::class, 'index'])->name('admin.asset.index');
+Route::get('/admin/asset/create', [AssetController::class, 'create'])->name('admin.asset.create');
+Route::post('/admin/asset/create', [AssetController::class, 'store'])->name('admin.asset.store');
+Route::get('/admin/asset/{id}/detail', [AssetController::class, 'show'])->name('admin.asset.show');
+Route::get('/admin/asset/{id}/edit', [AssetController::class, 'edit'])->name('admin.asset.edit');
+Route::post('/admin/asset/{id}/edit', [AssetController::class, 'update'])->name('admin.asset.update');
+Route::get('/admin/asset', [AssetController::class, 'index'])->name('admin.asset.index');
 
 
 //end origin
