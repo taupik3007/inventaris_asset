@@ -43,33 +43,22 @@
             </div>
             <div class="x_content">
                 <br />
-                <form class="form-horizontal form-label-left">
-
+                <form class="form-horizontal form-label-left" method="post" action="">
+                    @csrf
                     <div class="form-group row ">
-                        <label class="control-label col-md-3 col-sm-3 ">Nama kategori</label>
+                        <label class="control-label col-md-3 col-sm-3 ">Kode Asal</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <input type="text" class="form-control" placeholder="Nama Kategori">
+                            <input type="text" name="ori_code" class="form-control" placeholder="Kode Asal" required>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="control-label col-md-3 col-sm-3 ">kategori induk</label>
+                    <div class="form-group row ">
+                        <label class="control-label col-md-3 col-sm-3 ">Nama Asal</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <select id="choose" class="form-control" onchange="yesnoCheck(this);">
-                                <option>--</option>
-                                <option value="0">tanpa induk kategori</option>
-                                <option>Option two</option>
-                                <option>Option three</option>
-                                <option>Option four</option>
-                            </select>
+                            <input type="text" name="ori_name" class="form-control" placeholder="Nama Asal" required>
                         </div>
                     </div>
-                    <div id="originalCode" style="display: none" class="form-group row ">
-                        <label class="control-label col-md-3 col-sm-3 ">Kode original</label>
-                        <div class="col-md-9 col-sm-9 ">
-                            <input type="text" class="form-control" placeholder="Kode Original">
-                        </div>
-                    </div>
-                  
+                   
+                    
 
 
                     <div id="line" class="ln_solid " style="margin-top: 0pt"></div>

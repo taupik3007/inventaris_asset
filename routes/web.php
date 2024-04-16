@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AssetCategoryController;
+use App\Http\Controllers\Admin\OriginController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,7 +26,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-
+Route::middleware('auth')->group(function () {
 Route::get('/admin/{id}/profile', [AdminProfileController::class, 'index'])->name('admin.profile.index');
 
 //asset kategori
@@ -39,8 +41,8 @@ Route::get('/admin/assetCategory/{id}/destroy', [AssetCategoryController::class,
 
 //origin 
 Route::get('/admin/origin', [OriginController::class, 'index'])->name('admin.origin.index');
-Route::get('/admin/origin/create', [OriginController::class, 'create'])->name('admin.origin.index');
-Route::get('/admin/origin/create', [OriginController::class, 'store'])->name('admin.origin.store');
+Route::get('/admin/origin/create', [OriginController::class, 'create'])->name('admin.origin.create');
+Route::post('/admin/origin/create', [OriginController::class, 'store'])->name('admin.origin.store');
 Route::get('/admin/origin/{id}/edit', [OriginController::class, 'edit'])->name('admin.origin.edit');
 Route::post('/admin/origin/{id}/edit', [OriginController::class, 'update'])->name('admin.origin.update');
 Route::get('/admin/origin/{id}/destroy', [OriginController::class, 'destroy'])->name('admin.origin.destroy');
@@ -56,13 +58,26 @@ Route::post('/admin/asset/create', [AssetController::class, 'store'])->name('adm
 Route::get('/admin/asset/{id}/detail', [AssetController::class, 'show'])->name('admin.asset.show');
 Route::get('/admin/asset/{id}/edit', [AssetController::class, 'edit'])->name('admin.asset.edit');
 Route::post('/admin/asset/{id}/edit', [AssetController::class, 'update'])->name('admin.asset.update');
-Route::get('/admin/asset', [AssetController::class, 'index'])->name('admin.asset.index');
+Route::get('/admin/asset/{id}/destroy', [AssetController::class, 'destroy'])->name('admin.asset.destroy');
 
 
 //end origin
 
 
+//user
+Route::get('/admin/user', [userController::class, 'index'])->name('admin.user.index');
+Route::get('/admin/user/create', [userController::class, 'create'])->name('admin.user.create');
+Route::post('/admin/user/create', [userController::class, 'store'])->name('admin.user.store');
+Route::get('/admin/user/{id}/detail', [userController::class, 'show'])->name('admin.user.show');
+Route::get('/admin/user/{id}/edit', [userController::class, 'edit'])->name('admin.user.edit');
+Route::post('/admin/user/{id}/edit', [userController::class, 'update'])->name('admin.user.update');
+Route::get('/admin/user/{id}/destroy', [userController::class, 'destroy'])->name('admin.user.destroy');
 
+
+//end user
+
+
+});
 
 
 

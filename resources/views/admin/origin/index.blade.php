@@ -29,7 +29,7 @@ Asal
               <div class="row">
                   <div class="col-sm-12">
                     <div class="card-box table-responsive">
-                      <a href="/admin/assetCategory/tambah" class="btn btn-info mb-5">Tambah asal</a>
+                      <a href="/admin/origin/create" class="btn btn-info mb-5">Tambah asal</a>
                       <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                           <tr>
@@ -42,14 +42,16 @@ Asal
 
 
                         <tbody>
+                          @foreach ($origin as $no=>$origin)
                           <tr>
-                            <td>1</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
+                            <td>{{$no+1}}</td>
+                            <td>{{$origin->ori_code}}</td>
+                            <td>{{$origin->oriname}}</td>
                             <td><a href="" class="btn btn-primary">Edit</a>
                               <a href="" class="btn btn-danger">hapus</a>
                             </td>
                           </tr>
+                          @endforeach
                         </tbody>
                       </table>
                     </div>
