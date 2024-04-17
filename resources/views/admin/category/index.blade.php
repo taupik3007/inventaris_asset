@@ -29,27 +29,34 @@ Kategori Asset
               <div class="row">
                   <div class="col-sm-12">
                     <div class="card-box table-responsive">
-                      <a href="/admin/assetCategory/tambah" class="btn btn-info mb-5">Tambah category</a>
+                      <a href="/admin/assetCategory/create" class="btn btn-info mb-5">Tambah category</a>
                       <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                           <tr>
+                            <th>no</th>
                             <th>Name Kategori</th>
                             <th>kode</th>
                             <th>kode original</th>
+                            
                             <th>aksi</th>
                           </tr>
                         </thead>
 
 
                         <tbody>
+                          @foreach($category as $no=>$category)
                           <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
+                            <td>{{$no+1}}</td>
+                            <td>{{$category->ctg_name}}</td>
+                            <td>{{$category->ctg_code}}</td>
+                            <td>{{$category->ctg_original_code}}</td>
+                           
+
                             <td><a href="" class="btn btn-primary">Edit</a>
                               <a href="" class="btn btn-danger">hapus</a>
                             </td>
                           </tr>
+                          @endforeach
                         </tbody>
                       </table>
                     </div>

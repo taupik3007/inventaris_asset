@@ -4,6 +4,8 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Origin;
+use App\Models\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,15 +38,22 @@ class OriginController extends Controller
 
         $id =  Auth::user()->usr_id;
         // dd($id);
+        $messages = [
+            'required'  => 'Harap di isi.',
+            'unique'    => 'kode sudah digunakan',
+        ];
         $validated = $request->validate([
             'ori_code' => 'required|unique:origins|max:255',
-            'ori_name' => 'required',
-        ]);
+            'ori_name' => 'required'
+        ],$messages
+        );
 
         $validated['ori_created_by']= $id;
+        $validated['ori_code']= "INV.".strtoupper($request->ori_code);
+
 
         Origin::create($validated);
-        return redirect('/admin/origin');
+        return redirect('/admin/origin')->with('succes','Berhasil input asal baru');
     }
 
     /**
@@ -76,6 +85,13 @@ class OriginController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // dd($id);
+        $origin = Origin::findOrFail($id);
+        $origin->ori_deleted_by = Auth::user()->usr_id;
+        $origin->save();
+        $origin->delete();
+        return redirect('/admin/origin')->with('succes','Berhasil Hapus asal');
+
+        // dd($origin);
     }
 }

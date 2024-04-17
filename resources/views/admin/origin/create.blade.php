@@ -48,13 +48,16 @@
                     <div class="form-group row ">
                         <label class="control-label col-md-3 col-sm-3 ">Kode Asal</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <input type="text" name="ori_code" class="form-control" placeholder="Kode Asal" required>
+                            <input type="text" name="ori_code" class="form-control" placeholder="Kode Asal" wire:model="ori_code" >
+                            @error('ori_code') <span class="error text-">{{ $message }}</span> @enderror
                         </div>
                     </div>
                     <div class="form-group row ">
                         <label class="control-label col-md-3 col-sm-3 ">Nama Asal</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <input type="text" name="ori_name" class="form-control" placeholder="Nama Asal" required>
+                            <input type="text" name="ori_name" class="form-control" placeholder="Nama Asal" wire:model="ori_code" >
+                            @error('ori_name') <span class="error text-">{{ $message }}</span> @enderror
+
                         </div>
                     </div>
                    

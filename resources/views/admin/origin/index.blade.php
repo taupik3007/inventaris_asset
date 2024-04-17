@@ -29,6 +29,13 @@ Asal
               <div class="row">
                   <div class="col-sm-12">
                     <div class="card-box table-responsive">
+                      @if(session()->has('succes'))
+                      <div class="alert alert-success alert-dismissible " role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                        </button>
+                        {{ session()->get('succes') }}
+                      </div>
+                      @endif
                       <a href="/admin/origin/create" class="btn btn-info mb-5">Tambah asal</a>
                       <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                         <thead>
@@ -46,9 +53,9 @@ Asal
                           <tr>
                             <td>{{$no+1}}</td>
                             <td>{{$origin->ori_code}}</td>
-                            <td>{{$origin->oriname}}</td>
+                            <td>{{$origin->ori_name}}</td>
                             <td><a href="" class="btn btn-primary">Edit</a>
-                              <a href="" class="btn btn-danger">hapus</a>
+                              <a href="/admin/origin/{{$origin->ori_id}}/destroy" class="btn btn-danger">hapus</a>
                             </td>
                           </tr>
                           @endforeach

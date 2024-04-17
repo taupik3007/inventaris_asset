@@ -43,31 +43,38 @@
             </div>
             <div class="x_content">
                 <br />
-                <form class="form-horizontal form-label-left">
-
+                <form class="form-horizontal form-label-left" method="post" action="">
+                    @csrf
                     <div class="form-group row ">
                         <label class="control-label col-md-3 col-sm-3 ">Nama kategori</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <input type="text" class="form-control" placeholder="Nama Kategori">
+                            <input type="text" class="form-control" name="ctg_name" placeholder="Nama Kategori" wire:model="ctg_name">
+                            @error('ctg_name') <span class="error text-">{{ $message }}</span> @enderror
+
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="control-label col-md-3 col-sm-3 ">kategori induk</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <select id="choose" class="form-control" onchange="yesnoCheck(this);">
-                                <option>--</option>
-                                <option value="0">tanpa induk kategori</option>
-                                <option>Option two</option>
-                                <option>Option three</option>
-                                <option>Option four</option>
+                            <select id="choose" class="form-control" name="ctg_parent_code" onchange="yesnoCheck(this);">
+                                <option value="">Tanpa Induk Kategori</option>                              
+                                @foreach($category as $category)
+                                <option value="{{$category->ctg_code}}">{{$category->ctg_name}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
-                    <div id="originalCode" style="display: none" class="form-group row ">
+                    <div id="originalCode"  class="form-group row ">
                         <label class="control-label col-md-3 col-sm-3 ">Kode original</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <input type="text" class="form-control" placeholder="Kode Original">
+                            <input type="text" class="form-control" name="ctg_original_code" placeholder="Kode Original" wire:model="ctg_original_code">
                         </div>
+                        @error('ctg_original_code') <span class="error text-">{{ $message }}</span> @enderror
+                        @if(session()->has('error'))
+                      <div class="alert alert-success alert-dismissible " role="alert">
+                        <span class="error text-">{{ session()->get('error') }}</span>
+                      </div>
+                      @endif
                     </div>
                   
 
@@ -87,7 +94,7 @@
     </div>
 </div>
 
-<script>
+{{-- <script>
     function yesnoCheck(that) 
 {
     if (that.value == "0") 
@@ -104,7 +111,7 @@
     }
    
 }
-</script>
+</script> --}}
 
 @endsection
 
