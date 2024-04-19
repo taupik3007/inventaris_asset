@@ -25,20 +25,8 @@
     <div class="col-md-12 ">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Form Basic Elements <small>different form elements</small></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Settings 1</a>
-                            <a class="dropdown-item" href="#">Settings 2</a>
-                        </div>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                </ul>
+                <h2>Tambah kategori asset</small></h2>
+               
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -68,13 +56,12 @@
                         <label class="control-label col-md-3 col-sm-3 ">Kode original</label>
                         <div class="col-md-9 col-sm-9 ">
                             <input type="text" class="form-control" name="ctg_original_code" placeholder="Kode Original" wire:model="ctg_original_code">
+                            @if(session()->has('error'))                     
+                            <span class="error text-">{{ session()->get('error') }}</span>                     
+                            @endif
                         </div>
                         @error('ctg_original_code') <span class="error text-">{{ $message }}</span> @enderror
-                        @if(session()->has('error'))
-                      <div class="alert alert-success alert-dismissible " role="alert">
-                        <span class="error text-">{{ session()->get('error') }}</span>
-                      </div>
-                      @endif
+                        
                     </div>
                   
 
@@ -82,7 +69,7 @@
                     <div id="line" class="ln_solid " style="margin-top: 0pt"></div>
                     <div class="form-group">
                         <div class="col-md-9 col-sm-9  offset-md-3">
-                            <button type="button" class="btn btn-primary">Cancel</button>
+                            <a href="/admin/assetCategory" class="btn btn-primary">Cancel</a>
                             <button type="reset" class="btn btn-primary">Reset</button>
                             <button type="submit" class="btn btn-success">Submit</button>
                         </div>

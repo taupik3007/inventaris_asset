@@ -25,37 +25,27 @@
     <div class="col-md-12 ">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Form Basic Elements <small>different form elements</small></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Settings 1</a>
-                            <a class="dropdown-item" href="#">Settings 2</a>
-                        </div>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                </ul>
+                <h2>Form Basic Elements <small>different form elements</small></h2>              
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
                 <br />
-                <form class="form-horizontal form-label-left">
-
+                <form class="form-horizontal form-label-left" action="" method="post">
+                    @csrf
                     <div class="form-group row ">
                         <label class="control-label col-md-3 col-sm-3 ">Nama kategori</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <input type="text" class="form-control" placeholder="Nama Kategori">
+                            <input type="text" class="form-control" placeholder="Nama Kategori" value="{{$category->ctg_name}}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="control-label col-md-3 col-sm-3 ">kategori induk</label>
                         <div class="col-md-9 col-sm-9 ">
                             <select id="choose" class="form-control" onchange="yesnoCheck(this);">
-                                <option>--</option>
+                                @if($parent_category)
+
+                                <option value="{{$parent_category->ctg_id}}">{{$parent_category->ctg_name}}</option>
+                                @endif
                                 <option value="0">tanpa induk kategori</option>
                                 <option>Option two</option>
                                 <option>Option three</option>
@@ -63,16 +53,16 @@
                             </select>
                         </div>
                     </div>
-                    <div id="originalCode" style="display: none" class="form-group row ">
+                    <div id="originalCode"  class="form-group row ">
                         <label class="control-label col-md-3 col-sm-3 ">Kode original</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <input type="text" class="form-control" placeholder="Kode Original">
+                            <input type="text" class="form-control" placeholder="Kode Original" value="{{$category->ctg_original_code}}">
                         </div>
                     </div>
                   
 
 
-                    <div id="line" class="ln_solid " style="margin-top: 0pt"></div>
+                    <div id="line" class="ln_solid "></div>
                     <div class="form-group">
                         <div class="col-md-9 col-sm-9  offset-md-3">
                             <button type="button" class="btn btn-primary">Cancel</button>
@@ -87,7 +77,7 @@
     </div>
 </div>
 
-<script>
+{{-- <script>
     function yesnoCheck(that) 
 {
     if (that.value == "0") 
@@ -104,7 +94,7 @@
     }
    
 }
-</script>
+</script> --}}
 
 @endsection
 

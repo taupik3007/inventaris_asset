@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class AssetCategoryController extends Controller
 {
@@ -41,7 +43,7 @@ class AssetCategoryController extends Controller
         ];
         $validated = $request->validate([
             'ctg_original_code' => 'required|max:255',
-            'ctg_name' => 'required|unique:categories|max:255',
+            'ctg_name' => 'required|max:255',
         ],$messages
         );
 
@@ -75,6 +77,8 @@ class AssetCategoryController extends Controller
         $category->ctg_parent_id        = $parent_category->ctg_id;
         }
         $category->save();
+        return redirect('/admin/assetCategory')->with('succes','Berhasil Menambah Asal');
+
     }
 
     /**
@@ -90,7 +94,10 @@ class AssetCategoryController extends Controller
      */
     public function edit(string $id)
     {
-        return view('admin.editAssetCategory');
+        $category=Category::where('ctg_id','=',$id)->first();
+        $parent_category = Category::where('ctg_id','=',$category->ctg_parent_id)->first();
+        
+        return view('admin.Category.edit',compact('category','parent_category'));
         
     }
 
@@ -107,6 +114,16 @@ class AssetCategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $parent_id = Category::where('ctg_parent_id','=',$id)->first();
+        if($parent_id){
+            return redirect('/admin/assetCategory')->with('error','kategori ini masih memiliki anak kategori');
+        }
+
+        $category= Category::findOrFail($id);
+        $category->ctg_deleted_by = Auth::user()->usr_id;
+        $category->save();
+        $category->delete();
+        return redirect('/admin/assetCategory')->with('succes','kategori ini berhasil dihapus');
+        
     }
 }
