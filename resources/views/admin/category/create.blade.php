@@ -59,8 +59,9 @@
                             @if(session()->has('error'))                     
                             <span class="error text-">{{ session()->get('error') }}</span>                     
                             @endif
-                        </div>
                         @error('ctg_original_code') <span class="error text-">{{ $message }}</span> @enderror
+
+                        </div>
                         
                     </div>
                   

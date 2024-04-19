@@ -71,7 +71,7 @@ class AssetCategoryController extends Controller
 
         $category = new Category();
         $category->ctg_code             = $ctg_code;
-        $category->ctg_original_code    = $request->ctg_original_code;
+        $category->ctg_original_code    = strtoupper($request->ctg_original_code);
         $category->ctg_name             = $request->ctg_name;
         if($request->ctg_parent_code != null){
         $category->ctg_parent_id        = $parent_category->ctg_id;
@@ -86,7 +86,7 @@ class AssetCategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**
@@ -96,8 +96,9 @@ class AssetCategoryController extends Controller
     {
         $category=Category::where('ctg_id','=',$id)->first();
         $parent_category = Category::where('ctg_id','=',$category->ctg_parent_id)->first();
-        
-        return view('admin.Category.edit',compact('category','parent_category'));
+        $category_option = Category::where('ctg_id','!=',$id)->where('ctg_parent_id','!=',$id)->where('ctg_parent_id','!=',null)->get();
+        dd($category_option);
+        return view('admin.Category.edit',compact('category','parent_category','category_option'));
         
     }
 
@@ -106,7 +107,53 @@ class AssetCategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $messages = [
+            'required'  => 'Harap di isi.',
+            'unique'    => 'nama sudah digunakan',
+        ];
+        $validated = $request->validate([
+            'ctg_original_code' => 'required|max:255',
+            'ctg_name' => 'required|max:255',
+        ],$messages
+        );
+
+    
+
+        $category= Category::where('ctg_id',$id)->first();
+        if($category->ctg_original_code == strtoupper($request->ctg_original_code) AND $category->ctg_parent_id == $request->ctg_parent_id ){
+            
+        }else{
+            // echo "awikwok";
+            if($request->ctg_parent_code == null){
+                $ctg_code = strtoupper($request->ctg_original_code);
+                $cek_ctg_ori_code = Category::where('ctg_original_code','=',$ctg_code)->first();
+                if($cek_ctg_ori_code){
+                 return redirect('/admin/assetCategory/create')->with('error','kode original sudah terdaftar');
+    
+                }
+            }else{
+                echo "awikwok";
+            //     $ctg_code = strtoupper($request->ctg_parent_code.".".$request->ctg_original_code);
+            //     $cek_ctg_code = Category::where('ctg_code','=',$ctg_code)->first();
+            //     if($cek_ctg_code){
+            //         return redirect('/admin/assetCategory/create')->with('error','kode sudah terdaftar');
+       
+            //        }
+            //  $parent_category = Category::where('ctg_code',"=",$request->ctg_parent_code)->first();
+                
+            } 
+        }
+
+        // $category->ctg_code             = $ctg_code;
+        // $category->ctg_original_code    = strtoupper($request->ctg_original_code);
+        // $category->ctg_name             = $request->ctg_name;
+        // if($request->ctg_parent_code != null){
+        // $category->ctg_parent_id        = $parent_category->ctg_id;
+        // }
+        // $category->save();
+        
+
+
     }
 
     /**

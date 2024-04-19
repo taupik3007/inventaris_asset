@@ -35,29 +35,43 @@
                     <div class="form-group row ">
                         <label class="control-label col-md-3 col-sm-3 ">Nama kategori</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <input type="text" class="form-control" placeholder="Nama Kategori" value="{{$category->ctg_name}}">
+                            <input type="text" class="form-control" name="ctg_name" placeholder="Nama Kategori" value="{{$category->ctg_name}}" wire:model="ctg_name">
+                            @error('ctg_name') <span class="error text-">{{ $message }}</span> @enderror
+
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="control-label col-md-3 col-sm-3 ">kategori induk</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <select id="choose" class="form-control" onchange="yesnoCheck(this);">
+                            <select id="choose" name="ctg_parent_id" class="form-control" onchange="yesnoCheck(this);">
                                 @if($parent_category)
 
                                 <option value="{{$parent_category->ctg_id}}">{{$parent_category->ctg_name}}</option>
                                 @endif
                                 <option value="0">tanpa induk kategori</option>
-                                <option>Option two</option>
-                                <option>Option three</option>
-                                <option>Option four</option>
+                                @foreach ($category_option as $category_option)
+                                    @if($parent_category)
+                                        @if($category_option->ctg_name == $parent_category->ctg_name)
+                                        @else
+                                        <option value="{{$category_option->ctg_id}}">{{$category_option->ctg_name}}</option>
+                                        @endif
+                                    @else
+                                      <option value="{{$category_option->ctg_id}}">{{$category_option->ctg_name}}</option>
+                                    @endif
+                                @endforeach
                             </select>
                         </div>
                     </div>
                     <div id="originalCode"  class="form-group row ">
                         <label class="control-label col-md-3 col-sm-3 ">Kode original</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <input type="text" class="form-control" placeholder="Kode Original" value="{{$category->ctg_original_code}}">
+                            <input type="text" class="form-control" placeholder="Kode Original" name="ctg_original_code" value="{{$category->ctg_original_code}}" wire:model="ctg_original_code">
+                        @error('ctg_original_code') <span class="error text-">{{ $message }}</span> @enderror
+                        @if(session()->has('error'))                     
+                        <span class="error text-">{{ session()->get('error') }}</span>                     
+                        @endif
                         </div>
+                        
                     </div>
                   
 
