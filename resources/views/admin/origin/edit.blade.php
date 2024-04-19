@@ -26,56 +26,42 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>Form Basic Elements <small>different form elements</small></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Settings 1</a>
-                            <a class="dropdown-item" href="#">Settings 2</a>
-                        </div>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                </ul>
+                
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
                 <br />
-                <form class="form-horizontal form-label-left">
-
+                <form class="form-horizontal form-label-left" method="post" action="">
+                    @csrf
                     <div class="form-group row ">
-                        <label class="control-label col-md-3 col-sm-3 ">Nama kategori</label>
+                        <label class="control-label col-md-3 col-sm-3 ">Kode Asal</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <input type="text" class="form-control" placeholder="Nama Kategori">
+                            <input type="text" name="ori_code" class="form-control" placeholder="Kode Asal" value="{{substr($origin->ori_code,4)}}" wire:model="ori_code" >
+                            @error('ori_code') <span class="error text-">{{ $message }}</span> @enderror
+                            @if(session()->has('error-code'))                     
+                            <span class="error text-">{{ session()->get('error-code') }}</span>                     
+                            @endif
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="control-label col-md-3 col-sm-3 ">kategori induk</label>
+                    <div class="form-group row ">
+                        <label class="control-label col-md-3 col-sm-3 ">Nama Asal</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <select id="choose" class="form-control" onchange="yesnoCheck(this);">
-                                <option>--</option>
-                                <option value="0">tanpa induk kategori</option>
-                                <option>Option two</option>
-                                <option>Option three</option>
-                                <option>Option four</option>
-                            </select>
+                            <input type="text" name="ori_name" class="form-control" placeholder="Nama Asal" value="{{$origin->ori_name}}" wire:model="ori_code" >
+                            @error('ori_name') <span class="error text-">{{ $message }}</span> @enderror
+                            @if(session()->has('error-name'))                     
+                            <span class="error text-">{{ session()->get('error-name') }}</span>                     
+                            @endif
+
                         </div>
                     </div>
-                    <div id="originalCode" style="display: none" class="form-group row ">
-                        <label class="control-label col-md-3 col-sm-3 ">Kode original</label>
-                        <div class="col-md-9 col-sm-9 ">
-                            <input type="text" class="form-control" placeholder="Kode Original">
-                        </div>
-                    </div>
-                  
+                   
+                    
 
 
                     <div id="line" class="ln_solid " style="margin-top: 0pt"></div>
                     <div class="form-group">
                         <div class="col-md-9 col-sm-9  offset-md-3">
-                            <button type="button" class="btn btn-primary">Cancel</button>
+                            <a type="submit" class="btn btn-primary" href="/admin/origin">Cancel</a>
                             <button type="reset" class="btn btn-primary">Reset</button>
                             <button type="submit" class="btn btn-success">Submit</button>
                         </div>
@@ -87,7 +73,7 @@
     </div>
 </div>
 
-<script>
+{{-- <script>
     function yesnoCheck(that) 
 {
     if (that.value == "0") 
@@ -104,7 +90,7 @@
     }
    
 }
-</script>
+</script> --}}
 
 @endsection
 

@@ -25,12 +25,12 @@
         <div class="menu_section">
          
           <ul class="nav side-menu">
-            <li><a><i class="fa fa-home"></i> Manajemen Asset <span class="fa fa-chevron-down"></span></a>
-              <ul class="nav child_menu">
-                <li><a href="/admin/categoryAsset">Kategori asset</a></li>
-                <li><a href="index2.html">Asset</a></li>
-              </ul>
-            </li>
+            <li><a href="/admin/origin"><i class="fa fa-laptop"></i>  Manajemen asal</a></li>
+
+          </ul>
+          <ul class="nav side-menu">
+            <li><a href="/admin/assetCategory"><i class="fa fa-laptop"></i>  Manajemen Kategori Asset</a></li>
+
           </ul>
         </div>
         

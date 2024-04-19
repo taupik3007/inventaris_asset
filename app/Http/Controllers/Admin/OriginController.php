@@ -44,7 +44,7 @@ class OriginController extends Controller
         ];
         $validated = $request->validate([
             'ori_code' => 'required|unique:origins|max:255',
-            'ori_name' => 'required'
+            'ori_name' => 'required|unique:origins'
         ],$messages
         );
 
@@ -69,7 +69,9 @@ class OriginController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $origin = Origin::where('ori_id' ,$id)->first();
+        // dd($origin);
+        return view('admin.origin.edit',compact(['origin']));
     }
 
     /**
@@ -77,7 +79,78 @@ class OriginController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $messages = [
+            'required'  => 'Harap di isi.',
+            'unique'    => 'kode sudah digunakan',
+        ];
+        $validated = $request->validate([
+            'ori_code' => 'required|max:255',
+            'ori_name' => 'required'
+        ],$messages
+        );
+
+        $origin_cek = Origin::where('ori_id',$id)->first();
+        // dd($origin_cek);
+        $code = "INV.".strtoupper($request->ori_code);
+        if($code == $origin_cek->ori_code){
+            if($request->ori_name  == $origin_cek->ori_name){
+                return redirect('/admin/origin');
+            }else{
+            $origin_name_count = Origin::where('ori_name',$request->ori_name)->count();
+            // dd($origin_name_count);
+            if($origin_name_count > 0){
+                return redirect('/admin/origin/'.$id.'/edit')->with('error-name','nama asal sudah digunakan');
+
+            }
+                
+            }
+        }else{
+            if($request->ori_name  == $origin_cek->ori_name){
+                $origin_code_count = Origin::where('ori_code',$code)->count();
+                // dd($origin_code_count);
+                if($origin_code_count == 0){
+
+                }else{
+                    return redirect('/admin/origin/'.$id.'/edit')->with('error-code','kode asal sudah digunakan');
+                }
+            }else{
+            $origin_name_count = Origin::where('ori_name',$request->ori_name)->count();
+            // dd($origin_name_count);
+            if($origin_name_count > 0){
+                return redirect('/admin/origin/'.$id.'/edit')->with('error-name','nama asal sudah digunakan');
+
+            }else{
+                $origin_code_count = Origin::where('ori_code',$code)->count();
+                // dd($origin_code_count);
+                if($origin_code_count == 0){
+
+                }else{
+                    return redirect('/admin/origin/'.$id.'/edit')->with('error-code','kode asal sudah digunakan');
+                }
+            }
+                
+            }
+
+        }
+
+        $origin_cek->ori_code = $code;
+        $origin_cek->ori_name = $request->ori_name;
+        $origin_cek->save();
+        return redirect('/admin/origin/')->with('succes','data berhasil di update');
+
+
+
+
+
+        // $origin_code_count = Origin::where('ori_code',$code)->count();
+        //     dd($origin_code_count);
+        //     if()
+
+
+
+
+
+
     }
 
     /**
