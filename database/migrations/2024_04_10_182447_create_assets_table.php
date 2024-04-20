@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('ass_registration_code')->unique();
             $table->string('ass_name')->unique();
             $table->double('ass_price')->nullable();
-            $table->boolean('ass_status');
+            $table->integer('ass_condition');
+            $table->integer('ass_status');
             $table->timestamps();
             $table->softDeletes();
             $table->unsignedBigInteger('ass_created_by')->unsigned()->nullable();

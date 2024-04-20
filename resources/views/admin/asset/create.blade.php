@@ -43,66 +43,132 @@
             </div>
             <div class="x_content">
                 <br />
-                <form class="form-horizontal form-label-left">
-
+                <form class="form-horizontal form-label-left" method="post" action="">
+                    @csrf
                     <div class="form-group row ">
                         <label class="control-label col-md-3 col-sm-3 ">Nama Asset</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <input type="text"name="ass_name" class="form-control" placeholder="Nama Asset">
+                            <input type="text"name="ass_name" class="form-control" placeholder="Nama Asset" wire:model="ass_name">
+                            @error('ass_name') <span class="error text-">{{ $message }}</span> @enderror
+
                         </div>
                     </div>
                     <div class="form-group row ">
                         <label class="control-label col-md-3 col-sm-3 ">Tahun Pengadaan</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <input type="text" class="form-control" name="ass_year" placeholder="Tahun Pengadaan">
+                            <input type="text" class="form-control" name="ass_year" placeholder="Tahun Pengadaan" wire:model="ass_year">
+                            @error('ass_year') <span class="error text-">{{ $message }}</span> @enderror
+
                         </div>
                     </div>
                     <div class="form-group row ">
                         <label class="control-label col-md-3 col-sm-3 ">Harga</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <input type="text" class="form-control" name="ass_price" placeholder="Harga">
+                            <input type="number" class="form-control" name="ass_price" placeholder="Harga" wire:model="ass_price">
+                            @error('ass_price') <span class="error text-">{{ $message }}</span> @enderror
+
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="control-label col-md-3 col-sm-3 ">Kategori Asset</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <select id="choose" class="form-control" name="ass_category_id" onchange="yesnoCheck(this);">
-                                <option>--</option>
+                            <select id="choose" class="form-control" name="ass_category_id" onchange="yesnoCheck(this);" wire:model="ass_category_id">
+                                <option value="">--</option>
                                 @foreach($category as $category)
                                 <option value="{{$category->ctg_id}}">{{$category->ctg_name}}</option>
                                 @endforeach
                             </select>
+                            @error('ass_category_id') <span class="error text-">{{ $message }}</span> @enderror
+
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="control-label col-md-3 col-sm-3 ">Asal Asset</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <select id="choose" class="form-control" name="ass_origin_id" onchange="yesnoCheck(this);">
-                                <option>--</option>
+                            <select id="choose" class="form-control" name="ass_origin_id" onchange="yesnoCheck(this);" wire:model="ass_origin_id">
+                                <option value="">--</option>
                                 @foreach($origin as $origin)
                                 <option value="{{$origin->ori_id}}">{{$origin->ori_name}}</option>
                                 @endforeach
                             </select>
+                            @error('ass_origin_id') <span class="error text-">{{ $message }}</span> @enderror
+
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="control-label col-md-3 col-sm-3 ">Asal Asset</label>
+                        <label class="control-label col-md-3 col-sm-3 ">Status</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <select id="choose" class="form-control" onchange="yesnoCheck(this);">
-                                <option>--</option>
-                                <option value="0">tanpa induk kategori</option>
-                                <option>Option two</option>
-                                <option>Option three</option>
-                                <option>Option four</option>
+                            <select id="choose" class="form-control" name="ass_status" onchange="yesnoCheck(this);" wire:model="ass_status">
+                                <option value="">--</option>
+                                <option value="1">bisa dipinjam</option>
+                                <option value="0">tidak bisa di pinjam</option>
                             </select>
+                            @error('ass_status') <span class="error text-">{{ $message }}</span> @enderror
+
                         </div>
                     </div>
-                    <div id="originalCode" style="display: none" class="form-group row ">
-                        <label class="control-label col-md-3 col-sm-3 ">Kode original</label>
+                    <div   class="form-group row ">
+                        <label class="control-label col-md-3 col-sm-3 ">Kondisi</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <input type="text" class="form-control" placeholder="Kode Original">
+                            <select id="choose" class="form-control" name="ass_condition" onchange="yesnoCheck(this);" wire:model="ass_condition">
+                                <option value="">--</option>
+                                <option value="0">rusak</option>\
+                                <option value="1">baik</option>
+                            </select>
+                            @error('ass_condition') <span class="error text-">{{ $message }}</span> @enderror
+
                         </div>
                     </div>
+                    <div   class="form-group row ">
+                        <label class="control-label col-md-3 col-sm-3 ">Jumlah</label>
+                        <div class="col-md-9 col-sm-9 ">
+                            <input type="text" name="amount" class="form-control" placeholder="Kode Original" wire:model="amount">
+                        @error('amount') <span class="error text-">{{ $message }}</span> @enderror
+                            
+                        </div>
+
+                    </div>
+                    <div   class="form-group row ">
+                        <label class="control-label col-md-3 col-sm-3 ">deskripsi</label>
+                        <div class="col-md-9 col-sm-9 ">
+                            
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                            
+                                    
+                                    <div class="col-sm-6 nopadding">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" required  name="asd_name[]" value=""
+                                                placeholder="Judul Deskripsi">
+                                        </div>
+                                    </div>
+                            
+                                    <div class="col-sm-6 nopadding">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="asd_value[]" required placeholder="Isi Deskripsi">
+                                                
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-success" type="button" onclick="education_fields();"> <span
+                                                            class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="education_fields">
+                            
+                                    </div>
+                                    <div class="clear"></div>
+                            
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+
+
+
                   
 
 
@@ -120,7 +186,23 @@
         </div>
     </div>
 </div>
+<script>
+    var room = 1;
+    function education_fields() {
 
+        room++;
+        var objTo = document.getElementById('education_fields')
+        var divtest = document.createElement("div");
+        divtest.setAttribute("class", "form-group removeclass" + room);
+        var rdiv = 'removeclass' + room;
+        divtest.innerHTML = '<div class="col-sm-6 nopadding"><div class="form-group"> <input type="text" class="form-control" required name="asd_name[]" value="" placeholder="Judul Deskripsi"></div></div> <div class="col-sm-6 nopadding"> <div class="form-group"><div class="input-group"><input type="text" class="form-control" required name="asd_value[]" placeholder="Isi Deskripsi"><div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(' + room + ');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div><div class="clear"></div>';
+
+        objTo.appendChild(divtest)
+    }
+    function remove_education_fields(rid) {
+        $('.removeclass' + rid).remove();
+    }
+</script>
 <script>
     function yesnoCheck(that) 
 {

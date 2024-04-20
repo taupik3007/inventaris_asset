@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('asset_descriptions', function (Blueprint $table) {
             $table->bigIncrements('asd_id');
             $table->unsignedBigInteger('asd_asset_id');
-            $table->string('asd_description_name');
-            $table->string('asd_description_value');
+            $table->string('asd_name');
+            $table->string('asd_value');
             $table->timestamps();
             $table->softDeletes();
             $table->unsignedBigInteger('asd_created_by')->unsigned()->nullable();
