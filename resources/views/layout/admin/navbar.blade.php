@@ -32,6 +32,10 @@
             <li><a href="/admin/assetCategory"><i class="fa fa-laptop"></i>  Manajemen Kategori Asset</a></li>
 
           </ul>
+          <ul class="nav side-menu">
+            <li><a href="/admin/asset"><i class="fa fa-laptop"></i>  Manajemen Asset</a></li>
+
+          </ul>
         </div>
         
 

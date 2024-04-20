@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Asset;
+use App\Models\Category;
+use App\Models\Origin;
+
 use Illuminate\Http\Request;
 
 class AssetController extends Controller
@@ -12,7 +16,10 @@ class AssetController extends Controller
      */
     public function index()
     {
-        return view('admin.asset');
+        $asset = Asset::join('origins','origins.ori_id','=','assets.ass_origin_id')
+        ->join('categories','categories.ctg_id','=','assets.ass_category_id')->get();
+        // dd($asset);
+        return view('admin.asset.index',compact(['asset']));
         
     }
 
@@ -21,7 +28,9 @@ class AssetController extends Controller
      */
     public function create()
     {
-        return view('admin.createAsset');
+        $category = Category::all();
+        $origin = Origin::all();
+        return view('admin.asset.create',compact(['category','origin']));
         
     }
 
@@ -39,7 +48,7 @@ class AssetController extends Controller
      */
     public function show(string $id)
     {
-        return view('admin.detailAsset');
+        return view('admin.asset.detail');
         
     }
 
@@ -48,7 +57,7 @@ class AssetController extends Controller
      */
     public function edit(string $id)
     {
-        return view('admin.editAsset');
+        return view('admin.asset.edit');
         
     }
 

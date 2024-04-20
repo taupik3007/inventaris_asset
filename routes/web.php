@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AssetCategoryController;
 use App\Http\Controllers\Admin\OriginController;
+use App\Http\Controllers\Admin\AssetController;
+
 
 use Illuminate\Support\Facades\Route;
 

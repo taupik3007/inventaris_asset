@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->bigInteger('usr_phone');
-            $table->string('usr_profile_picture');
+            $table->string('usr_profile_picture')->nullable();
             $table->string('usr_gender');
             $table->bigInteger('usr_regis_number')->unique()->nullable();
             $table->string('usr_class')->nullable();

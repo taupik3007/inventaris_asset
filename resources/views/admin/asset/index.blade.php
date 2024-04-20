@@ -29,7 +29,7 @@ Asset
               <div class="row">
                   <div class="col-sm-12">
                     <div class="card-box table-responsive">
-                      <a href="/admin/assetCategory/tambah" class="btn btn-info mb-5">Tambah Asset</a>
+                      <a href="/admin/asset/create" class="btn btn-info mb-5">Tambah Asset</a>
                       <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                           <tr>
@@ -47,21 +47,26 @@ Asset
 
 
                         <tbody>
+                          @foreach($asset as $no =>$asset)
                           <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>Edinburgh</td>
-                            <td>Edinburgh</td>
-                            <td>Edinburgh</td>
-                            <td>Edinburgh</td>
-
+                            <td>{{$no+1}}</td>
+                            <td>{{$asset->ass_name}}</td>
+                            <td> {{$asset->ori_name}} </td>
+                            <td>{{$asset->ass_year}}</td>
+                            <td>{{$asset->ass_registration_code}}</td>
+                            <td>{{$asset->ctg_name}}</td>
+                            @if($asset->ass_price == null)
+                            <td>-</td>
+                            @else
+                            <td>{{$asset->ass_price}}</td>
+                            @endif
                             <td>
                                 <a href="" class="btn btn-info">Detail</a>
                                 <a href="" class="btn btn-primary">Edit</a>
                               <a href="" class="btn btn-danger">Hapus</a>
                             </td>
                           </tr>
+                          @endforeach
                         </tbody>
                       </table>
                     </div>
