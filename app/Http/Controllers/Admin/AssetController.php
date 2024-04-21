@@ -111,7 +111,13 @@ class AssetController extends Controller
      */
     public function show(string $id)
     {
-        return view('admin.asset.detail');
+        $asset = Asset::join('categories','categories.ctg_id','=','assets.ass_category_id')
+        ->join('origins','origins.ori_id','=','assets.ass_origin_id')->findOrFail($id);
+
+        $asset_description = assetDescription::where('asd_asset_id',$id)->get();
+        // dd($asset);
+        // dd($asset_description);
+        return view('admin.asset.detail',compact(['asset','asset_description']));
         
     }
 
