@@ -15,30 +15,18 @@
 <link href="{{asset('vendors/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
 @endpush
 @section('headTitle')
-    Kategori Asset
+    Asset
 @endsection
 @section('title')
-    Tambah Kategori Asset
+    Tambah Asset
 @endsection
 @section('content')
 <div class="row">
     <div class="col-md-12 ">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Form Basic Elements <small>different form elements</small></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Settings 1</a>
-                            <a class="dropdown-item" href="#">Settings 2</a>
-                        </div>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                </ul>
+                <h2>Tambah Asset</h2>
+                
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -122,7 +110,7 @@
                     <div   class="form-group row ">
                         <label class="control-label col-md-3 col-sm-3 ">Jumlah</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <input type="text" name="amount" class="form-control" placeholder="Kode Original" wire:model="amount">
+                            <input type="text" name="amount" class="form-control" placeholder="Jumlah" wire:model="amount">
                         @error('amount') <span class="error text-">{{ $message }}</span> @enderror
                             
                         </div>
@@ -175,7 +163,7 @@
                     <div id="line" class="ln_solid " style="margin-top: 0pt"></div>
                     <div class="form-group">
                         <div class="col-md-9 col-sm-9  offset-md-3">
-                            <button type="button" class="btn btn-primary">Cancel</button>
+                            <a href="/admin/asset" class="btn btn-primary">cancel</a>
                             <button type="reset" class="btn btn-primary">Reset</button>
                             <button type="submit" class="btn btn-success">Submit</button>
                         </div>

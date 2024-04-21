@@ -15,17 +15,17 @@
 <link href="{{asset('vendors/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
 @endpush
 @section('headTitle')
-    Kategori Asset
+    Asset
 @endsection
 @section('title')
-    Tambah Kategori Asset
+    Detail Asset
 @endsection
 @section('content')
 <div class="row">
     <div class="col-md-12 ">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Form Basic Elements <small>different form elements</small></h2>
+                <h2>Detail Asset</h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
