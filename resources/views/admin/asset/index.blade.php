@@ -35,6 +35,13 @@ Asset
                         {{ session()->get('succes') }}
                       </div>
                       @endif
+                      @if(session()->has('error'))
+                      <div class="alert alert-danger alert-dismissible " role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                        </button>
+                        {{ session()->get('error') }}
+                      </div>
+                      @endif
                     <div class="card-box table-responsive">
                       <a href="/admin/asset/create" class="btn btn-info mb-5">Tambah Asset</a>
                       <table id="datatable" class="table table-striped table-bordered" style="width:100%">
@@ -70,7 +77,7 @@ Asset
                             <td>
                                 <a href="" class="btn btn-info">Detail</a>
                                 <a href="" class="btn btn-primary">Edit</a>
-                              <a href="" class="btn btn-danger">Hapus</a>
+                              <a href="/admin/asset/{{$asset->ass_id}}/destroy" class="btn btn-danger">Hapus</a>
                             </td>
                           </tr>
                           @endforeach

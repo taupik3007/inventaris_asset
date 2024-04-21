@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AssetCategoryController;
 use App\Http\Controllers\Admin\OriginController;
 use App\Http\Controllers\Admin\AssetController;
+use App\Http\Controllers\Admin\HomeController;
+
 
 
 use Illuminate\Support\Facades\Route;
@@ -64,7 +66,10 @@ Route::get('/admin/asset/{id}/destroy', [AssetController::class, 'destroy'])->na
 
 
 //end origin
+//home
+Route::get('/admin/home', [HomeController::class, 'home'])->name('admin.home');
 
+//endhome
 
 //user
 Route::get('/admin/user', [userController::class, 'index'])->name('admin.user.index');
