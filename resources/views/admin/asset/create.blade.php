@@ -110,7 +110,7 @@
                     <div   class="form-group row ">
                         <label class="control-label col-md-3 col-sm-3 ">Jumlah</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <input type="text" name="amount" class="form-control" placeholder="Jumlah" wire:model="amount">
+                            <input type="number" name="amount" class="form-control" placeholder="Jumlah" wire:model="amount">
                         @error('amount') <span class="error text-">{{ $message }}</span> @enderror
                             
                         </div>

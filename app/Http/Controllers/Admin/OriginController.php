@@ -5,6 +5,10 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Origin;
 use App\Models\User;
+use App\Models\Asset;
+use App\Models\Category;
+
+
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +20,10 @@ class OriginController extends Controller
      */
     public function index()
     {
+        $origin = Asset::where('ass_id',1)->with('category')->with('origin')->with('asd')->first();
+        dd($origin);
+
+
         $origin=Origin::all();
         return view('admin.origin.index',compact(['origin']));
     }
