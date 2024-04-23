@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Asset;
+
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -162,6 +164,12 @@ class AssetCategoryController extends Controller
     public function destroy(string $id)
     {
         $parent_id = Category::where('ctg_parent_id','=',$id)->first();
+        $asset_count = Asset::where('ass_category_id','=',$id)->count();
+        if($asset_count > 0){
+            return redirect('/admin/assetCategory')->with('error','ada asset dalam kategori ini');
+
+        }
+
         if($parent_id){
             return redirect('/admin/assetCategory')->with('error','kategori ini masih memiliki anak kategori');
         }
