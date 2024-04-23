@@ -160,6 +160,11 @@ class OriginController extends Controller
     {
         // dd($id);
         $origin = Origin::findOrFail($id);
+        $asset_count = Asset::where('ass_origin_id','=',$id)->count();
+        if($asset_count > 0){
+            return redirect('/admin/assetCategory')->with('error','ada asset dalam Asal ini tidak dapat menghapus');
+
+        }
         $origin->ori_deleted_by = Auth::user()->usr_id;
         $origin->save();
         $origin->delete();

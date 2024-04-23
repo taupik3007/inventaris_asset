@@ -166,7 +166,7 @@ class AssetCategoryController extends Controller
         $parent_id = Category::where('ctg_parent_id','=',$id)->first();
         $asset_count = Asset::where('ass_category_id','=',$id)->count();
         if($asset_count > 0){
-            return redirect('/admin/assetCategory')->with('error','ada asset dalam kategori ini');
+            return redirect('/admin/assetCategory')->with('error','ada asset dalam kategori ini tidak dapat menghapus');
 
         }
 
