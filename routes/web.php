@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\AssetCategoryController;
 use App\Http\Controllers\Admin\OriginController;
 use App\Http\Controllers\Admin\AssetController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\BorrowController;
+
 
 
 
@@ -82,6 +84,15 @@ Route::get('/admin/user/{id}/destroy', [userController::class, 'destroy'])->name
 
 
 //end user
+
+//Borrow
+Route::get('/admin/borrow', [BorrowController::class, 'index'])->name('admin.borrow.index');
+Route::get('/admin/borrow/create', [BorrowController::class, 'create'])->name('admin.borrow.create');
+Route::post('/admin/borrow/create', [BorrowController::class, 'store'])->name('admin.borrow.store');
+Route::get('/admin/borrow/{id}/detail', [BorrowController::class, 'show'])->name('admin.borrow.show');
+Route::get('/admin/borrow/{id}/edit', [BorrowController::class, 'edit'])->name('admin.borrow.edit');
+Route::post('/admin/borrow/{id}/edit', [BorrowController::class, 'update'])->name('admin.borrow.update');
+Route::get('/admin/borrow/{id}/destroy', [BorrowController::class, 'destroy'])->name('admin.borrow.destroy');
 
 
 });
