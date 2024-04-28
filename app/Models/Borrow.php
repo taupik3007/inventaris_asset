@@ -13,15 +13,16 @@ class Borrow extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'brw_id';
+    protected $guarded = [];
 
-
-    public function asset(): BelongsTo
+    public function brw_user(): BelongsTo
     {
-        return $this->belongsTo(Asset::class,'brw_user_id');
+        return $this->belongsTo(User::class,'brw_user_id');
     }
 
-    public function basAsset(): HasMany
+    public function brw_bas(): HasMany
     {
-        return $this->belongsTo(BorrowAsset::class,'bas_borrow_id');
+        return $this->hasMany(BorrowAsset::class,'bas_borrow_id');
     }
 }

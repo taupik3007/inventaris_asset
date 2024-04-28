@@ -28,50 +28,69 @@ Asset
           <div class="x_content">
               <div class="row">
                   <div class="col-sm-12">
-                    @if(session()->has('succes'))
-                      <div class="alert alert-success alert-dismissible " role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-                        </button>
-                        {{ session()->get('succes') }}
+                    <div class="form-group row">
+                        <label class="control-label col-md-3 col-sm-3 ">Nama Peminjam</label>
+                        <div class="col-md-9 col-sm-9 ">
+                            {{$borrow->brw_user->usr_name}}
+                                
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="control-label col-md-3 col-sm-3 ">Tanggal pinjam</label>
+                      <div class="col-md-9 col-sm-9 ">
+                          {{$borrow->created_at}}
+                              
+                          </select>
                       </div>
-                      @endif
-                      @if(session()->has('error'))
-                      <div class="alert alert-danger alert-dismissible " role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-                        </button>
-                        {{ session()->get('error') }}
-                      </div>
-                      @endif
+                  </div>
+                  <div class="form-group row">
+                    <label class="control-label col-md-3 col-sm-3 ">Tanggal kembali</label>
+                    <div class="col-md-9 col-sm-9 ">
+                       
+                            
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                  <label class="control-label col-md-3 col-sm-3 ">status peminjaman</label>
+                  <div class="col-md-9 col-sm-9 ">
+
+                    @if ($borrow->brw_status == 1)
+                      <span class="badge badge-info">sedang dipinjam</span>
+                    @else
+                      <span class="badge badge-success">Telah Dikembalikan</span>
+                        
+                    @endif
+                          
+                      </select>
+                  </div>
+              </div>
+              <div class="form-group row">
+                <label class="control-label col-md-3 col-sm-3 ">Asset yang di pinjam :</label>
+                
+            </div>
                     <div class="card-box table-responsive">
-                      <a href="/admin/asset/create" class="btn btn-info mb-5">Tambah Asset</a>
+                     
                       <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                           <tr>
                             <th>nomor</th>
-                            <th>nama Peminjam</th>
-                            <th>Tanggal pinjam</th>
-                            <th>Tanggal pengembalian</th>
-                            <th>aksi</th>
+                            <th>Kode asset</th>
+                            <th>Nama Asset</th>
+                            
 
                           </tr>
                         </thead>
-                        @foreach ($borrow as $no=>$borrow)
-                        <tr>
-                          <td>{{$no+1}}</td>
-                          <td>{{$borrow->brw_user->usr_name}}</td>
-                          <td>{{$borrow->created_at}}</td>
-                          <td></td>
-                          <td>
-                            <a href="/admin/borrow/{{$borrow->brw_id}}/detail" class="btn btn-primary">detail</a>
-
-                          </td>
-
-                        </tr>
-                        @endforeach
-                          
-
                         <tbody>
-                          
+                          @foreach($borrow_asset as $no=>$bas)
+                          <tr>
+                            <td>{{$no+1}}</td>
+                            <td>{{$bas->bas_asset->ass_registration_code}}</td>
+                            <td>{{$bas->bas_asset->ass_name}}</td>
+
+                          </tr>
+                          @endforeach
                         </tbody>
                       </table>
                     </div>

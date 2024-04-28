@@ -4,6 +4,10 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Borrow;
+use App\Models\BorrowAsset;
+
+
 
 class BorrowController extends Controller
 {
@@ -12,7 +16,10 @@ class BorrowController extends Controller
      */
     public function index()
     {
-        return view('admin.borrow.index');
+
+        $borrow = Borrow::with('brw_user')->where('brw_status',1)->get();
+        // dd($borrow);
+        return view('admin.borrow.index',compact(['borrow']));
     }
 
     /**
@@ -36,7 +43,11 @@ class BorrowController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $borrow = Borrow::with('brw_user')->with('brw_bas')->findOrFail($id);
+        // dd($borrow);
+        $borrow_asset = BorrowAsset::with(['bas_asset'])->where('bas_borrow_id',$id)->get();
+        // dd($borrow_asset);
+        return view('admin.borrow.detail',compact(['borrow','borrow_asset']));
     }
 
     /**

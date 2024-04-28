@@ -21,7 +21,7 @@ class OriginController extends Controller
     public function index()
     {
         $origin = Asset::where('ass_id',1)->with('category')->with('origin')->with('asd')->first();
-        dd($origin);
+        // dd($origin);
 
 
         $origin=Origin::all();

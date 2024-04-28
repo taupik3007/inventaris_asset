@@ -11,12 +11,15 @@ class BorrowAsset extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'bas_id';
+    protected $guarded = [];
+    protected $table = 'borrow_assets';
 
-    public function assets(): BelongsTo
+    public function bas_asset(): BelongsTo
     {
         return $this->BelongsTo(Asset::class,'bas_asset_id');
     }
-    public function borrow(): BelongsTo
+    public function bas_borrow(): BelongsTo
     {
         return $this->belongsTo(Borrow::class,'ass_Borrow_id');
     }

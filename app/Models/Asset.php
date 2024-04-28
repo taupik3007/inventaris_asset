@@ -28,5 +28,8 @@ class Asset extends Model
     {
         return $this->HasMany(assetDescription::class,'asd_asset_id');
     }
-
+    public function usr_brw_asset():hasMany
+    {
+        return $this->HasMany(BorrowAsset::class,'bas_asset_id');
+    }
 }

@@ -39,6 +39,10 @@
             <li><a href="/admin/asset"><i class="fa fa-laptop"></i>  Manajemen Asset</a></li>
 
           </ul>
+          <ul class="nav side-menu">
+            <li><a href="/admin/borrow"><i class="fa fa-laptop"></i>  Peminjaman</a></li>
+
+          </ul>
         </div>
         
 
