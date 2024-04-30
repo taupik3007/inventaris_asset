@@ -73,4 +73,44 @@ class BorrowController extends Controller
     {
         //
     }
+
+    public function history()
+    {
+        $borrow = Borrow::with('brw_user')->where('brw_status',2)->get();
+        // dd($borrow);
+        return view('admin.borrow.history',compact(['borrow']));
+    }
+    public function return($id)
+    {
+        $borrow= Borrow::findOrFail($id);
+        $borrow->update([
+            'brw_status'=> 2
+        ]);
+        $borrowAsset = BorrowAsset::where('bas_borrow_id',$id);
+        // dd($borrow);
+        $borrowAsset->update([
+            'bas_status'=> 2
+        ]);
+        return redirect('/admin/borrow/history');
+       
+    }
+    public function returnAsset($id)
+    {
+        
+        $borrowAsset = BorrowAsset::findOrFail($id);
+        $borrowCount = BorrowAsset::where('bas_borrow_id',$borrowAsset->bas_borrow_id)->where('bas_status',1)->count();
+        if($borrowCount == 1){
+            $borrow = Borrow::where('brw_id',$borrowAsset->bas_borrow_id)->first();
+            $borrow->update([
+                'brw_status'=> 2
+            ]);
+        }
+        
+        // dd($borrowAsset);
+        $borrowAsset->update([
+            'bas_status'=> 2
+        ]);
+        return redirect('/admin/borrow/'.$borrowAsset->bas_borrow_id.'/detail');
+       
+    }
 }

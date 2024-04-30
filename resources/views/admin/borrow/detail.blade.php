@@ -78,6 +78,7 @@ Asset
                             <th>nomor</th>
                             <th>Kode asset</th>
                             <th>Nama Asset</th>
+                            <th>aksi</th>
                             
 
                           </tr>
@@ -88,6 +89,12 @@ Asset
                             <td>{{$no+1}}</td>
                             <td>{{$bas->bas_asset->ass_registration_code}}</td>
                             <td>{{$bas->bas_asset->ass_name}}</td>
+                            <td>
+                              @if($bas->bas_status==1)
+                              <a href="/admin/borrow/detail/{{$bas->bas_id}}/return" class="btn btn-primary"> pengembalian</a></td>
+                              @else
+                              <span class="badge badge-info">telah dikembalikan</span>
+                              @endif
 
                           </tr>
                           @endforeach

@@ -92,7 +92,10 @@ Route::post('/admin/borrow/create', [BorrowController::class, 'store'])->name('a
 Route::get('/admin/borrow/{id}/detail', [BorrowController::class, 'show'])->name('admin.borrow.show');
 Route::get('/admin/borrow/{id}/edit', [BorrowController::class, 'edit'])->name('admin.borrow.edit');
 Route::post('/admin/borrow/{id}/edit', [BorrowController::class, 'update'])->name('admin.borrow.update');
-Route::get('/admin/borrow/{id}/destroy', [BorrowController::class, 'destroy'])->name('admin.borrow.destroy');
+Route::get('/admin/borrow/{id}/return', [BorrowController::class, 'return'])->name('admin.borrow.return');
+Route::get('/admin/borrow/detail/{id}/return', [BorrowController::class, 'returnAsset'])->name('admin.borrow.detail.return');
+Route::get('/admin/borrow/history', [BorrowController::class, 'history'])->name('admin.borrow.history');
+
 
 
 });

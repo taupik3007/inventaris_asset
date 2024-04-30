@@ -25,23 +25,23 @@
         <div class="menu_section">
           <ul class="nav side-menu">
             <li><a href="/admin/home"><i class="fa fa-laptop"></i>  Home</a></li>
-
-          </ul>
-          <ul class="nav side-menu">
+          
+          
             <li><a href="/admin/origin"><i class="fa fa-laptop"></i>  Manajemen asal</a></li>
 
-          </ul>
-          <ul class="nav side-menu">
+         
             <li><a href="/admin/assetCategory"><i class="fa fa-laptop"></i>  Manajemen Kategori Asset</a></li>
 
-          </ul>
-          <ul class="nav side-menu">
+          
             <li><a href="/admin/asset"><i class="fa fa-laptop"></i>  Manajemen Asset</a></li>
 
-          </ul>
-          <ul class="nav side-menu">
-            <li><a href="/admin/borrow"><i class="fa fa-laptop"></i>  Peminjaman</a></li>
-
+            <li><a><i class="fa fa-windows"></i> Peminjaman<span class="fa fa-chevron-down"></span></a>
+              <ul class="nav child_menu">
+                <li><a href="/admin/borrow">Daftar Peminjaman</a></li>
+                <li><a href="/admin/borrow/history">Histori Peminjaman</a></li>
+                
+              </ul>
+            </li>
           </ul>
         </div>
         
