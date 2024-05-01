@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Borrow;
 use App\Models\BorrowAsset;
+use App\Models\user;
+use App\Models\Asset;
+
+// use App\Models\BorrowAsset;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -19,7 +23,7 @@ class BorrowController extends Controller
     public function index()
     {
 
-        $borrow = Borrow::with('brw_user')->where('deleted_at',null)->get();
+        $borrow = Borrow::with('brw_user')->get();
         // dd($borrow);
         return view('admin.borrow.index',compact(['borrow']));
     }
@@ -29,7 +33,11 @@ class BorrowController extends Controller
      */
     public function create()
     {
-        //
+        $user = User::withoutRole('admin')->get();
+        $asset = Asset::where('ass_status',1)->select('ass_name','ass_id')->get();
+
+        // dd($user);
+        return view('admin.borrow.create',compact(['user','asset']));
     }
 
     /**
@@ -37,7 +45,23 @@ class BorrowController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $borrow = Borrow::create([
+            'brw_user_id'=> $request->user_id,
+            'brw_status'=> 1
+        ]);
+        
+        foreach ($request->asset as $asset) {
+            $borrow_asset = BorrowAsset::create([
+                'bas_asset_id' => $asset,
+                'bas_borrow_id' => $borrow->brw_id,
+                'bas_status' => 1
+            ]);
+            $asset = Asset::where('ass_id',$asset)->first();
+            $asset->ass_status = 2;
+            $asset->save();
+        }
+        
     }
 
     /**
@@ -78,7 +102,7 @@ class BorrowController extends Controller
 
     public function history()
     {
-        $borrow = Borrow::with('brw_user')->where('deleted_at','!=',null)->withTrashed()->get();
+        $borrow = Borrow::with('brw_user')->onlyTrashed()->get();
         // dd($borrow);
         return view('admin.borrow.history',compact(['borrow']));
     }

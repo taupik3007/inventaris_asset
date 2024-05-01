@@ -43,7 +43,7 @@ Asset
                       </div>
                       @endif
                     <div class="card-box table-responsive">
-                      <a href="/admin/asset/create" class="btn btn-info mb-5">Tambah Asset</a>
+                      <a href="/admin/borrow/create" class="btn btn-info mb-5">Tambah Peminjaman</a>
                       <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                           <tr>

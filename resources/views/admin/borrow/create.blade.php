@@ -11,8 +11,13 @@
 <link href="{{asset('vendors/switchery/dist/switchery.min.css')}}" rel="stylesheet">
 <!-- starrr -->
 <link href="{{asset('vendors/starrr/dist/starrr.css')}}" rel="stylesheet">
+{{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"> --}}
 <!-- bootstrap-daterangepicker -->
 <link href="{{asset('vendors/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
 @endpush
 @section('headTitle')
     Asal
@@ -31,20 +36,45 @@
             </div>
             <div class="x_content">
                 <br />
+                <input id="addRow" class="btn btn-success" type="button" value="Tambah Barang"/>&nbsp <input id="deleteRow"
+                type="button"
+                class="btn btn-danger"
+                value="hapus Kolom"/>
                 <form class="form-horizontal form-label-left" method="post" action="">
                     @csrf
                     <div class="form-group row ">
-                        <label class="control-label col-md-3 col-sm-3 ">Kode Asal</label>
+                        <label class="control-label col-md-3 col-sm-3 ">Nama Peminjam</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <input type="text" name="ori_code" class="form-control" placeholder="Kode Asal" wire:model="ori_code" >
+                            <select class="select2 form-control" name="user_id">
+                                <option value="">--</option>
+                                @foreach ($user as $user)
+                                    <option value="{{$user->usr_id}}">{{$user->usr_name}}</option>
+                                @endforeach
+                              
+                            
+                            </select>
                             @error('ori_code') <span class="error text-">{{ $message }}</span> @enderror
                         </div>
                     </div>
                     <div class="form-group row ">
-                        <label class="control-label col-md-3 col-sm-3 ">Nama Asal</label>
+                        <label class="control-label col-md-3 col-sm-3 ">Asset</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <input type="text" name="ori_name" class="form-control" placeholder="Nama Asal" wire:model="ori_code" >
-                            @error('ori_name') <span class="error text-">{{ $message }}</span> @enderror
+                            <table style="width: 100%;"  id="rowTable">
+                                <tr>
+                                   
+                                    <td style="width: 70%;">
+                                        <select class="select2 form-control" name="asset[]">
+                                            <option value="">--</option>
+                                            @foreach($asset as $asset)
+                                            <option value="{{$asset->ass_id}}">{{$asset->ass_name}}</option>
+                                            @endforeach
+                                        
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                            @error('asset') <span class="error text-">{{ $message }}</span> @enderror
+
 
                         </div>
                     </div>
@@ -52,7 +82,7 @@
                     
 
 
-                    <div id="line" class="ln_solid " style="margin-top: 0pt"></div>
+                    <div id="line" class="ln_solid " style="margin-top: 40px"></div>
                     <div class="form-group">
                         <div class="col-md-9 col-sm-9  offset-md-3">
                             <a  href="/admin/origin" class="btn btn-primary">Cancel</a>
@@ -61,34 +91,63 @@
                         </div>
                     </div>
 
+               
+
+
+                
+               
+                    
                 </form>
+
             </div>
         </div>
     </div>
 </div>
 
-<script>
-    function yesnoCheck(that) 
-{
-    if (that.value == "0") 
-    {
-        document.getElementById("originalCode").style.display = "block";
-        document.getElementById("line").style.marginTop = "60pt";
 
-    }
-    else
-    {
-        document.getElementById("originalCode").style.display = "none";
-        document.getElementById("line").style.marginTop = "0";
+<script type="text/javascript">
+    $('#addRow').click(function () {
+        var tableID = "rowTable";
+        var table = document.getElementById(tableID);
+        var rowCount = table.rows.length;
 
-    }
-   
-}
+        if (rowCount <= 4) {
+            var row = table.insertRow(rowCount);
+            
+
+           
+
+            // var  row=table.insertCell(rowCount);
+            var tblBodyObj = document.getElementById(tableID).tBodies[0];
+
+
+            var element1 = '<select class="select2 form-control" name="asset[]">\n' +
+                                '<option value="">--</option> \n' +
+                                
+                            '</select>';
+            // row.innerHTML="fbkdashkfshdkhfsfklfah";
+            row.innerHTML = element1;
+        }
+    });
+    $('#deleteRow').click(function () {
+        var tableID = "rowTable";
+        var table = document.getElementById(tableID);
+        var rowCount = table.rows.length;
+        console.log(rowCount);
+        if (rowCount != 1) {
+            rowCount = rowCount - 1;
+            table.deleteRow(rowCount);
+        }
+    });
 </script>
 
 @endsection
 
 @push('script')
+<script>$(document).ready(function () {
+    $(".select2").select2();
+  });
+  </script>
 <script src="{{asset('vendors/iCheck/icheck.min.js')}}"></script>
 <!-- bootstrap-daterangepicker -->
 <script src="{{asset('vendors/moment/min/moment.min.js')}}"></script>
