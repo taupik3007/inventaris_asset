@@ -60,7 +60,7 @@ Asset
                           <td>{{$no+1}}</td>
                           <td>{{$borrow->brw_user->usr_name}}</td>
                           <td>{{$borrow->created_at}}</td>
-                          <td></td>
+                          <td>{{$borrow->deleted_at}}</td>
                           <td>
                             <a href="/admin/borrow/{{$borrow->brw_id}}/detail" class="btn btn-primary">detail</a>
 

@@ -33,37 +33,36 @@ Asset
                         <div class="col-md-9 col-sm-9 ">
                             {{$borrow->brw_user->usr_name}}
                                 
-                            </select>
+                          
                         </div>
                     </div>
                     <div class="form-group row">
                       <label class="control-label col-md-3 col-sm-3 ">Tanggal pinjam</label>
                       <div class="col-md-9 col-sm-9 ">
                           {{$borrow->created_at}}
-                              
-                          </select>
+                          
                       </div>
                   </div>
                   <div class="form-group row">
                     <label class="control-label col-md-3 col-sm-3 ">Tanggal kembali</label>
                     <div class="col-md-9 col-sm-9 ">
-                       
+                      {{$borrow->deleted_at}}
                             
-                        </select>
+                       
                     </div>
                 </div>
                 <div class="form-group row">
                   <label class="control-label col-md-3 col-sm-3 ">status peminjaman</label>
                   <div class="col-md-9 col-sm-9 ">
 
-                    @if ($borrow->brw_status == 1)
+                    @if ($borrow->deleted_at == null)
                       <span class="badge badge-info">sedang dipinjam</span>
                     @else
                       <span class="badge badge-success">Telah Dikembalikan</span>
                         
                     @endif
                           
-                      </select>
+                    
                   </div>
               </div>
               <div class="form-group row">
@@ -78,6 +77,7 @@ Asset
                             <th>nomor</th>
                             <th>Kode asset</th>
                             <th>Nama Asset</th>
+                            <th>Tanggal kembali</th>
                             <th>aksi</th>
                             
 
@@ -89,8 +89,9 @@ Asset
                             <td>{{$no+1}}</td>
                             <td>{{$bas->bas_asset->ass_registration_code}}</td>
                             <td>{{$bas->bas_asset->ass_name}}</td>
+                            <td>{{$bas->deleted_at}}</td>
                             <td>
-                              @if($bas->bas_status==1)
+                              @if($bas->deleted_at == null)
                               <a href="/admin/borrow/detail/{{$bas->bas_id}}/return" class="btn btn-primary"> pengembalian</a></td>
                               @else
                               <span class="badge badge-info">telah dikembalikan</span>

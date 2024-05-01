@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Borrow;
 use App\Models\BorrowAsset;
+use Illuminate\Support\Facades\Auth;
+
 
 
 
@@ -17,7 +19,7 @@ class BorrowController extends Controller
     public function index()
     {
 
-        $borrow = Borrow::with('brw_user')->where('brw_status',1)->get();
+        $borrow = Borrow::with('brw_user')->where('deleted_at',null)->get();
         // dd($borrow);
         return view('admin.borrow.index',compact(['borrow']));
     }
@@ -43,9 +45,9 @@ class BorrowController extends Controller
      */
     public function show(string $id)
     {
-        $borrow = Borrow::with('brw_user')->with('brw_bas')->findOrFail($id);
+        $borrow = Borrow::with('brw_user')->with('brw_bas')->withTrashed()->findOrFail($id);
         // dd($borrow);
-        $borrow_asset = BorrowAsset::with(['bas_asset'])->where('bas_borrow_id',$id)->get();
+        $borrow_asset = BorrowAsset::with(['bas_asset'])->where('bas_borrow_id',$id)->withTrashed()->get();
         // dd($borrow_asset);
         return view('admin.borrow.detail',compact(['borrow','borrow_asset']));
     }
@@ -76,7 +78,7 @@ class BorrowController extends Controller
 
     public function history()
     {
-        $borrow = Borrow::with('brw_user')->where('brw_status',2)->get();
+        $borrow = Borrow::with('brw_user')->where('deleted_at','!=',null)->withTrashed()->get();
         // dd($borrow);
         return view('admin.borrow.history',compact(['borrow']));
     }
@@ -98,18 +100,20 @@ class BorrowController extends Controller
     {
         
         $borrowAsset = BorrowAsset::findOrFail($id);
-        $borrowCount = BorrowAsset::where('bas_borrow_id',$borrowAsset->bas_borrow_id)->where('bas_status',1)->count();
+        $borrowCount = BorrowAsset::where('bas_borrow_id',$borrowAsset->bas_borrow_id)->where('deleted_at',null)->count();
         if($borrowCount == 1){
             $borrow = Borrow::where('brw_id',$borrowAsset->bas_borrow_id)->first();
             $borrow->update([
-                'brw_status'=> 2
+                'brw_deleted_by'=> Auth::user()->usr_id
             ]);
+            $borrow->delete();
         }
         
         // dd($borrowAsset);
         $borrowAsset->update([
-            'bas_status'=> 2
+            'bas_deleted_by'=> Auth::user()->usr_id
         ]);
+        $borrowAsset->delete();
         return redirect('/admin/borrow/'.$borrowAsset->bas_borrow_id.'/detail');
        
     }

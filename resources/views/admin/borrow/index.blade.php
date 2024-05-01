@@ -63,7 +63,7 @@ Asset
                           <td></td>
                           <td>
                             <a href="/admin/borrow/{{$borrow->brw_id}}/detail" class="btn btn-info">detail</a>
-                            <a href="/admin/borrow/{{$borrow->brw_id}}/return" class="btn btn-primary">pengembalian</a>
+                            
                           </td>
 
                         </tr>
