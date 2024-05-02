@@ -101,6 +101,10 @@ Route::get('/admin/borrow/history', [BorrowController::class, 'history'])->name(
 });
 
 
+Route::get('/user/home', [userHomeController::class, 'index'])->name('user.home');
+
+
+
 
 
  
