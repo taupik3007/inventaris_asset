@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
- @include('layout.admin.head')
+ @include('layout.user.head')
 
   <body class="nav-md ">
     <div class="container body">
       <div class="main_container">
-        @include('layout.admin.navbar')
+        @include('layout.user.navbar')
 
         <!-- top navigation -->
-        @include('layout.admin.top_nav')
+        @include('layout.user.top_nav')
         <!-- /top navigation -->
         <div class="right_col" role="main">
           <div class="">
@@ -27,12 +27,12 @@
           </div>
         </div>
         <!-- footer content -->
-         @include('layout.admin.footer')
+         @include('layout.user.footer')
         
         <!-- /footer content -->
       </div>
     </div>
     
-	@include('layout.admin.script')
+	@include('layout.user.script')
   </body>
 </html>

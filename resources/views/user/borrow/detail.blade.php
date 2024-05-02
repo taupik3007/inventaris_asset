@@ -1,4 +1,4 @@
-@extends('layout.admin.master')
+@extends('layout.user.master')
 @push('link')
     <!-- iCheck -->
     <link href="{{asset('vendors/iCheck/skins/flat/green.css')}}" rel="stylesheet">
@@ -28,57 +28,76 @@ Asset
           <div class="x_content">
               <div class="row">
                   <div class="col-sm-12">
-                    @if(session()->has('succes'))
-                      <div class="alert alert-success alert-dismissible " role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-                        </button>
-                        {{ session()->get('succes') }}
+                    <div class="form-group row">
+                        <label class="control-label col-md-3 col-sm-3 ">Nama Peminjam</label>
+                        <div class="col-md-9 col-sm-9 ">
+                            {{$borrow->brw_user->usr_name}}
+                                
+                          
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="control-label col-md-3 col-sm-3 ">Tanggal pinjam</label>
+                      <div class="col-md-9 col-sm-9 ">
+                          {{$borrow->created_at}}
+                          
                       </div>
-                      @endif
-                      @if(session()->has('error'))
-                      <div class="alert alert-danger alert-dismissible " role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-                        </button>
-                        {{ session()->get('error') }}
-                      </div>
-                      @endif
+                  </div>
+                  <div class="form-group row">
+                    <label class="control-label col-md-3 col-sm-3 ">Tanggal kembali</label>
+                    <div class="col-md-9 col-sm-9 ">
+                      {{$borrow->deleted_at}}
+                            
+                       
+                    </div>
+                </div>
+                <div class="form-group row">
+                  <label class="control-label col-md-3 col-sm-3 ">status peminjaman</label>
+                  <div class="col-md-9 col-sm-9 ">
+
+                    @if ($borrow->deleted_at == null)
+                      <span class="badge badge-info">sedang dipinjam</span>
+                    @else
+                      <span class="badge badge-success">Telah Dikembalikan</span>
+                        
+                    @endif
+                          
+                    
+                  </div>
+              </div>
+              <div class="form-group row">
+                <label class="control-label col-md-3 col-sm-3 ">Asset yang di pinjam :</label>
+                
+            </div>
                     <div class="card-box table-responsive">
-                      <a href="/admin/asset/create" class="btn btn-info mb-5">Tambah Asset</a>
+                     
                       <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                           <tr>
                             <th>nomor</th>
-                            <th>nama asset</th>
-                            <th>asal </th>
-                            <th>tahun </th>
-                            <th>kode registrasi </th>
-                            <th>kategori asset </th>
-                            <th>harga</th>
+                            <th>Kode asset</th>
+                            <th>Nama Asset</th>
+                            <th>Tanggal kembali</th>
                             <th>aksi</th>
+                            
 
                           </tr>
                         </thead>
-
-
                         <tbody>
-                          @foreach($asset as $no =>$asset)
+                          @foreach($borrow_asset as $no=>$bas)
                           <tr>
                             <td>{{$no+1}}</td>
-                            <td>{{$asset->ass_name}}</td>
-                            <td> {{$asset->ori_name}} </td>
-                            <td>{{$asset->ass_year}}</td>
-                            <td>{{$asset->ass_registration_code}}</td>
-                            <td>{{$asset->ctg_name}}</td>
-                            @if($asset->ass_price == null)
-                            <td>-</td>
-                            @else
-                            <td>{{$asset->ass_price}}</td>
-                            @endif
+                            <td>{{$bas->bas_asset->ass_registration_code}}</td>
+                            <td>{{$bas->bas_asset->ass_name}}</td>
+                            <td>{{$bas->deleted_at}}</td>
                             <td>
-                                <a href="/admin/asset/{{$asset->ass_id}}/detail" class="btn btn-info">Detail</a>
-                                <a href="" class="btn btn-primary">Edit</a>
-                              <a href="/admin/asset/{{$asset->ass_id}}/destroy" class="btn btn-danger">Hapus</a>
-                            </td>
+                              @if($bas->deleted_at == null)
+                              <span class="badge badge-danger">Belum dikembalikan</span>
+                              
+                              @else
+                              <span class="badge badge-info">telah dikembalikan</span>
+                              @endif
+
                           </tr>
                           @endforeach
                         </tbody>

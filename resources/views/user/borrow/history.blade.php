@@ -1,4 +1,4 @@
-@extends('layout.admin.master')
+@extends('layout.user.master')
 @push('link')
     <!-- iCheck -->
     <link href="{{asset('vendors/iCheck/skins/flat/green.css')}}" rel="stylesheet">
@@ -48,39 +48,30 @@ Asset
                         <thead>
                           <tr>
                             <th>nomor</th>
-                            <th>nama asset</th>
-                            <th>asal </th>
-                            <th>tahun </th>
-                            <th>kode registrasi </th>
-                            <th>kategori asset </th>
-                            <th>harga</th>
+                            <th>nama Peminjam</th>
+                            <th>Tanggal pinjam</th>
+                            <th>Tanggal pengembalian</th>
                             <th>aksi</th>
 
                           </tr>
                         </thead>
+                        @foreach ($borrow as $no=>$borrow)
+                        <tr>
+                          <td>{{$no+1}}</td>
+                          <td>{{$borrow->brw_user->usr_name}}</td>
+                          <td>{{$borrow->created_at}}</td>
+                          <td>{{$borrow->deleted_at}}</td>
+                          <td>
+                            <a href="/admin/borrow/{{$borrow->brw_id}}/detail" class="btn btn-primary">detail</a>
 
+                          </td>
+
+                        </tr>
+                        @endforeach
+                          
 
                         <tbody>
-                          @foreach($asset as $no =>$asset)
-                          <tr>
-                            <td>{{$no+1}}</td>
-                            <td>{{$asset->ass_name}}</td>
-                            <td> {{$asset->ori_name}} </td>
-                            <td>{{$asset->ass_year}}</td>
-                            <td>{{$asset->ass_registration_code}}</td>
-                            <td>{{$asset->ctg_name}}</td>
-                            @if($asset->ass_price == null)
-                            <td>-</td>
-                            @else
-                            <td>{{$asset->ass_price}}</td>
-                            @endif
-                            <td>
-                                <a href="/admin/asset/{{$asset->ass_id}}/detail" class="btn btn-info">Detail</a>
-                                <a href="" class="btn btn-primary">Edit</a>
-                              <a href="/admin/asset/{{$asset->ass_id}}/destroy" class="btn btn-danger">Hapus</a>
-                            </td>
-                          </tr>
-                          @endforeach
+                          
                         </tbody>
                       </table>
                     </div>

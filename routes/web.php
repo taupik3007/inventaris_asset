@@ -8,6 +8,12 @@ use App\Http\Controllers\Admin\AssetController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\BorrowController;
 
+use App\Http\Controllers\User\userHomeController;
+use App\Http\Controllers\User\userBorrowController;
+
+
+
+
 
 
 
@@ -102,6 +108,12 @@ Route::get('/admin/borrow/history', [BorrowController::class, 'history'])->name(
 
 
 Route::get('/user/home', [userHomeController::class, 'index'])->name('user.home');
+Route::get('/user/borrow', [userBorrowController::class, 'index'])->name('user.borrow.index');
+Route::get('/user/borrow/{id}/detail', [userBorrowController::class, 'show'])->name('user.borrow.detail');
+Route::get('/user/borrow/history', [userBorrowController::class, 'history'])->name('user.borrow.detail');
+
+
+
 
 
 
