@@ -61,6 +61,9 @@ class BorrowController extends Controller
             $asset->ass_status = 2;
             $asset->save();
         }
+        return redirect('/admin/borrow')->with('succes','Berhasil Meminjam ');
+       
+
         
     }
 
@@ -106,20 +109,20 @@ class BorrowController extends Controller
         // dd($borrow);
         return view('admin.borrow.history',compact(['borrow']));
     }
-    public function return($id)
-    {
-        $borrow= Borrow::findOrFail($id);
-        $borrow->update([
-            'brw_status'=> 2
-        ]);
-        $borrowAsset = BorrowAsset::where('bas_borrow_id',$id);
-        // dd($borrow);
-        $borrowAsset->update([
-            'bas_status'=> 2
-        ]);
-        return redirect('/admin/borrow/history');
+    // public function return($id)
+    // {
+    //     $borrow= Borrow::findOrFail($id);
+    //     $borrow->update([
+    //         'brw_status'=> 2
+    //     ]);
+    //     $borrowAsset = BorrowAsset::where('bas_borrow_id',$id);
+    //     // dd($borrow);
+    //     $borrowAsset->update([
+    //         'bas_status'=> 2
+    //     ]);
+    //     return redirect('/admin/borrow/history');
        
-    }
+    // }
     public function returnAsset($id)
     {
         
@@ -137,8 +140,33 @@ class BorrowController extends Controller
         $borrowAsset->update([
             'bas_deleted_by'=> Auth::user()->usr_id
         ]);
+        $asset = Asset::where('ass_id',$borrowAsset->bas_asset_id)->update([
+            'ass_status' => 1,
+        ]);
         $borrowAsset->delete();
         return redirect('/admin/borrow/'.$borrowAsset->bas_borrow_id.'/detail');
        
+        
+    }
+    public function add($id){
+        $borrow             = Borrow::findOrFail($id);
+        $borrowAssetCount   = BorrowAsset::where('bas_borrow_id',$id)->count();
+        $asset              = Asset::where('ass_status',1)->get();
+        // dd($borrowAssetCount);
+        if($borrowAssetCount > 5){
+        return redirect('/admin/borrow')->with('error','Jumlah asset yang di pinjam sudah maksimal ');
+
+        }
+        return view('admin.borrow.add',compact('asset'));
+
+    }
+    public function addStore(Request $request,$id){
+        $borrowAsset = BorrowAsset::create([
+            'bas_asset_id' => $request->asset,
+            'bas_borrow_id' => $id,
+            'bas_status' => 1
+        ]);
+        return redirect('/admin/borrow')->with('succes','asset berhasil di pinjam ');
+
     }
 }

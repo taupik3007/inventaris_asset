@@ -62,6 +62,7 @@ Asset
                           <td>{{$borrow->created_at}}</td>
                           <td></td>
                           <td>
+                            <a href="/admin/borrow/{{$borrow->brw_id}}/add" class="btn btn-info">pinjam asset</a>
                             <a href="/admin/borrow/{{$borrow->brw_id}}/detail" class="btn btn-info">detail</a>
                             
                           </td>

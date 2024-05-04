@@ -96,6 +96,8 @@ Route::get('/admin/borrow', [BorrowController::class, 'index'])->name('admin.bor
 Route::get('/admin/borrow/create', [BorrowController::class, 'create'])->name('admin.borrow.create');
 Route::post('/admin/borrow/create', [BorrowController::class, 'store'])->name('admin.borrow.store');
 Route::get('/admin/borrow/{id}/detail', [BorrowController::class, 'show'])->name('admin.borrow.show');
+Route::get('/admin/borrow/{id}/add', [BorrowController::class, 'add'])->name('admin.borrow.add');
+Route::post('/admin/borrow/{id}/add', [BorrowController::class, 'addStore'])->name('admin.borrow.addStore');
 Route::get('/admin/borrow/{id}/edit', [BorrowController::class, 'edit'])->name('admin.borrow.edit');
 Route::post('/admin/borrow/{id}/edit', [BorrowController::class, 'update'])->name('admin.borrow.update');
 Route::get('/admin/borrow/{id}/return', [BorrowController::class, 'return'])->name('admin.borrow.return');

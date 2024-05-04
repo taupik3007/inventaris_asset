@@ -42,20 +42,7 @@
                 value="hapus Kolom"/> --}}
                 <form class="form-horizontal form-label-left" method="post" action="">
                     @csrf
-                    <div class="form-group row ">
-                        <label class="control-label col-md-3 col-sm-3 ">Nama Peminjam</label>
-                        <div class="col-md-9 col-sm-9 ">
-                            <select class="select2 form-control" name="user_id">
-                                <option value="">--</option>
-                                @foreach ($user as $user)
-                                    <option value="{{$user->usr_id}}">{{$user->usr_name}}</option>
-                                @endforeach
-                              
-                            
-                            </select>
-                            @error('ori_code') <span class="error text-">{{ $message }}</span> @enderror
-                        </div>
-                    </div>
+                   
                     <div class="form-group row ">
                         <label class="control-label col-md-3 col-sm-3 ">Asset</label>
                         <div class="col-md-9 col-sm-9 ">
@@ -63,7 +50,7 @@
                                 <tr>
                                    
                                     <td style="width: 70%;">
-                                        <select class="select2 form-control" name="asset[]">
+                                        <select class="select2 form-control" name="asset">
                                             <option value="">--</option>
                                             @foreach($asset as $asset)
                                             <option value="{{$asset->ass_id}}">{{$asset->ass_name}}</option>
