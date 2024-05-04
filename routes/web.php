@@ -106,6 +106,7 @@ Route::get('/admin/borrow/history', [BorrowController::class, 'history'])->name(
 
 });
 
+Route::middleware('auth','role:userLv1|userLv2')->group(function () {
 
 Route::get('/user/home', [userHomeController::class, 'index'])->name('user.home');
 Route::get('/user/borrow', [userBorrowController::class, 'index'])->name('user.borrow.index');
@@ -113,7 +114,7 @@ Route::get('/user/borrow/{id}/detail', [userBorrowController::class, 'show'])->n
 Route::get('/user/borrow/history', [userBorrowController::class, 'history'])->name('user.borrow.detail');
 
 
-
+});
 
 
 
