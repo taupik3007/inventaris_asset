@@ -166,6 +166,7 @@ class BorrowController extends Controller
             'bas_borrow_id' => $id,
             'bas_status' => 1
         ]);
+        $asset = Asset::where('ass_id',$request->asset)->update(['ass_status'=>2]);
         return redirect('/admin/borrow')->with('succes','asset berhasil di pinjam ');
 
     }
