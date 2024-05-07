@@ -50,7 +50,7 @@
                                 <tr>
                                    
                                     <td style="width: 70%;">
-                                        <select class="select2 form-control" name="asset">
+                                        <select class="select2 form-control" name="asset" required>
                                             <option value="">--</option>
                                             @foreach($asset as $asset)
                                             <option value="{{$asset->ass_id}}">{{$asset->ass_name}}</option>

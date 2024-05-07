@@ -45,7 +45,7 @@ class BorrowController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+        // dd($request->asset);
         $borrow = Borrow::create([
             'brw_user_id'=> $request->user_id,
             'brw_status'=> 1
@@ -153,7 +153,7 @@ class BorrowController extends Controller
         $borrowAssetCount   = BorrowAsset::where('bas_borrow_id',$id)->count();
         $asset              = Asset::where('ass_status',1)->get();
         // dd($borrowAssetCount);
-        if($borrowAssetCount > 5){
+        if($borrowAssetCount >= 5){
         return redirect('/admin/borrow')->with('error','Jumlah asset yang di pinjam sudah maksimal ');
 
         }

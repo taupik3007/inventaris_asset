@@ -14,9 +14,16 @@
 {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"> --}}
 <!-- bootstrap-daterangepicker -->
 <link href="{{asset('vendors/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script> --}}
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+<link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/> --}}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+<script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
 
 @endpush
 @section('headTitle')
@@ -63,13 +70,19 @@
                                 <tr>
                                    
                                     <td style="width: 70%;">
-                                        <select class="select2 form-control" name="asset[]">
+                                        {{-- <select class="select2 form-control" name="asset[]">
                                             <option value="">--</option>
                                             @foreach($asset as $asset)
                                             <option value="{{$asset->ass_id}}">{{$asset->ass_name}}</option>
                                             @endforeach
                                         
-                                        </select>
+                                        </select> --}}
+                                        <select id="choices-multiple-remove-button"  class="form-control" placeholder="Maksimal 5 " name="asset[]" multiple>
+                                            <option value=""></option>
+                                            @foreach($asset as $asset)
+                                            <option value="{{$asset->ass_id}}">{{$asset->ass_name}}</option>
+                                            @endforeach
+                                          </select>
                                     </td>
                                 </tr>
                             </table>
@@ -105,7 +118,19 @@
 </div>
 
 
-<script type="text/javascript">
+<script>$(document).ready(function(){
+    
+    var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+       removeItemButton: true,
+       maxItemCount:5,
+       searchResultLimit:5,
+       renderChoiceLimit:5
+     }); 
+    
+    
+});
+  </script>
+{{-- <script type="text/javascript">
     $('#addRow').click(function () {
         var tableID = "rowTable";
         var table = document.getElementById(tableID);
@@ -139,15 +164,12 @@
             table.deleteRow(rowCount);
         }
     });
-</script>
+</script> --}}
 
 @endsection
 
 @push('script')
-<script>$(document).ready(function () {
-    $(".select2").select2();
-  });
-  </script>
+
 <script src="{{asset('vendors/iCheck/icheck.min.js')}}"></script>
 <!-- bootstrap-daterangepicker -->
 <script src="{{asset('vendors/moment/min/moment.min.js')}}"></script>
