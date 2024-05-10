@@ -24,21 +24,32 @@
       <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
         <div class="menu_section">
           <ul class="nav side-menu">
-            <li><a href="/admin/home"><i class="fa fa-laptop"></i>  Home</a></li>
-          
-          
-            <li><a href="/admin/origin"><i class="fa fa-laptop"></i>  Manajemen asal</a></li>
+            
+            <li><a href="/admin/home"><i class="fa fa-home"></i>  Home</a></li>
+            <li><a href="/admin/home"><i class="fa fa-user"></i>  Kelola User</a></li>
 
-         
-            <li><a href="/admin/assetCategory"><i class="fa fa-laptop"></i>  Manajemen Kategori Asset</a></li>
 
-          
-            <li><a href="/admin/asset"><i class="fa fa-laptop"></i>  Manajemen Asset</a></li>
+            <li><a><i class="fa fa-archive"></i>asset<span class="fa fa-chevron-down"></span></a>
+              <ul class="nav child_menu">
+                <li><a href="/admin/assetCategory">kelola kategori asset</a></li>
+                <li><a href="/admin/origin">kelola asal asset</a></li>
+                <li><a href="/admin/asset">kelola asset</a></li>
+                
+              </ul>
+            </li>
+           
 
             <li><a><i class="fa fa-windows"></i> Peminjaman<span class="fa fa-chevron-down"></span></a>
               <ul class="nav child_menu">
                 <li><a href="/admin/borrow">Daftar Peminjaman</a></li>
-                <li><a href="/admin/borrow/history">Histori Peminjaman</a></li>
+                <li><a href="/admin/borrow/create">Pinjam Barang</a></li>
+                
+              </ul>
+            </li>
+            <li><a><i class="fa fa-history"></i> Pengembalian<span class="fa fa-chevron-down"></span></a>
+              <ul class="nav child_menu">
+                <li><a href="/admin/borrow/return">Daftar Pengembalian</a></li>
+                <li><a href="/admin/borrow/history">History Pengembalian</a></li>
                 
               </ul>
             </li>
