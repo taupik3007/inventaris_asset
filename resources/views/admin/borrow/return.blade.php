@@ -34,38 +34,24 @@ Asset
                       <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                           <tr>
-                            <th>Nomor</th>
-                            <th>Nama Peminjam</th>
-                            <th>NIS</th>
-                            <th>Kelas</th>
-                            <th>Nama Asset</th>
-                            <th>Petugas Pengembalian</th>
-                            <th>Kondisi barang</th>
+                            <th>nomor</th>
+                            <th>nama Peminjam</th>
                             <th>Tanggal pinjam</th>
                             <th>Tanggal pengembalian</th>
-                          
+                            <th>aksi</th>
 
                           </tr>
                         </thead>
-                        @foreach ($history as $no=>$history)
+                        @foreach ($borrow as $no=>$borrow)
                         <tr>
                           <td>{{$no+1}}</td>
-                          <td>{{$history->user_name}}</td>
-                          <td>{{$history->nis}}</td>
-                          <td>{{$history->usr_class}}</td>
-                          <td>{{$history->asset_name}}</td>
-                          <td>{{$history->oprator_name}}</td>
-                          @if($history->bas_status == 1)
-                          <td>Baik</td>
-                          @elseif($history->bas_status == 2)
-                          <td>Rusak</td>
-                          @else
-                          <td>Hilang</td>
-                          @endif
-                          <td>{{$history->start_date}}</td>
-                          <td>{{$history->end_date}}</td>
+                          <td>{{$borrow->brw_user->usr_name}}</td>
+                          <td>{{$borrow->created_at}}</td>
+                          <td>{{$borrow->deleted_at}}</td>
+                          <td>
+                            <a href="/admin/borrow/{{$borrow->brw_id}}/detail" class="btn btn-primary">detail</a>
 
-                         
+                          </td>
 
                         </tr>
                         @endforeach

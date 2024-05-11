@@ -26,7 +26,7 @@
           <ul class="nav side-menu">
             
             <li><a href="/admin/home"><i class="fa fa-home"></i>  Home</a></li>
-            <li><a href="/admin/home"><i class="fa fa-user"></i>  Kelola User</a></li>
+            <li><a href="/admin/user"><i class="fa fa-user"></i>  Kelola User</a></li>
 
 
             <li><a><i class="fa fa-archive"></i>asset<span class="fa fa-chevron-down"></span></a>

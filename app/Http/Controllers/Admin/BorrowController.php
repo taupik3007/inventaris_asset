@@ -103,11 +103,11 @@ class BorrowController extends Controller
         //
     }
 
-    public function history()
+    public function return()
     {
         $borrow = Borrow::with('brw_user')->onlyTrashed()->get();
         // dd($borrow);
-        return view('admin.borrow.history',compact(['borrow']));
+        return view('admin.borrow.return',compact(['borrow']));
     }
     // public function return($id)
     // {
@@ -169,5 +169,18 @@ class BorrowController extends Controller
         $asset = Asset::where('ass_id',$request->asset)->update(['ass_status'=>2]);
         return redirect('/admin/borrow')->with('succes','asset berhasil di pinjam ');
 
+    }
+
+
+    public function history(){
+        $history = BorrowAsset::join('assets','borrow_assets.bas_asset_id','=','assets.ass_id')
+        ->join('borrows','borrow_assets.bas_borrow_id','=','borrows.brw_id')
+        ->join('users as oprator','oprator.usr_id','=','borrow_assets.bas_deleted_by')
+        ->join('users as user','borrows.brw_user_id','=','user.usr_id')
+        ->select('user.usr_name as user_name','oprator.usr_name as oprator_name','user.usr_regis_number as nis','assets.ass_name as asset_name',
+                'borrow_assets.created_at as start_date','borrow_assets.deleted_at as end_date', 'borrow_assets.bas_status','user.usr_class' )
+        ->onlyTrashed()->get();
+        // dd($history);
+        return view('admin.borrow.history',compact(['history']));
     }
 }
