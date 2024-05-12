@@ -94,7 +94,7 @@ Asset
                               @if($bas->deleted_at == null)
                               <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle" type="button" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                About Us
+                                Pengembalian
                                   <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="about-us">

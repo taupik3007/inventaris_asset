@@ -138,7 +138,8 @@ class BorrowController extends Controller
         
         // dd($borrowAsset);
         $borrowAsset->update([
-            'bas_deleted_by'=> Auth::user()->usr_id
+            'bas_deleted_by'=> Auth::user()->usr_id,
+            'bas_status' => $status
         ]);
         $asset = Asset::where('ass_id',$borrowAsset->bas_asset_id)->update([
             'ass_status' => 1,
@@ -180,6 +181,7 @@ class BorrowController extends Controller
         ->join('users as user','borrows.brw_user_id','=','user.usr_id')
         ->select('user.usr_name as user_name','oprator.usr_name as oprator_name','user.usr_regis_number as nis','assets.ass_name as asset_name',
                 'borrow_assets.created_at as start_date','borrow_assets.deleted_at as end_date', 'borrow_assets.bas_status','user.usr_class' )
+        ->orderBy('end_date','DESC')
         ->onlyTrashed()->get();
         // dd($history);
         return view('admin.borrow.history',compact(['history']));
