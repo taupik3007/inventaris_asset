@@ -123,7 +123,7 @@ class BorrowController extends Controller
     //     return redirect('/admin/borrow/history');
        
     // }
-    public function returnAsset($id)
+    public function returnAsset($id,$status)
     {
         
         $borrowAsset = BorrowAsset::findOrFail($id);
@@ -142,6 +142,7 @@ class BorrowController extends Controller
         ]);
         $asset = Asset::where('ass_id',$borrowAsset->bas_asset_id)->update([
             'ass_status' => 1,
+            'ass_status' => $status
         ]);
         $borrowAsset->delete();
         return redirect('/admin/borrow/'.$borrowAsset->bas_borrow_id.'/detail');

@@ -10,7 +10,7 @@
               <img src="{{asset('images/img.jpg')}}" alt="">{{Auth::user()->usr_name}}
             </a>
             <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item"  href="/awi9kwok"> Profile</a>
+              <a class="dropdown-item"  href="/{{Auth::user()->usr_id}}/profile"> Profile</a>
               <form method="POST" action="{{ route('logout') }}">
                 @csrf
               {{-- <a class="dropdown-item"  href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a> --}}

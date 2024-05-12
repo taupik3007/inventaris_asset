@@ -7,12 +7,12 @@ use App\Http\Controllers\Admin\OriginController;
 use App\Http\Controllers\Admin\AssetController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\BorrowController;
+use App\Http\Controllers\Admin\ManageUserController;
 
 use App\Http\Controllers\User\userHomeController;
 use App\Http\Controllers\User\userBorrowController;
 
 Route::middleware('auth','role:admin')->group(function () {
-    Route::get('/admin/{id}/profile', [AdminProfileController::class, 'index'])->name('admin.profile.index');
     
     //asset kategori
     Route::get('/admin/assetCategory', [AssetCategoryController::class, 'index'])->name('admin.category.index');
@@ -53,7 +53,7 @@ Route::middleware('auth','role:admin')->group(function () {
     //endhome
     
     //user
-    Route::get('/admin/user', [userController::class, 'index'])->name('admin.user.index');
+    Route::get('/admin/user', [ManageUserController::class, 'index'])->name('admin.user.index');
     Route::get('/admin/user/create', [userController::class, 'create'])->name('admin.user.create');
     Route::post('/admin/user/create', [userController::class, 'store'])->name('admin.user.store');
     Route::get('/admin/user/{id}/detail', [userController::class, 'show'])->name('admin.user.show');
@@ -74,7 +74,7 @@ Route::middleware('auth','role:admin')->group(function () {
     Route::get('/admin/borrow/{id}/edit', [BorrowController::class, 'edit'])->name('admin.borrow.edit');
     Route::post('/admin/borrow/{id}/edit', [BorrowController::class, 'update'])->name('admin.borrow.update');
     Route::get('/admin/borrow/{id}/return', [BorrowController::class, 'return'])->name('admin.borrow.return');
-    Route::get('/admin/borrow/detail/{id}/return', [BorrowController::class, 'returnAsset'])->name('admin.borrow.detail.return');
+    Route::get('/admin/borrow/detail/{id}/return/{status}', [BorrowController::class, 'returnAsset'])->name('admin.borrow.detail.return');
     Route::get('/admin/borrow/return', [BorrowController::class, 'return'])->name('admin.borrow.return');
     Route::get('/admin/borrow/history', [BorrowController::class, 'history'])->name('admin.borrow.history');
 

@@ -92,11 +92,21 @@ Asset
                             <td>{{$bas->deleted_at}}</td>
                             <td>
                               @if($bas->deleted_at == null)
-                              <a href="/admin/borrow/detail/{{$bas->bas_id}}/return" class="btn btn-primary"> pengembalian</a></td>
+                              <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                About Us
+                                  <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="about-us">
+                                  <li><a href="/admin/borrow/detail/{{$bas->bas_id}}/return/1">Baik</a></li>
+                                  <li><a href="/admin/borrow/detail/{{$bas->bas_id}}/return/2">Rusak</a></li>
+                                  <li><a href="/admin/borrow/detail/{{$bas->bas_id}}/return/3">Hilang</a></li>
+                                </ul>
+                              </div>
                               @else
                               <span class="badge badge-info">telah dikembalikan</span>
                               @endif
-
+                            </td>
                           </tr>
                           @endforeach
                         </tbody>

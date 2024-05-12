@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\Admin\AssetCategoryController;
 use App\Http\Controllers\Admin\OriginController;
 use App\Http\Controllers\Admin\AssetController;
@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';
 
+Route::get('{id}/profile', [UserProfileController::class, 'index'])->name('admin.profile.index');
 
 
 
