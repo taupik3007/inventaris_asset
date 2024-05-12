@@ -30,6 +30,17 @@
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
+        <div class="mt-4">
+            <x-input-label for="usr_regis_number" :value="__('NIS')" />
+            <x-text-input id="usr_regis_number" class="block mt-1 w-full" type="number" name="usr_regis_number" :value="old('usr_regis_number')" required autocomplete="usr_regis_number" />
+            <x-input-error :messages="$errors->get('usr_regis_number')" class="mt-2" />
+        </div>
+
+        <div class="mt-4">
+            <x-input-label for="usr_class" :value="__('Kelas')" />
+            <x-text-input id="usr_class" class="block mt-1 w-full" type="text" name="usr_class" :value="old('usr_class')" required autocomplete="usr_class" />
+            <x-input-error :messages="$errors->get('usr_class')" class="mt-2" />
+        </div>
 
         <div class="mt-4">
             <x-input-label for="usr_phone" :value="__('Phone')" />

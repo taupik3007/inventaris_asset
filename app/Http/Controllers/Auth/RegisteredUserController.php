@@ -29,20 +29,25 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // dd($request);
         $request->validate([
-            'usr_name'      => ['required', 'string', 'max:255'],
-            'email'         => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password'      => ['required', 'confirmed', Rules\Password::defaults()],
-            'usr_phone'     => ['required'],
-            'usr_gender'    => ['required']
+            'usr_name'                  => ['required', 'string', 'max:255'],
+            'email'                     => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'password'                  => ['required', 'confirmed', Rules\Password::defaults()],
+            'usr_phone'                 => ['required'],
+            'usr_gender'                => ['required'],
+            'usr_class'                 => ['required'],
+            'usr_regis_number'            => ['required','unique:'.User::class]
         ]);
 
         $user = User::create([
-            'usr_name' => $request->usr_name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'usr_phone'=>$request->usr_phone,
-            'usr_gender'=>$request->usr_gender,
+            'usr_name'          => $request->usr_name,
+            'email'             => $request->email,
+            'password'          => Hash::make($request->password),
+            'usr_phone'         =>$request->usr_phone,
+            'usr_gender'        =>$request->usr_gender,
+            'usr_regis_number'  =>$request->usr_regis_number,
+            'usr_class'         =>$request->usr_class
         ]);
         $user->assignRole('userLv1');
 
