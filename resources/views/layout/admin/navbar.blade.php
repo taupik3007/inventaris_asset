@@ -30,8 +30,8 @@
             <li><a><i class="fa fa-user"></i>Kelola User<span class="fa fa-chevron-down"></span></a>
               <ul class="nav child_menu">
                 <li><a href="/admin/user">Daftar User</a></li>
-                <li><a href="/admin/user/create/student">Tambah Siswa</a></li>
-                <li><a href="/admin/asset/create/student">Tambah Guru</a></li>
+                <li><a href="/admin/user/1/create">Tambah Siswa</a></li>
+                <li><a href="/admin/user/2/create">Tambah Guru</a></li>
                 
               </ul>
             </li>

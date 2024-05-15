@@ -54,12 +54,12 @@ Route::middleware('auth','role:admin')->group(function () {
     
     //user
     Route::get('/admin/user', [ManageUserController::class, 'index'])->name('admin.user.index');
-    Route::get('/admin/user/create', [userController::class, 'create'])->name('admin.user.create');
-    Route::post('/admin/user/create', [userController::class, 'store'])->name('admin.user.store');
-    Route::get('/admin/user/{id}/detail', [userController::class, 'show'])->name('admin.user.show');
-    Route::get('/admin/user/{id}/edit', [userController::class, 'edit'])->name('admin.user.edit');
-    Route::post('/admin/user/{id}/edit', [userController::class, 'update'])->name('admin.user.update');
-    Route::get('/admin/user/{id}/destroy', [userController::class, 'destroy'])->name('admin.user.destroy');
+    Route::get('/admin/user/{role}/create', [ManageUserController::class, 'create'])->name('admin.user.create');
+    Route::post('/admin/user/{role}/create', [ManageUserController::class, 'store'])->name('admin.user.store');
+    Route::get('/admin/user/{id}/detail', [ManageUserController::class, 'show'])->name('admin.user.show');
+    Route::get('/admin/user/{id}/edit', [ManageUserController::class, 'edit'])->name('admin.user.edit');
+    Route::post('/admin/user/{id}/edit', [ManageUserController::class, 'update'])->name('admin.user.update');
+    Route::get('/admin/user/{id}/destroy', [ManageUserController::class, 'destroy'])->name('admin.user.destroy');
     
     
     //end user
