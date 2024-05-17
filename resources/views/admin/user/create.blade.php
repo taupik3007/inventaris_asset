@@ -83,7 +83,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="control-label col-md-3 col-sm-3 ">Kategori Asset</label>
+                        <label class="control-label col-md-3 col-sm-3 ">Gender</label>
                         <div class="col-md-9 col-sm-9 ">
                             <select id="choose" class="form-control" name="usr_gender" wire:model="usr_gender">
                                 <option value="">---</option>
