@@ -40,6 +40,8 @@ require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';
 
 Route::get('{id}/profile', [UserProfileController::class, 'index'])->name('admin.profile.index');
+Route::post('{id}/profile/update', [UserProfileController::class, 'update'])->name('admin.profile.index');
+
 
 
 

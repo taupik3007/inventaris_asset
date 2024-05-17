@@ -60,6 +60,20 @@
                                     </li>
                                 @endif
                             </ul>
+                            @if(session()->has('succes'))
+                      <div class="alert alert-success alert-dismissible " role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                        </button>
+                        {{ session()->get('succes') }}
+                      </div>
+                      @endif
+                      @if(session()->has('error'))
+                      <div class="alert alert-danger alert-dismissible " role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                        </button>
+                        {{ session()->get('error') }}
+                      </div>
+                      @endif
                             <div id="myTabContent" class="tab-content">
 
                                 <div role="tabpanel" class="tab-pane active" id="tab_content1"
@@ -124,7 +138,8 @@
 
 
                                 <div role="tabpanel" class="tab-pane fade " id="tab_content2" aria-labelledby="edit-tab">
-                                    <form action="">
+                                    <form action="/{{$user->usr_id}}/profile/update" method="post">
+                                      @csrf
                                         <div class="form-group row ">
                                             <label class="control-label col-md-3 col-sm-3 ">Email</label>
                                             <div class="col-md-1 col-sm-1 ">
@@ -208,7 +223,7 @@
                                                 <input type="text" class="form-control" name="usr_phone"
                                                     value="{{ $user->usr_phone }}" placeholder="phone"
                                                     wire:model="usr_phone">
-                                                @error('usr_class')
+                                                @error('usr_phone')
                                                     <span class="error text-">{{ $message }}</span>
                                                 @enderror
 
