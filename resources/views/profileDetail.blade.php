@@ -58,6 +58,9 @@
                                     <li role="presentation" class=""><a href="#tab_content2" role="tab"
                                             id="profile-tab2" data-toggle="tab" aria-expanded="false">Edit profile</a>
                                     </li>
+                                    <li role="presentation" class=""><a href="#tab_content3" role="tab"
+                                        id="profile-tab2" data-toggle="tab" aria-expanded="false">Ubah password</a>
+                                </li>
                                 @endif
                             </ul>
                             @if(session()->has('succes'))
@@ -221,7 +224,7 @@
                                             </div>
                                             <div class="col-md-8 col-sm-8 ">
                                                 <input type="text" class="form-control" name="usr_phone"
-                                                    value="{{ $user->usr_phone }}" placeholder="phone"
+                                                    value="{{ $user->usr_phone }}" required placeholder="phone"
                                                     wire:model="usr_phone">
                                                 @error('usr_phone')
                                                     <span class="error text-">{{ $message }}</span>
@@ -229,6 +232,73 @@
 
                                             </div>
                                         </div>
+                                        <div class="form-group row ">
+                                          <label class="control-label col-md-3 col-sm-3 "></label>
+                                            
+                                            <div class="col-md-1 col-sm-1 ">
+
+
+                                            </div>
+                                            <div class="col-md-8 col-sm-8 ">
+                                                <input type="submit" class="btn btn-primary" >
+
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade " id="tab_content3" aria-labelledby="edit-tab">
+                                    <form action="/{{$user->usr_id}}/profile/changePassword" method="post">
+                                      @csrf
+                                        <div class="form-group row ">
+                                            <label class="control-label col-md-3 col-sm-3 ">Password lama</label>
+                                            <div class="col-md-1 col-sm-1 ">
+
+
+                                            </div>
+                                            <div class="col-md-8 col-sm-8 ">
+                                                <input type="password" class="form-control" required name="old_password" 
+                                                     placeholder="Password lama"
+                                                    wire:model="old_password">
+                                                @error('old_password')
+                                                    <span class="error text-">{{ $message }}</span>
+                                                @enderror
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row ">
+                                            <label class="control-label col-md-3 col-sm-3 ">Password baru</label>
+                                            <div class="col-md-1 col-sm-1 ">
+
+
+                                            </div>
+                                            <div class="col-md-8 col-sm-8 ">
+                                                <input type="password" class="form-control" required name="password"
+                                                    placeholder="Password Baru"
+                                                    wire:model="password">
+                                                @error('password')
+                                                    <span class="error text-">{{ $message }}</span>
+                                                @enderror
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row ">
+                                            <label class="control-label col-md-3 col-sm-3 ">Konfirmasi Password</label>
+                                            <div class="col-md-1 col-sm-1 ">
+
+
+                                            </div>
+                                            <div class="col-md-8 col-sm-8 ">
+                                                <input type="password" class="form-control" name="password_confirmation"
+                                                     placeholder="Password"
+                                                    wire:model="password_confirmation">
+                                                @error('password_confirmation')
+                                                    <span class="error text-">{{ $message }}</span>
+                                                @enderror
+
+                                            </div>
+                                        </div>
+                                      
                                         <div class="form-group row ">
                                           <label class="control-label col-md-3 col-sm-3 "></label>
                                             

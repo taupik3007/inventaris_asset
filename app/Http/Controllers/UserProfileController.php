@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Hash;
 
 
 class UserProfileController extends Controller
@@ -29,6 +31,27 @@ class UserProfileController extends Controller
         ]);
 
         return redirect('/'.$id.'/profile')->with('succes','Behasil mengubah profile ');
+
+
+
+    }
+    public function changePassword(Request $request,$id){
+        $request->validate([
+            'password'                  => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        $user = User::findOrFail($id);
+        // dd(bcrypt($request->old_password));
+        if(!Hash::check($request->old_password, $user->password)){
+            return redirect('/'.$id.'/profile')->with('error','Password tidak sesuai');
+
+        }
+
+        $user->update([
+            'password' => Hash::make($request->password)
+        ]);
+        return redirect('/'.$id.'/profile')->with('succes','Berhasi Ubah Password');
+
 
 
 
