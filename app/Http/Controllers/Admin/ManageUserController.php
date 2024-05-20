@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
+
+
 
 
 class ManageUserController extends Controller
@@ -15,7 +18,7 @@ class ManageUserController extends Controller
      */
     public function index()
     {
-        $user = User::all();
+        $user = User::role(['userLv1','userLv2'])->get();
         return view('admin.manageUser.index',compact('user'));
     }
 
@@ -110,5 +113,23 @@ class ManageUserController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function resetPassword(){
+       
+
+        return view('admin.manageUser.resetPassword');
+    }
+    public function storeResetPassword(Request $request,$id){
+        $request->validate([
+            'password'                  => ['required', Rules\Password::defaults()],
+        ]);
+
+        $update = User::findOrFail($id)->update([
+            'password' => Hash::make($request->password)
+
+        ]);
+
+
+        return redirect('/admin/user')->with('succes','Berhasil mereset password ');
     }
 }

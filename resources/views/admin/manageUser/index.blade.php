@@ -71,7 +71,9 @@ Asset
                             @endif
                           </td>
                           <td>
-                            <a href="" class="btn btn-primary">Detail</a>
+                            <a href="/{{$user->usr_id}}/profile" class="btn btn-primary">Detail</a>
+                            <a href="/admin/user/{{$user->usr_id}}/resetPassword" class="btn btn-primary">Reset Password</a>
+
                           </td>
                         </tr>
                         @endforeach

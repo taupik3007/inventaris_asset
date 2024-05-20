@@ -60,6 +60,10 @@ Route::middleware('auth','role:admin')->group(function () {
     Route::get('/admin/user/{id}/edit', [ManageUserController::class, 'edit'])->name('admin.user.edit');
     Route::post('/admin/user/{id}/edit', [ManageUserController::class, 'update'])->name('admin.user.update');
     Route::get('/admin/user/{id}/destroy', [ManageUserController::class, 'destroy'])->name('admin.user.destroy');
+    Route::get('/admin/user/{id}/resetPassword', [ManageUserController::class, 'resetPassword'])->name('admin.user.resetPassword');
+    Route::post('/admin/user/{id}/resetPassword', [ManageUserController::class, 'storeResetPassword'])->name('admin.user.resetPassword');
+
+
     
     
     //end user
