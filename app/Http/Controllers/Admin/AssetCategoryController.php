@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Asset;
 
-
+use App\Models\SysNote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,6 +21,7 @@ class AssetCategoryController extends Controller
         $category = Category::all();
         // dd($category);
         return view('admin.category.index',compact(['category']));
+       
     }
 
     /**
@@ -79,6 +80,11 @@ class AssetCategoryController extends Controller
         $category->ctg_parent_id        = $parent_category->ctg_id;
         }
         $category->save();
+        $sysNote = SysNote::create([
+            'note_category_id' => $category->ctg_id,
+            'note_text' => 'create',
+            'created_by' => Auth::user()->usr_id
+        ]);
         return redirect('/admin/assetCategory')->with('succes','Berhasil Menambah Asal');
 
     }
@@ -178,6 +184,11 @@ class AssetCategoryController extends Controller
         $category->ctg_deleted_by = Auth::user()->usr_id;
         $category->save();
         $category->delete();
+        $sysNote = SysNote::create([
+            'note_category_id' => $id,
+            'note_text' => 'delete',
+            'created_by' => Auth::user()->usr_id
+        ]);
         return redirect('/admin/assetCategory')->with('succes','kategori ini berhasil dihapus');
         
     }

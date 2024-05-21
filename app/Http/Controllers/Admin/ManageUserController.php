@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\SysNote;
+
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
@@ -77,6 +79,15 @@ class ManageUserController extends Controller
                
             ]);
             $user->assignRole('userLv2');
+            // dd($user->usr_id);
+            $sysNote = SysNote::create([
+                'note_user_id' => $user->usr_id,
+                'note_text' => 'create',
+                'created_by' => Auth::user()->usr_id
+            ]);
+
+
+
         return redirect('/admin/user')->with('succes','Berhasil Menambah guru ');
 
         }
@@ -128,6 +139,13 @@ class ManageUserController extends Controller
             'password' => Hash::make($request->password)
 
         ]);
+        $sysNote = SysNote::create([
+            'note_user_id' => $id,
+            'note_text' => 'reset password',
+            'created_by' => Auth::user()->usr_id
+        ]);
+
+       
 
 
         return redirect('/admin/user')->with('succes','Berhasil mereset password ');

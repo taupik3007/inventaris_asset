@@ -7,6 +7,7 @@ use App\Models\Origin;
 use App\Models\User;
 use App\Models\Asset;
 use App\Models\Category;
+use App\Models\SysNote;
 
 
 
@@ -51,16 +52,28 @@ class OriginController extends Controller
             'unique'    => 'kode sudah digunakan',
         ];
         $validated = $request->validate([
-            'ori_code' => 'required|unique:origins|max:255',
+            'ori_code' => 'required|max:255',
             'ori_name' => 'required|unique:origins'
         ],$messages
         );
+        $code = "INV.".strtoupper($request->ori_code);
+        $origin_cek = Origin::where('ori_code',$code)->first();
+
+        if($origin_cek){
+        return redirect('/admin/origin/create')->with('error','asal kode sudah digunakan');
+
+        }
 
         $validated['ori_created_by']= $id;
-        $validated['ori_code']= "INV.".strtoupper($request->ori_code);
+        $validated['ori_code']= $code;
+        
 
-
-        Origin::create($validated);
+        $origin = Origin::create($validated);
+        $sysNote = SysNote::create([
+            'note_origin_id' => $id,
+            'note_text' => 'create',
+            'created_by' => Auth::user()->usr_id
+        ]);
         return redirect('/admin/origin')->with('succes','Berhasil input asal baru');
     }
 
@@ -102,7 +115,7 @@ class OriginController extends Controller
         $code = "INV.".strtoupper($request->ori_code);
         if($code == $origin_cek->ori_code){
             if($request->ori_name  == $origin_cek->ori_name){
-                return redirect('/admin/origin');
+                return redirect('/admin/origin')->with('error-name','nama asal sudah digunakan');
             }else{
             $origin_name_count = Origin::where('ori_name',$request->ori_name)->count();
             // dd($origin_name_count);
@@ -176,6 +189,11 @@ class OriginController extends Controller
         $origin->ori_deleted_by = Auth::user()->usr_id;
         $origin->save();
         $origin->delete();
+        $sysNote = SysNote::create([
+            'note_origin_id' => $id,
+            'note_text' => 'delete',
+            'created_by' => Auth::user()->usr_id
+        ]);
         return redirect('/admin/origin')->with('succes','Berhasil Hapus asal');
 
         // dd($origin);

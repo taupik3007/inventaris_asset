@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('sys_note', function (Blueprint $table) {
             $table->bigIncrements('note_id');
-            $table->unsignedBigInteger('note_user_id');
-            $table->unsignedBigInteger('note_category_id');
-            $table->unsignedBigInteger('note_origin_id');
-            $table->unsignedBigInteger('note_asset_id');
-            $table->unsignedBigInteger('note_asset_description_id');
-            $table->unsignedBigInteger('note_borrow_id');
-            $table->unsignedBigInteger('note_borrow_asset_id');
+            $table->unsignedBigInteger('note_user_id')->nullable();
+            $table->unsignedBigInteger('note_category_id')->nullable();
+            $table->unsignedBigInteger('note_origin_id')->nullable();
+            $table->unsignedBigInteger('note_asset_id')->nullable();
+            $table->unsignedBigInteger('note_asset_description_id')->nullable();
+            $table->unsignedBigInteger('note_borrow_id')->nullable();
+            $table->unsignedBigInteger('note_borrow_asset_id')->nullable();
+            // $table->string('note_title');
             $table->string('note_text')->text();
             $table->timestamps();
             $table->unsignedBigInteger('created_by')->unsigned()->nullable();

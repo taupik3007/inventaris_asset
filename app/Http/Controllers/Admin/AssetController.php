@@ -7,6 +7,8 @@ use App\Models\Asset;
 use App\Models\Category;
 use App\Models\Origin;
 use App\Models\assetDescription;
+use App\Models\SysNote;
+
 
 use Illuminate\Support\Facades\Auth;
 
@@ -90,13 +92,22 @@ class AssetController extends Controller
                 $create_asd->asd_name       = $request->asd_name[$j];
                 $create_asd->asd_value      = $request->asd_value[$j];
                 $create_asd->save();
+                
             }
 
             // foreach ($request->asd_name as  $no=>$asd) {
             //    
             // }
 
+            $sysNote = SysNote::create([
+                'note_asset_id' => $create_asset->ass_id,
+                'note_text' => 'create',
+                'created_by' => Auth::user()->usr_id
+            ]);
+
         }
+       
+        
         return redirect('/admin/asset')->with('succes','Berhasil Menambah asset');
 
         
@@ -158,6 +169,11 @@ class AssetController extends Controller
         $asd->delete();
             
         }
+        $sysNote = SysNote::create([
+            'note_asset_id' => $asset->ass_id,
+            'note_text' => 'delete',
+            'created_by' => Auth::user()->usr_id
+        ]);
         return redirect('/admin/asset')->with('succes','Berhasil Menghapus asset');
 
 

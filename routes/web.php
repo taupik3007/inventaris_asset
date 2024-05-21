@@ -47,6 +47,7 @@ Route::post('{id}/profile/changePassword', [UserProfileController::class, 'chang
 
 
 
+
 Route::middleware('auth','role:userLv1|userLv2')->group(function () {
 
 Route::get('/user/home', [userHomeController::class, 'index'])->name('user.home');
