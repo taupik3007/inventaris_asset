@@ -64,7 +64,7 @@
                     <div id="line" class="ln_solid " style="margin-top: 40px"></div>
                     <div class="form-group">
                         <div class="col-md-9 col-sm-9  offset-md-3">
-                            <a  href="/admin/origin" class="btn btn-primary">Cancel</a>
+                            <a  href="/admin/user" class="btn btn-primary">Cancel</a>
                             <button type="reset" class="btn btn-primary">Reset</button>
                             <button type="submit" class="btn btn-success">Submit</button>
                         </div>

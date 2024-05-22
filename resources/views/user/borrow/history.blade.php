@@ -11,17 +11,17 @@
     <link href="{{asset('vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
 @endpush
 @section('headTitle')
-Asset
+Pengembalian
 @endsection
 @section('title')
-Asset
+Pengembalian
 @endsection
 @section('content')
 <div class="row">
     <div class="col-md-12 col-sm-12 ">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Asset <small>List</small></h2>
+            <h2>Pengembalian <small>List</small></h2>
             
             <div class="clearfix"></div>
           </div>
@@ -43,7 +43,7 @@ Asset
                       </div>
                       @endif
                     <div class="card-box table-responsive">
-                      <a href="/admin/asset/create" class="btn btn-info mb-5">Tambah Asset</a>
+                    
                       <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                           <tr>

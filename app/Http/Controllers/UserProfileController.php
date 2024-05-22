@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class UserProfileController extends Controller
@@ -14,6 +16,11 @@ class UserProfileController extends Controller
     public function index($id){
 
         $user = User::findOrFail($id);
+        // dd(Auth::user()->roles->pluck('name')->first());
+        if(Auth::user()->roles->pluck('name')->first() == 'admin'){
+        return view('admin.profileDetail',compact(['user']));
+
+        }
         return view('profileDetail',compact(['user']));
     }
     public function update(Request $request, $id){

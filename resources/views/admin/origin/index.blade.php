@@ -54,7 +54,7 @@ Asal
                             <td>{{$no+1}}</td>
                             <td>{{$origin->ori_code}}</td>
                             <td>{{$origin->ori_name}}</td>
-                            <td><a href="/admin/origin/{{$origin->ori_id}}/edit" class="btn btn-primary">Edit</a>
+                            <td>
                               <a href="/admin/origin/{{$origin->ori_id}}/destroy" class="btn btn-danger">hapus</a>
                             </td>
                           </tr>

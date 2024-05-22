@@ -11,17 +11,17 @@
     <link href="{{asset('vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
 @endpush
 @section('headTitle')
-Asset
+Peminjaman
 @endsection
 @section('title')
-Asset
+Peminjaman
 @endsection
 @section('content')
 <div class="row">
     <div class="col-md-12 col-sm-12 ">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Asset <small>List</small></h2>
+            <h2>Peminjaman<small>List</small></h2>
             
             <div class="clearfix"></div>
           </div>
@@ -62,8 +62,8 @@ Asset
                           <td>{{$borrow->created_at}}</td>
                           <td></td>
                           <td>
-                            <a href="/admin/borrow/{{$borrow->brw_id}}/add" class="btn btn-info">pinjam asset</a>
-                            <a href="/admin/borrow/{{$borrow->brw_id}}/detail" class="btn btn-info">detail</a>
+                            <a href="/admin/borrow/{{$borrow->brw_id}}/add" class="btn btn-primary">pinjam asset</a>
+                            <a href="/admin/borrow/{{$borrow->brw_id}}/detail" class="btn btn-info">Pengembalian</a>
                             
                           </td>
 

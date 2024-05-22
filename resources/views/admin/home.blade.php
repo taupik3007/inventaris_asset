@@ -80,11 +80,11 @@
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-2  profile_details">
-                    <div class="well profile_view">
+                    <div class="well profile_view" style="width: 100%">
                         <div class="col-sm-12">
                             
                             <div class="left col-md-12 col-sm-12">
-                                <h1>Peminjaman</h1>
+                                <h1>Asset</h1>
                                 
                                
                             </div>

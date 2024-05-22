@@ -66,7 +66,7 @@ Kategori Asset
                             <td>{{$category->ctg_original_code}}</td>
                            
 
-                            <td><a href="/admin/assetCategory/{{$category->ctg_id}}/edit" class="btn btn-primary">Edit</a>
+                            <td>
                               <a href="/admin/assetCategory/{{$category->ctg_id}}/destroy" class="btn btn-danger">hapus</a>
                             </td>
                           </tr>

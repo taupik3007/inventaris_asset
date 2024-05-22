@@ -1,4 +1,4 @@
-@extends('layout.user.master')
+@extends('layout.admin.master')
 
 @push('link')
     <link href="{{ asset('vendors/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">

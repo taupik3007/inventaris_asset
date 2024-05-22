@@ -20,17 +20,17 @@
 
 @endpush
 @section('headTitle')
-    Asal
+    edit user
 @endsection
 @section('title')
-    Tambah Asal
+    Edit user
 @endsection
 @section('content')
 <div class="row">
     <div class="col-md-12 ">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Tambah Asal</small></h2>
+                <h2>Edit User</small></h2>
                 
                 <div class="clearfix"></div>
             </div>
@@ -117,7 +117,7 @@
                     <div id="line" class="ln_solid " style="margin-top: 40px"></div>
                     <div class="form-group">
                         <div class="col-md-9 col-sm-9  offset-md-3">
-                            <a  href="/admin/origin" class="btn btn-primary">Cancel</a>
+                            <a  href="/admin/user" class="btn btn-primary">Cancel</a>
                             <button type="reset" class="btn btn-primary">Reset</button>
                             <button type="submit" class="btn btn-success">Submit</button>
                         </div>
