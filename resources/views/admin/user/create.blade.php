@@ -17,6 +17,19 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
+    /* Firefox */
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+    </style>
 
 @endpush
 @section('headTitle')
@@ -78,7 +91,7 @@
                     <div class="form-group row ">
                         <label class="control-label col-md-3 col-sm-3 ">Phone</label>
                         <div class="col-md-9 col-sm-9 ">
-                        <input type="text"name="usr_phone" class="form-control" placeholder="Phone" wire:model="usr_phone">
+                        <input id="usr_phone" type="number"name="usr_phone" class="form-control" placeholder="Phone" wire:model="usr_phone">
                             @error('usr_phone') <span class="error text-">{{ $message }}</span> @enderror
                         </div>
                     </div>
@@ -129,39 +142,19 @@
 </div>
 
 
-<script type="text/javascript">
-    $('#addRow').click(function () {
-        var tableID = "rowTable";
-        var table = document.getElementById(tableID);
-        var rowCount = table.rows.length;
+<script>
+    var inputBox = document.getElementById("usr_phone");
 
-        if (rowCount <= 4) {
-            var row = table.insertRow(rowCount);
-            
+    var invalidChars = [
+    "-",
+    "+",
+    "e",
+    ];
 
-           
-
-            // var  row=table.insertCell(rowCount);
-            var tblBodyObj = document.getElementById(tableID).tBodies[0];
-
-
-            var element1 = '<select class="select2 form-control" name="asset[]">\n' +
-                                '<option value="">--</option> \n' +
-                                
-                            '</select>';
-            // row.innerHTML="fbkdashkfshdkhfsfklfah";
-            row.innerHTML = element1;
-        }
-    });
-    $('#deleteRow').click(function () {
-        var tableID = "rowTable";
-        var table = document.getElementById(tableID);
-        var rowCount = table.rows.length;
-        console.log(rowCount);
-        if (rowCount != 1) {
-            rowCount = rowCount - 1;
-            table.deleteRow(rowCount);
-        }
+    inputBox.addEventListener("keydown", function(e) {
+    if (invalidChars.includes(e.key)) {
+        e.preventDefault();
+    }
     });
 </script>
 

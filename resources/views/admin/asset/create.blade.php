@@ -13,6 +13,20 @@
 <link href="{{asset('vendors/starrr/dist/starrr.css')}}" rel="stylesheet">
 <!-- bootstrap-daterangepicker -->
 <link href="{{asset('vendors/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
+
+<style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
+    /* Firefox */
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+    </style>
 @endpush
 @section('headTitle')
     Asset
@@ -52,7 +66,7 @@
                     <div class="form-group row ">
                         <label class="control-label col-md-3 col-sm-3 ">Harga</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <input type="number" class="form-control" name="ass_price" placeholder="Harga" wire:model="ass_price">
+                            <input id="ass_price" type="number" class="form-control" name="ass_price" placeholder="Harga" wire:model="ass_price">
                             @error('ass_price') <span class="error text-">{{ $message }}</span> @enderror
 
                         </div>
@@ -100,8 +114,9 @@
                         <div class="col-md-9 col-sm-9 ">
                             <select id="choose" class="form-control" name="ass_condition" onchange="yesnoCheck(this);" wire:model="ass_condition">
                                 <option value="">--</option>
-                                <option value="0">rusak</option>\
                                 <option value="1">baik</option>
+
+                                <option value="0">rusak</option>
                             </select>
                             @error('ass_condition') <span class="error text-">{{ $message }}</span> @enderror
 
@@ -110,7 +125,7 @@
                     <div   class="form-group row ">
                         <label class="control-label col-md-3 col-sm-3 ">Jumlah</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <input type="number" name="amount" class="form-control" placeholder="Jumlah" wire:model="amount">
+                            <input id="amount" type="number" name="amount" class="form-control" placeholder="Jumlah" wire:model="amount">
                         @error('amount') <span class="error text-">{{ $message }}</span> @enderror
                             
                         </div>
@@ -208,6 +223,29 @@
     }
    
 }
+</script>
+
+<script>
+    var inputBox = document.getElementById("amount");
+    var inputBox2 = document.getElementById("ass_price");
+
+
+    var invalidChars = [
+    "-",
+    "+",
+    "e",
+    ];
+
+    inputBox.addEventListener("keydown", function(e) {
+    if (invalidChars.includes(e.key)) {
+        e.preventDefault();
+    }
+    });
+    inputBox2.addEventListener("keydown", function(e) {
+    if (invalidChars.includes(e.key)) {
+        e.preventDefault();
+    }
+    });
 </script>
 
 @endsection

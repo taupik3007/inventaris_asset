@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 
 
@@ -61,6 +62,27 @@ class UserProfileController extends Controller
 
 
 
+
+    }
+
+    public function changeImage(Request $request,$id){
+        $file = $request->iamge;
+
+        // Dapatkan ekstensi asli file
+        $extension = $file->getClientOriginalExtension();
+    
+       
+    
+        // Buat nama file baru yang acak
+        $randomFileName = Str::random(40) . '.' . $extension;
+    
+        // Pindahkan file ke path yang ditentukan
+        $file->move('storage/image/', $randomFileName);
+
+        $user = User::findOrFail($id)->update([
+            'usr_profile_picture' => $randomFileName
+        ]);
+        return redirect('/'.$id.'/profile')->with('succes','Berhasi mengubah foto profile');
 
     }
 }
