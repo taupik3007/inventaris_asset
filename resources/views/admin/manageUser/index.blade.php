@@ -72,6 +72,8 @@ Asset
                           </td>
                           <td>
                             <a href="/{{$user->usr_id}}/profile" class="btn btn-primary">Detail</a>
+                            <a href="/admin/user/{{$user->usr_id}}/edit" class="btn btn-primary">Edit</a>
+
                             <a href="/admin/user/{{$user->usr_id}}/resetPassword" class="btn btn-primary">Reset Password</a>
 
                           </td>

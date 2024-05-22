@@ -46,7 +46,7 @@
                     <div class="form-group row ">
                         <label class="control-label col-md-3 col-sm-3 ">Nama</label>
                         <div class="col-md-9 col-sm-9 ">
-                        <input type="text"name="usr_name" class="form-control" placeholder="Nama" value="{{$user->usr_name}}" wire:model="usr_name">
+                        <input type="text"name="usr_name" class="form-control" placeholder="Nama" value="{{$user->usr_name}}"  wire:model="usr_name">
                             @error('usr_name') <span class="error text-">{{ $message }}</span> @enderror
                         </div>
                     </div>
@@ -55,21 +55,31 @@
                         <div class="col-md-9 col-sm-9 ">
                         <input type="email"name="email" class="form-control" placeholder="email" value="{{$user->email}}" wire:model="email">
                             @error('email') <span class="error text-">{{ $message }}</span> @enderror
+                            @if(session()->has('error-email'))
+                            <span class="error text-"> {{ session()->get('error-email') }}</span> 
+                      
+                      @endif
+                      
                         </div>
                     </div>
 
-                    @if($role == 1 )
+                    @if($user->roles->pluck('name')->first() == 'userLv1' )
                     <div class="form-group row ">
                         <label class="control-label col-md-3 col-sm-3 ">NIS</label>
                         <div class="col-md-9 col-sm-9 ">
                         <input type="text"name="usr_regis_number" class="form-control" placeholder="NIS" value="{{$user->usr_regis_number}}" wire:model="usr_regis_number">
                             @error('usr_regis_number') <span class="error text-">{{ $message }}</span> @enderror
+
+                            @if(session()->has('error-email'))
+                            <span class="error text-"> {{ session()->get('error-nis') }}</span> 
+                      </div>
+                      @endif
                         </div>
                     </div>
                     <div class="form-group row ">
                         <label class="control-label col-md-3 col-sm-3 ">Kelas</label>
                         <div class="col-md-9 col-sm-9 ">
-                        <input type="text"name="usr_class" class="form-control" placeholder="Kelas" value="{{$user->usr_class}}" wire:model="usr_class">
+                        <input type="text"name="usr_class" class="form-control" placeholder="Kelas" value="{{$user->usr_class}}"  wire:model="usr_class">
                             @error('usr_class') <span class="error text-">{{ $message }}</span> @enderror
                         </div>
                     </div>
@@ -99,13 +109,7 @@
 
                         </div>
                     </div>
-                    <div class="form-group row ">
-                        <label class="control-label col-md-3 col-sm-3 ">Password</label>
-                        <div class="col-md-9 col-sm-9 ">
-                        <input type="password"name="password" class="form-control" placeholder="Password" wire:model="password">
-                            @error('password') <span class="error text-">{{ $message }}</span> @enderror
-                        </div>
-                    </div>
+                    
                    
                     
 

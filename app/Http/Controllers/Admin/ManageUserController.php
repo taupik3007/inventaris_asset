@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\SysNote;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
@@ -107,7 +108,9 @@ class ManageUserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
+        $user = User::findOrFail($id);
+        return view('admin.manageUser.edit',compact(['user']));
     }
 
     /**
@@ -115,7 +118,41 @@ class ManageUserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'usr_name'                  => ['required', 'string', 'max:255'],
+            'email'                     => ['required', 'string', 'lowercase', 'email', 'max:255', ],
+            'usr_phone'                 => ['required'],
+         
+        ]);
+        $user = User::findOrFail($id);
+        $checkNis = User::where('usr_regis_number',$request->usr_regis_number)->where('usr_regis_number','!=', $user->usr_regis_number)->first();
+        $checkEmail = User::where('email',$request->email)->where('email','!=', $user->email)->first();
+
+        if($checkNis == true){
+            return redirect('/admin/user/'.$id.'/edit')->with('error-nis','Nis sudah di pakai ');  
+        }else{
+            if($checkEmail == true){
+            return redirect('/admin/user/'.$id.'/edit')->with('error-email','email sudah di pakai ');  
+
+            }
+        }
+        $user->update([
+            'usr_name'          => $request->usr_name,
+            'email'             => $request->email,
+            'usr_phone'         =>$request->usr_phone,
+            'usr_gender'        =>$request->usr_gender,
+            'usr_regis_number'  =>$request->usr_regis_number,
+            'usr_class'         =>$request->usr_class
+        ]);
+        $sysNote = SysNote::create([
+            'note_user_id' => $user->usr_id,
+            'note_text' => 'create',
+            'created_by' => Auth::user()->usr_id
+        ]);
+        return redirect('/admin/user')->with('succes','Berhasil mengedit user ');
+
+
+
     }
 
     /**
