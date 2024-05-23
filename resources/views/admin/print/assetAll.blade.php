@@ -11,10 +11,10 @@
     <link href="{{ asset('vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
 @endpush
 @section('headTitle')
-    Asset
+    {{$title}}
 @endsection
 @section('title')
-    Asset
+   {{$title}}
 @endsection
 @section('content')
     <div class="row">

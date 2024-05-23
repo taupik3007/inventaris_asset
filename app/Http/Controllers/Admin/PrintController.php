@@ -12,20 +12,26 @@ use App\Models\BorrowAsset;
 class PrintController extends Controller
 {
     public function assetAll(){
+        $title = "Print Asset";
         $asset = Asset::with('category')->with('origin')->get();
-        return view('admin.print.assetAll',compact(['asset']));
+        return view('admin.print.assetAll',compact(['asset','title']));
     }
     public function assetGood(){
+        $title = "Print Asset Kondisi baik";
         $asset = Asset::with('category')->with('origin')->where('ass_condition',1)->get();
-        return view('admin.print.assetAll',compact(['asset']));
+        return view('admin.print.assetAll',compact(['asset','title']));
     }
     public function assetBroken(){
+        $title = "Print Asset Kondisi Rusak";
+
         $asset = Asset::with('category')->with('origin')->where('ass_condition',2)->get();
-        return view('admin.print.assetAll',compact(['asset']));
+        return view('admin.print.assetAll',compact(['asset','title']));
     }
     public function assetLost(){
+        $title = "Print Asset Kondisi Hilang";
+
         $asset = Asset::with('category')->with('origin')->where('ass_condition',3)->get();
-        return view('admin.print.assetAll',compact(['asset']));
+        return view('admin.print.assetAll',compact(['asset','title']));
     }
     public function history(){
         $history = BorrowAsset::join('assets','borrow_assets.bas_asset_id','=','assets.ass_id')
