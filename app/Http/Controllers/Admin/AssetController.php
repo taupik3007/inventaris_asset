@@ -137,7 +137,11 @@ class AssetController extends Controller
      */
     public function edit(string $id)
     {
-        return view('admin.asset.edit');
+        $category = Category::all();
+        $origin = Origin::all();
+        $asset = Asset::findOrFail($id)->with('category')->with('origin')->first();
+        // dd($asset);
+        return view('admin.asset.edit',compact(['category','origin','asset']));
         
     }
 
@@ -146,7 +150,34 @@ class AssetController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $messages = [
+            'required'  => 'Harap di isi.',
+        
+        ];
+        $validated = $request->validate([
+            'ass_name'          => 'required|max:255',
+            'ass_status'        => 'required',
+            'ass_condition'     => 'required',
+           
+        ],$messages
+        );
+        $asset = Asset::findOrFail($id);
+
+        $checkAssetName = Asset::where('ass_name',$request->ass_name)->where('ass_name','!=',$asset->ass_name)->first();
+        if($checkAssetName == true){
+            return redirect('/admin/asset')->with('error','Nama Asset sudah Terdaftar');
+            
+        }
+        $asset->update([
+            'ass_name' => $request->ass_name,
+            'ass_status' =>$request->ass_status,
+            'ass_condition' => $request->ass_condition
+        ]);
+        return redirect('/admin/asset')->with('succes','Berhasil edit asset');
+
+        
+        // dd($request);
+
     }
 
     /**

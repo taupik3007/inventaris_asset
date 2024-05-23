@@ -58,7 +58,7 @@
                     <div class="form-group row ">
                         <label class="control-label col-md-3 col-sm-3 ">Tahun Pengadaan</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <input type="text" class="form-control" name="ass_year" placeholder="Tahun Pengadaan" wire:model="ass_year">
+                            <input type="number" class="form-control" name="ass_year" placeholder="Tahun Pengadaan" wire:model="ass_year">
                             @error('ass_year') <span class="error text-">{{ $message }}</span> @enderror
 
                         </div>

@@ -76,6 +76,8 @@ Asset
                             @endif
                             <td>
                                 <a href="/admin/asset/{{$asset->ass_id}}/detail" class="btn btn-info">Detail</a>
+                                <a href="/admin/asset/{{$asset->ass_id}}/edit" class="btn btn-primary">edit</a>
+
                                 <a href="" class="btn btn-primary">Edit</a>
                               <a href="/admin/asset/{{$asset->ass_id}}/destroy" class="btn btn-danger">Hapus</a>
                             </td>

@@ -13,69 +13,101 @@
 <link href="{{asset('vendors/starrr/dist/starrr.css')}}" rel="stylesheet">
 <!-- bootstrap-daterangepicker -->
 <link href="{{asset('vendors/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
+
+<style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
+    /* Firefox */
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+    </style>
 @endpush
 @section('headTitle')
-    Kategori Asset
+    Asset
 @endsection
 @section('title')
-    Tambah Kategori Asset
+    Tambah Asset
 @endsection
 @section('content')
 <div class="row">
     <div class="col-md-12 ">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Form Basic Elements <small>different form elements</small></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Settings 1</a>
-                            <a class="dropdown-item" href="#">Settings 2</a>
-                        </div>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                </ul>
+                <h2>Tambah Asset</h2>
+                
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
                 <br />
-                <form class="form-horizontal form-label-left">
-
+                <form class="form-horizontal form-label-left" method="post" action="">
+                    @csrf
                     <div class="form-group row ">
-                        <label class="control-label col-md-3 col-sm-3 ">Nama kategori</label>
+                        <label class="control-label col-md-3 col-sm-3 ">Nama Asset</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <input type="text" class="form-control" placeholder="Nama Kategori">
+                            <input type="text"name="ass_name" class="form-control" value="{{$asset->ass_name}}" placeholder="Nama Asset" wire:model="ass_name">
+                            @error('ass_name') <span class="error text-">{{ $message }}</span> @enderror
+
                         </div>
                     </div>
+                
+                    
+                    
                     <div class="form-group row">
-                        <label class="control-label col-md-3 col-sm-3 ">kategori induk</label>
+                        <label class="control-label col-md-3 col-sm-3 ">Status</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <select id="choose" class="form-control" onchange="yesnoCheck(this);">
-                                <option>--</option>
-                                <option value="0">tanpa induk kategori</option>
-                                <option>Option two</option>
-                                <option>Option three</option>
-                                <option>Option four</option>
+                            <select id="choose" class="form-control" name="ass_status" onchange="yesnoCheck(this);" wire:model="ass_status">
+                                @if($asset->ass_status == 1)
+                                <option value="1">bisa dipinjam</option>
+                                <option value="0">tidak bisa di pinjam</option>
+                                @else
+                                <option value="0">tidak bisa di pinjam</option>
+                                <option value="1">bisa dipinjam</option>
+                                @endif
+
                             </select>
+                            @error('ass_status') <span class="error text-">{{ $message }}</span> @enderror
+
                         </div>
                     </div>
-                    <div id="originalCode" style="display: none" class="form-group row ">
-                        <label class="control-label col-md-3 col-sm-3 ">Kode original</label>
+                    <div   class="form-group row ">
+                        <label class="control-label col-md-3 col-sm-3 ">Kondisi</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <input type="text" class="form-control" placeholder="Kode Original">
+                            <select id="choose" class="form-control" name="ass_condition" onchange="yesnoCheck(this);" wire:model="ass_condition">
+                                @if($asset->ass_condition == 1)
+                                
+                                <option value="1">baik</option>
+
+                                <option value="0">rusak</option>
+                                @else
+                                <option value="0">rusak</option>
+                                <option value="1">baik</option>
+                                @endif
+
+
+
+                            </select>
+                            @error('ass_condition') <span class="error text-">{{ $message }}</span> @enderror
+
                         </div>
                     </div>
+                    
+                    
+
+
+
                   
 
 
                     <div id="line" class="ln_solid " style="margin-top: 0pt"></div>
                     <div class="form-group">
                         <div class="col-md-9 col-sm-9  offset-md-3">
-                            <button type="button" class="btn btn-primary">Cancel</button>
+                            <a href="/admin/asset" class="btn btn-primary">cancel</a>
                             <button type="reset" class="btn btn-primary">Reset</button>
                             <button type="submit" class="btn btn-success">Submit</button>
                         </div>
@@ -104,6 +136,29 @@
     }
    
 }
+</script>
+
+<script>
+    var inputBox = document.getElementById("amount");
+    var inputBox2 = document.getElementById("ass_price");
+
+
+    var invalidChars = [
+    "-",
+    "+",
+    "e",
+    ];
+
+    inputBox.addEventListener("keydown", function(e) {
+    if (invalidChars.includes(e.key)) {
+        e.preventDefault();
+    }
+    });
+    inputBox2.addEventListener("keydown", function(e) {
+    if (invalidChars.includes(e.key)) {
+        e.preventDefault();
+    }
+    });
 </script>
 
 @endsection
