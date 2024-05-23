@@ -21,8 +21,17 @@
             </div>
             
             <div class="clearfix"></div>
+
+            @if(Auth::user()->usr_status == 0)
+            <div class="alert alert-danger alert-dismissible " role="alert">
+          
+              Akun anda belum di aktivasi mohon hubungi admin agar bisa meminjam
+             </div>
+             @endif
         <!-- page content -->
         @yield('content')
+
+        
         <!-- /page content -->
           </div>
         </div>

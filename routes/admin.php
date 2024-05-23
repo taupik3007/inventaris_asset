@@ -62,6 +62,8 @@ Route::middleware('auth','role:admin')->group(function () {
     Route::get('/admin/user/{id}/destroy', [ManageUserController::class, 'destroy'])->name('admin.user.destroy');
     Route::get('/admin/user/{id}/resetPassword', [ManageUserController::class, 'resetPassword'])->name('admin.user.resetPassword');
     Route::post('/admin/user/{id}/resetPassword', [ManageUserController::class, 'storeResetPassword'])->name('admin.user.resetPassword');
+    Route::get('/admin/user/{id}/activate', [ManageUserController::class, 'activate'])->name('admin.user.activate');
+
 
 
     
@@ -81,6 +83,19 @@ Route::middleware('auth','role:admin')->group(function () {
     Route::get('/admin/borrow/detail/{id}/return/{status}', [BorrowController::class, 'returnAsset'])->name('admin.borrow.detail.return');
     Route::get('/admin/borrow/return', [BorrowController::class, 'return'])->name('admin.borrow.return');
     Route::get('/admin/borrow/history', [BorrowController::class, 'history'])->name('admin.borrow.history');
+
+
+
+    Route::get('/admin/print/asset/all', [PrintController::class, 'assetAll'])->name('admin.print.asset.all');
+    Route::get('/admin/print/asset/good', [PrintController::class, 'assetGood'])->name('admin.print.asset.good');
+    Route::get('/admin/print/asset/broken', [PrintController::class, 'assetbroken'])->name('admin.print.asset.broken');
+    Route::get('/admin/print/asset/lost', [PrintController::class, 'assetLost'])->name('admin.print.asset.lost');
+    Route::get('/admin/print/history', [PrintController::class, 'history'])->name('admin.print.asset.hisory');
+
+
+
+
+
 
     
     

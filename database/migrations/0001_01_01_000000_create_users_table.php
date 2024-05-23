@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('usr_gender');
             $table->bigInteger('usr_regis_number')->unique()->nullable();
             $table->string('usr_class')->nullable();
+            $table->boolean('usr_status')->default(0);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

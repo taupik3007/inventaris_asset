@@ -9,6 +9,17 @@
     <link href="{{asset('vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('vendors/iCheck/skins/flat/green.css')}}" rel="stylesheet">
+	<!-- bootstrap-wysiwyg -->
+	<link href="{{asset('vendors/google-code-prettify/bin/prettify.min.css')}}" rel="stylesheet">
+	<!-- Select2 -->
+	<link href="{{asset('vendors/select2/dist/css/select2.min.css')}}" rel="stylesheet">
+	<!-- Switchery -->
+	<link href="{{asset('vendors/switchery/dist/switchery.min.css')}}" rel="stylesheet">
+	<!-- starrr -->
+	<link href="{{asset('vendors/starrr/dist/starrr.css')}}" rel="stylesheet">
+	<!-- bootstrap-daterangepicker -->
+	<link href="{{asset('vendors/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
 @endpush
 @section('headTitle')
 User
@@ -71,6 +82,11 @@ Manage User
                             @endif
                           </td>
                           <td>
+                            @if($user->usr_status == 1)
+                            <a href="/admin/user/{{$user->usr_id}}/activate" ><input type="checkbox" class="js-switch" checked /></a>
+                            @else
+                            <a href="/admin/user/{{$user->usr_id}}/activate" ><input type="checkbox" class="js-switch"  /></a>
+                            @endif
                             <a href="/{{$user->usr_id}}/profile" class="btn btn-primary">Detail</a>
                             <a href="/admin/user/{{$user->usr_id}}/edit" class="btn btn-primary">Edit</a>
 
@@ -115,4 +131,30 @@ Manage User
     <script src="{{asset('vendors/jszip/dist/jszip.min.js')}}"></script>
     <script src="{{asset('vendors/pdfmake/build/pdfmake.min.js')}}"></script>
     <script src="{{asset('vendors/pdfmake/build/vfs_fonts.js')}}"></script>
+
+
+    <script src="{{asset('vendors/bootstrap-progressbar/bootstrap-progressbar.min.js')}}"></script>
+	<!-- iCheck -->
+	<script src="{{asset('vendors/iCheck/icheck.min.js')}}"></script>
+	<!-- bootstrap-daterangepicker -->
+	<script src="{{asset('vendors/moment/min/moment.min.js')}}"></script>
+	<script src="{{asset('vendors/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+	<!-- bootstrap-wysiwyg -->
+	<script src="{{asset('vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js')}}"></script>
+	<script src="{{asset('vendors/jquery.hotkeys/jquery.hotkeys.js')}}"></script>
+	<script src="{{asset('vendors/google-code-prettify/src/prettify.js')}}"></script>
+	<!-- jQuery Tags Input -->
+	<script src="{{asset('vendors/jquery.tagsinput/src/jquery.tagsinput.js')}}"></script>
+	<!-- Switchery -->
+	<script src="{{asset('vendors/switchery/dist/switchery.min.js')}}"></script>
+	<!-- Select2 -->
+	<script src="{{asset('vendors/select2/dist/js/select2.full.min.js')}}"></script>
+	<!-- Parsley -->
+	<script src="../vendors/parsleyjs/dist/parsley.min.js"></script>
+	<!-- Autosize -->
+	<script src="../vendors/autosize/dist/autosize.min.js"></script>
+	<!-- jQuery autocomplete -->
+	<script src="../vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+	<!-- starrr -->
+	<script src="../vendors/starrr/dist/starrr.js"></script>
 @endpush

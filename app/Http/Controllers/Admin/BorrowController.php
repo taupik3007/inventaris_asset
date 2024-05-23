@@ -33,7 +33,7 @@ class BorrowController extends Controller
      */
     public function create()
     {
-        $user = User::withoutRole('admin')->get();
+        $user = User::withoutRole('admin')->where('usr_status',1)->get();
         $asset = Asset::where('ass_status',1)->select('ass_name','ass_id')->get();
 
         // dd($user);

@@ -29,10 +29,10 @@
     </style>
 @endpush
 @section('headTitle')
-    Asset
+    Edit Asset
 @endsection
 @section('title')
-    Tambah Asset
+    Edit Asset
 @endsection
 @section('content')
 <div class="row">

@@ -187,4 +187,22 @@ class ManageUserController extends Controller
 
         return redirect('/admin/user')->with('succes','Berhasil mereset password ');
     }
+
+
+    public function activate($id){
+        $user = User::findOrFail($id);
+
+        if($user->usr_status == 0){
+            $user->update([
+                'usr_status' => 1
+            ]);
+        }else{
+            $user->update([
+                'usr_status' => 0
+            ]);
+        }
+        return redirect('/admin/user')->with('succes','Berhasil mengubah status aktivasi user ');
+
+
+    }
 }
