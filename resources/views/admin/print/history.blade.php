@@ -28,50 +28,50 @@
                 <div class="x_content">
                     <div class="row">
                         <div class="col-sm-12">
-                          
+
                             <div class="card-box table-responsive">
-                                
+
                                 <table id="datatable-buttons" class="table table-striped table-bordered" style="width:100%">
                                     <thead>
-                                      <tr>
-                                        <th>Nomor</th>
-                            <th>Nama Peminjam</th>
-                            <th>NIS</th>
-                            <th>Kelas</th>
-                            <th>Nama Asset</th>
-                            <th>Petugas Pengembalian</th>
-                            <th>Kondisi barang</th>
-                            <th>Tanggal pinjam</th>
-                            <th>Tanggal pengembalian</th>
-                                      </tr>
+                                        <tr>
+                                            <th>Nomor</th>
+                                            <th>Nama Peminjam</th>
+                                            <th>NIS</th>
+                                            <th>Kelas</th>
+                                            <th>Nama Asset</th>
+                                            <th>Petugas Pengembalian</th>
+                                            <th>Kondisi barang</th>
+                                            <th>Tanggal pinjam</th>
+                                            <th>Tanggal pengembalian</th>
+                                        </tr>
                                     </thead>
-              
-              
+
+
                                     <tbody>
-                                        @foreach ($history as $no=>$history)
-                        <tr>
-                          <td>{{$no+1}}</td>
-                          <td>{{$history->user_name}}</td>
-                          <td>{{$history->nis}}</td>
-                          <td>{{$history->usr_class}}</td>
-                          <td>{{$history->asset_name}}</td>
-                          <td>{{$history->oprator_name}}</td>
-                          @if($history->bas_status == 1)
-                          <td>Baik</td>
-                          @elseif($history->bas_status == 2)
-                          <td>Rusak</td>
-                          @else
-                          <td>Hilang</td>
-                          @endif
-                          <td>{{$history->start_date}}</td>
-                          <td>{{$history->end_date}}</td>
+                                        @foreach ($history as $no => $history)
+                                            <tr>
+                                                <td>{{ $no + 1 }}</td>
+                                                <td>{{ $history->user_name }}</td>
+                                                <td>{{ $history->nis }}</td>
+                                                <td>{{ $history->usr_class }}</td>
+                                                <td>{{ $history->asset_name }}</td>
+                                                <td>{{ $history->oprator_name }}</td>
+                                                @if ($history->bas_status == 1)
+                                                    <td>Baik</td>
+                                                @elseif($history->bas_status == 2)
+                                                    <td>Rusak</td>
+                                                @else
+                                                    <td>Hilang</td>
+                                                @endif
+                                                <td>{{ $history->start_date }}</td>
+                                                <td>{{ $history->end_date }}</td>
 
-                         
 
-                        </tr>
-                        @endforeach
+
+                                            </tr>
+                                        @endforeach
                                     </tbody>
-                                  </table>
+                                </table>
                             </div>
                         </div>
                     </div>
