@@ -28,78 +28,51 @@
                 <div class="x_content">
                     <div class="row">
                         <div class="col-sm-12">
-                            @if (session()->has('succes'))
-                                <div class="alert alert-success alert-dismissible " role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                            aria-hidden="true">×</span>
-                                    </button>
-                                    {{ session()->get('succes') }}
-                                </div>
-                            @endif
-                            @if (session()->has('error'))
-                                <div class="alert alert-danger alert-dismissible " role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                            aria-hidden="true">×</span>
-                                    </button>
-                                    {{ session()->get('error') }}
-                                </div>
-                            @endif
+                          
                             <div class="card-box table-responsive">
-                                <a href="/admin/asset/create" class="btn btn-info mb-5">Tambah Asset</a>
-                                <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                                
+                                <table id="datatable-buttons" class="table table-striped table-bordered" style="width:100%">
                                     <thead>
-                                        <tr>
-                                            <th>nomor</th>
-                                            <th>nama asset</th>
-                                            <th>asal </th>
-                                            <th>tahun </th>
-                                            <th>kode registrasi </th>
-                                            <th>kategori asset </th>
-                                            <th>harga</th>
+                                      <tr>
+                                        <th>nomor</th>
+                                        <th>nama asset</th>
+                                        <th>asal </th>
+                                        <th>tahun </th>
+                                        <th>kode registrasi </th>
+                                        <th>kategori asset </th>
+                                        <th>harga</th>
                                         <th>kondisi</th>
-
-                                            <th>aksi</th>
-
-                                        </tr>
+                                      </tr>
                                     </thead>
-
-
+              
+              
                                     <tbody>
                                         @foreach ($asset as $no => $asset)
-                                            <tr>
-                                                <td>{{ $no + 1 }}</td>
-                                                <td>{{ $asset->ass_name }}</td>
-                                                <td> {{ $asset->ori_name }} </td>
-                                                <td>{{ $asset->ass_year }}</td>
-                                                <td>{{ $asset->ass_registration_code }}</td>
-                                                <td>{{ $asset->ctg_name }}</td>
-                                                @if ($asset->ass_price == null)
-                                                    <td>-</td>
-                                                @else
-                                                    <td>{{ $asset->ass_price }}</td>
-                                                @endif
+                                        <tr>
+                                            <td>{{ $no + 1 }}</td>
+                                            <td>{{ $asset->ass_name }}</td>
+                                            <td> {{ $asset->origin->ori_name }} </td>
+                                            <td>{{ $asset->ass_year }}</td>
+                                            <td>{{ $asset->ass_registration_code }}</td>
+                                            <td>{{ $asset->category->ctg_name }}</td>
+                                            @if ($asset->ass_price == null)
+                                                <td>-</td>
+                                            @else
+                                                <td>{{ $asset->ass_price }}</td>
+                                            @endif
 
-                                                @if($asset->ass_condition == 1)
+                                            @if($asset->ass_condition == 1)
                                             <td>Baik</td>
                                             @elseif($asset->ass_condition == 2)
                                             <td>Rusak</td>
                                             @else
                                             <td>Hilang</td>
                                             @endif
-                                                <td>
-                                                    <a href="/admin/asset/{{ $asset->ass_id }}/detail"
-                                                        class="btn btn-info">Detail</a>
-                                                    <a href="/admin/asset/{{ $asset->ass_id }}/edit"
-                                                        class="btn btn-primary">edit</a>
-
-
-                                                    <a href="/admin/asset/{{ $asset->ass_id }}/destroy"
-                                                        class="btn btn-danger">Hapus</a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                           
+                                        </tr>
+                                    @endforeach
                                     </tbody>
-                                </table>
+                                  </table>
                             </div>
                         </div>
                     </div>

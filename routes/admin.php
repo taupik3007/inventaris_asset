@@ -8,9 +8,11 @@ use App\Http\Controllers\Admin\AssetController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\BorrowController;
 use App\Http\Controllers\Admin\ManageUserController;
+use App\Http\Controllers\admin\PrintController;
 
 use App\Http\Controllers\User\userHomeController;
 use App\Http\Controllers\User\userBorrowController;
+
 
 Route::middleware('auth','role:admin')->group(function () {
     
@@ -88,7 +90,7 @@ Route::middleware('auth','role:admin')->group(function () {
 
     Route::get('/admin/print/asset/all', [PrintController::class, 'assetAll'])->name('admin.print.asset.all');
     Route::get('/admin/print/asset/good', [PrintController::class, 'assetGood'])->name('admin.print.asset.good');
-    Route::get('/admin/print/asset/broken', [PrintController::class, 'assetbroken'])->name('admin.print.asset.broken');
+    Route::get('/admin/print/asset/broken', [PrintController::class, 'assetBroken'])->name('admin.print.asset.broken');
     Route::get('/admin/print/asset/lost', [PrintController::class, 'assetLost'])->name('admin.print.asset.lost');
     Route::get('/admin/print/history', [PrintController::class, 'history'])->name('admin.print.asset.hisory');
 

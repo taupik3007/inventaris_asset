@@ -69,14 +69,14 @@
             </li>
             <li><a><i class="fa fa-print"></i> Laporan<span class="fa fa-chevron-down"></span></a>
               <ul class="nav child_menu">
-                <li><a href="/admin/borrow/return">Asset</a></li>
-                <li><a href="/admin/borrow/return">Asset Kondisi Baik</a></li>
-                <li><a href="/admin/borrow/return">Asset Kondisi Rusak</a></li>
-                <li><a href="/admin/borrow/return">Asset Kondisi Hilang</a></li>
+                <li><a href="/admin/print/asset/all">Asset</a></li>
+                <li><a href="/admin/print/asset/good">Asset Kondisi Baik</a></li>
+                <li><a href="/admin/print/asset/broken">Asset Kondisi Rusak</a></li>
+                <li><a href="/admin/print/asset/lost">Asset Kondisi Hilang</a></li>
 
 
 
-                <li><a href="/admin/borrow/history">History pengembalian</a></li>
+                <li><a href="/admin/print/history">History pengembalian</a></li>
                 
               </ul>
             </li>

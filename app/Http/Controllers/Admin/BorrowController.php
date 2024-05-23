@@ -143,7 +143,7 @@ class BorrowController extends Controller
         ]);
         $asset = Asset::where('ass_id',$borrowAsset->bas_asset_id)->update([
             'ass_status' => 1,
-            'ass_status' => $status
+            'ass_condition' => $status
         ]);
         $borrowAsset->delete();
         return redirect('/admin/borrow/'.$borrowAsset->bas_borrow_id.'/detail');
