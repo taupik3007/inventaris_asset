@@ -18,7 +18,7 @@ class AssetCategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::all();
+        $category = Category::with('parent')->get();
         // dd($category);
         return view('admin.category.index',compact(['category']));
        

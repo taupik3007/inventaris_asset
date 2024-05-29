@@ -49,6 +49,7 @@ Kategori Asset
                           <tr>
                             <th>no</th>
                             <th>Name Kategori</th>
+                            <th>Induk Kategori</th>
                             <th>kode</th>
                             <th>kode original</th>
                             
@@ -62,6 +63,12 @@ Kategori Asset
                           <tr>
                             <td>{{$no+1}}</td>
                             <td>{{$category->ctg_name}}</td>
+                            @if($category->parent != null)
+                            <td>{{$category->parent->ctg_name}}</td>
+                            @else
+                            <td></td>
+
+                            @endif
                             <td>{{$category->ctg_code}}</td>
                             <td>{{$category->ctg_original_code}}</td>
                            
