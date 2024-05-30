@@ -19,7 +19,11 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             CategorySeeder::class,
-            OriginSeeder::class
+            OriginSeeder::class,
+            AssetSeeder::class,
+            AssetDescriptionSeeder::class
+
+
 
         ]);
         // User::factory()->create([

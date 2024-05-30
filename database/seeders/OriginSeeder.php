@@ -15,10 +15,13 @@ class OriginSeeder extends Seeder
     {
         Origin::create([
             'ori_code'  => 'INV.YYS',
-            'ori_name'  => 'yayasan'
+            'ori_name'  => 'Yayasan'
         ],[
-            'ori_code'  => 'INV.SKL',
-            'ori_name'  => 'sekolah'
+            'ori_code'  => 'INV.SMK',
+            'ori_name'  => 'Sekolah'
+        ],[
+            'ori_code'  => 'INV.HBH',
+            'ori_name'  => 'Hibah'
         ]);
     }
 }
