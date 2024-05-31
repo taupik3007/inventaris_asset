@@ -68,7 +68,7 @@
                             <div class=" col-sm-6 emphasis" style="width: 100%">
                                 <p class="ratings">
                                     <a>{{$borrow}}</a>
-                                    <a href="/admin/borrow"><span class="">Asset</span></a>
+                                    <a href="/admin/borrow"><span class="">Peminjaman</span></a>
                                     
                                 </p>
                             </div>
