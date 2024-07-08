@@ -47,6 +47,9 @@ class User extends Authenticatable
         ];
     }
 
+    const CREATED_AT = 'usr_created_at';
+    const UPDATED_AT = 'usr_updated_at';
+
     public function borrows():hasMany
     {
         return $this->HasMany(Borrow::class,'brw_user_id');

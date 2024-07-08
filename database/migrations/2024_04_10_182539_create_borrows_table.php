@@ -17,6 +17,8 @@ return new class extends Migration
             $table->boolean('brw_status');
             $table->timestamps();
             $table->softDeletes();
+            $table->renameColumn('updated_at', 'brw_updated_at');
+            $table->renameColumn('created_at', 'brw_created_at');
             $table->unsignedBigInteger('brw_created_by')->unsigned()->nullable();
             $table->unsignedBigInteger('brw_deleted_by')->unsigned()->nullable();
             $table->unsignedBigInteger('brw_updated_by')->unsigned()->nullable();

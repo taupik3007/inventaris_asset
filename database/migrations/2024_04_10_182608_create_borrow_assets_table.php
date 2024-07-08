@@ -18,6 +18,8 @@ return new class extends Migration
             $table->boolean('bas_status');
             $table->timestamps();
             $table->softDeletes();
+            $table->renameColumn('updated_at', 'bas_updated_at');
+            $table->renameColumn('created_at', 'bas_created_at');
             $table->unsignedBigInteger('bas_created_by')->unsigned()->nullable();
             $table->unsignedBigInteger('bas_deleted_by')->unsigned()->nullable();
             $table->unsignedBigInteger('bas_updated_by')->unsigned()->nullable();

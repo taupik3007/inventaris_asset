@@ -11,4 +11,6 @@ class SysNote extends Model
     protected $table = 'sys_note';
     protected $primaryKey = 'note_id';
     protected $guarded = [];
+    const CREATED_AT = 'sys_created_at';
+    const UPDATED_AT = 'sys_updated_at';
 }

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('asd_value');
             $table->timestamps();
             $table->softDeletes();
+            $table->renameColumn('updated_at', 'asd_updated_at');
+            $table->renameColumn('created_at', 'asd_created_at');
             $table->unsignedBigInteger('asd_created_by')->unsigned()->nullable();
             $table->unsignedBigInteger('asd_deleted_by')->unsigned()->nullable();
             $table->unsignedBigInteger('asd_updated_by')->unsigned()->nullable();

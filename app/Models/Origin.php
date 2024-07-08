@@ -14,6 +14,8 @@ class Origin extends Model
     
     protected $primaryKey = 'ori_id';
     protected $guarded = [];
+    const CREATED_AT = 'ori_created_at';
+    const UPDATED_AT = 'ori_updated_at';
 
     public function assets(): HasMany
     {

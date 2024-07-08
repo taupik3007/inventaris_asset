@@ -16,6 +16,8 @@ class Category extends Model
     protected $primaryKey = 'ctg_id';
     protected $table = 'categories';
     protected $guarded = [];
+    const CREATED_AT = 'ctg_created_at';
+    const UPDATED_AT = 'ctg_updated_at';
 
 
 

@@ -28,6 +28,8 @@ return new class extends Migration
             $table->softDeletes();
             $table->bigInteger('usr_deleted_by')->nullable();
             $table->bigInteger('usr_updated_by')->nullable();
+            $table->renameColumn('updated_at', 'usr_updated_at');
+            $table->renameColumn('created_at', 'usr_created_at');
 
         });
 

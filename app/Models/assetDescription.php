@@ -13,4 +13,6 @@ class assetDescription extends Model
     protected $primaryKey = 'asd_id';
     protected $table = 'asset_descriptions';
     protected $guarded = [];
+    const CREATED_AT = 'asd_created_at';
+    const UPDATED_AT = 'asd_updated_at';
 }

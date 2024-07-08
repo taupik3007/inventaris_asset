@@ -20,6 +20,8 @@ return new class extends Migration
             $table->unsignedBigInteger('ori_created_by')->unsigned()->nullable();
             $table->unsignedBigInteger('ori_deleted_by')->unsigned()->nullable();
             $table->unsignedBigInteger('ori_updated_by')->unsigned()->nullable();
+            $table->renameColumn('updated_at', 'ori_updated_at');
+            $table->renameColumn('created_at', 'ori_created_at');
 
             //foreign key
                     

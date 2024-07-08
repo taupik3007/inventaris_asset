@@ -23,6 +23,8 @@ return new class extends Migration
             $table->integer('ass_status');
             $table->timestamps();
             $table->softDeletes();
+            $table->renameColumn('updated_at', 'ass_updated_at');
+            $table->renameColumn('created_at', 'ass_created_at');
             $table->unsignedBigInteger('ass_created_by')->unsigned()->nullable();
             $table->unsignedBigInteger('ass_deleted_by')->unsigned()->nullable();
             $table->unsignedBigInteger('ass_updated_by')->unsigned()->nullable();

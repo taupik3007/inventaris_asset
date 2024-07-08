@@ -15,6 +15,8 @@ class Asset extends Model
     protected $primaryKey = 'ass_id';
     // protected $table = 'categories';
     protected $guarded = [];
+    const CREATED_AT = 'ass_created_at';
+    const UPDATED_AT = 'ass_updated_at';
 
     public function category(): BelongsTo
     {

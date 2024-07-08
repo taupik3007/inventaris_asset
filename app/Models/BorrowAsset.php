@@ -16,6 +16,8 @@ class BorrowAsset extends Model
     protected $primaryKey = 'bas_id';
     protected $guarded = [];
     protected $table = 'borrow_assets';
+    const CREATED_AT = 'bas_created_at';
+    const UPDATED_AT = 'bas_updated_at';
 
     public function bas_asset(): BelongsTo
     {
