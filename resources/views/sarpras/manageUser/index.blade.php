@@ -1,4 +1,4 @@
-@extends('layout.admin.master')
+@extends('layout.sarpras.master')
 @push('link')
     <!-- iCheck -->
     <link href="{{asset('vendors/iCheck/skins/flat/green.css')}}" rel="stylesheet">

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('usr_profile_picture')->nullable();
             $table->string('usr_gender');
             $table->bigInteger('usr_regis_number')->unique()->nullable();
-            $table->string('usr_class')->nullable();
+            $table->unsignedBigInteger('usr_classes_id')->nullable();
             $table->boolean('usr_status')->default(0);
             $table->rememberToken();
             $table->timestamps();
@@ -30,6 +30,7 @@ return new class extends Migration
             $table->bigInteger('usr_updated_by')->nullable();
             $table->renameColumn('updated_at', 'usr_updated_at');
             $table->renameColumn('created_at', 'usr_created_at');
+            $table->foreign('usr_classes_id')->references('cls_id')->on('classes')->onDelete('cascade');
 
         });
 

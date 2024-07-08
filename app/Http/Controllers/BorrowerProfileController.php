@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 
 
 
-class UserProfileController extends Controller
+class BorrowerProfileController extends Controller
 {
     public function index($id){
 

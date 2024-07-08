@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Sarpras;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -21,7 +21,7 @@ class ManageUserController extends Controller
      */
     public function index()
     {
-        $user = User::role(['userLv1','userLv2'])->get();
+        $user = User::role(['peminjam'])->get();
         return view('admin.manageUser.index',compact('user'));
     }
 
@@ -57,7 +57,7 @@ class ManageUserController extends Controller
                 'usr_regis_number'  =>$request->usr_regis_number,
                 'usr_class'         =>$request->usr_class
             ]);
-            $user->assignRole('userLv1');
+            $user->assignRole('peminjam');
         return redirect('/admin/user')->with('succes','Berhasil Menambah siswa ');
 
 
@@ -79,7 +79,7 @@ class ManageUserController extends Controller
                 'usr_gender'        =>$request->usr_gender,
                
             ]);
-            $user->assignRole('userLv2');
+            $user->assignRole('peminjam');
             // dd($user->usr_id);
             $sysNote = SysNote::create([
                 'note_user_id' => $user->usr_id,

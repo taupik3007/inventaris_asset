@@ -10,7 +10,7 @@ use App\Models\user;
 use App\Models\Asset;
 use Illuminate\Support\Facades\Auth;
 
-class userBorrowController extends Controller
+class borrowerBorrowController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Sarpras;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -13,7 +13,7 @@ use App\Models\Asset;
 class HomeController extends Controller
 {
     public function home(){
-        $user = User::role(['userLv1','userLv2'])->count();
+        $user = User::role(['peminjam'])->count();
         $borrow = Borrow::count();
         $asset = Asset::count();
 

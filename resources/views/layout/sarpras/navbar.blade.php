@@ -36,18 +36,18 @@
             
             <li><a><i class="fa fa-user"></i>Kelola User<span class="fa fa-chevron-down"></span></a>
               <ul class="nav child_menu">
-                <li><a href="/admin/user">Daftar User</a></li>
-                <li><a href="/admin/user/1/create">Tambah Siswa</a></li>
-                <li><a href="/admin/user/2/create">Tambah Guru</a></li>
+                <li><a href="/sarpras/user">Daftar User</a></li>
+                <li><a href="/sarpras/classes">Daftar Kelas</a></li>
+                <li><a href="/sarpras/major">Daftar Jurusan</a></li>
                 
               </ul>
             </li>
 
             <li><a><i class="fa fa-archive"></i>asset<span class="fa fa-chevron-down"></span></a>
               <ul class="nav child_menu">
-                <li><a href="/admin/assetCategory">kelola kategori asset</a></li>
-                <li><a href="/admin/origin">kelola asal asset</a></li>
-                <li><a href="/admin/asset">kelola asset</a></li>
+                <li><a href="/sarpras/assetCategory">kelola kategori asset</a></li>
+                <li><a href="/sarpras/origin">kelola asal asset</a></li>
+                <li><a href="/sarpras/asset">kelola asset</a></li>
                 
               </ul>
             </li>
@@ -55,31 +55,33 @@
 
             <li><a><i class="fa fa-windows"></i> Peminjaman<span class="fa fa-chevron-down"></span></a>
               <ul class="nav child_menu">
-                <li><a href="/admin/borrow">Daftar Peminjaman</a></li>
-                <li><a href="/admin/borrow/create">Pinjam Barang</a></li>
+                <li><a href="/sarpras/borrow">Daftar Peminjaman</a></li>
+                <li><a href="/sarpras/borrow/create">Pinjam Barang</a></li>
                 
               </ul>
             </li>
             <li><a><i class="fa fa-history"></i> Pengembalian<span class="fa fa-chevron-down"></span></a>
               <ul class="nav child_menu">
-                <li><a href="/admin/borrow/return">Daftar Pengembalian</a></li>
-                <li><a href="/admin/borrow/history">History Pengembalian</a></li>
+                <li><a href="/sarpras/borrow/return">Daftar Pengembalian</a></li>
+                <li><a href="/sarpras/borrow/history">History Pengembalian</a></li>
                 
               </ul>
             </li>
             <li><a><i class="fa fa-print"></i> Laporan<span class="fa fa-chevron-down"></span></a>
               <ul class="nav child_menu">
-                <li><a href="/admin/print/asset/all">Asset</a></li>
-                <li><a href="/admin/print/asset/good">Asset Kondisi Baik</a></li>
-                <li><a href="/admin/print/asset/broken">Asset Kondisi Rusak</a></li>
-                <li><a href="/admin/print/asset/lost">Asset Kondisi Hilang</a></li>
+                <li><a href="/sarpras/print/asset/all">Asset</a></li>
+                <li><a href="/sarpras/print/asset/good">Asset Kondisi Baik</a></li>
+                <li><a href="/sarpras/print/asset/broken">Asset Kondisi Rusak</a></li>
+                <li><a href="/sarpras/print/asset/lost">Asset Kondisi Hilang</a></li>
 
 
 
-                <li><a href="/admin/print/history">History pengembalian</a></li>
+                <li><a href="/sarpras/print/history">History pengembalian</a></li>
                 
               </ul>
             </li>
+
+            
           </ul>
         </div>
         

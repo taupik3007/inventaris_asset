@@ -21,6 +21,6 @@ class UserSeeder extends Seeder
             'usr_gender'=> "laki - laki", 
             'usr_status' => 1 
         ]);
-        $admin->assignRole('admin');
+        $admin->assignRole('sarpras');
     }
 }

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 
-class userHomeController extends Controller
+class borrowerHomeController extends Controller
 {
     public function index()
     {

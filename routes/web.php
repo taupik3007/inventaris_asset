@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\BorrowerProfileController;
 use App\Http\Controllers\Sarpras\AssetCategoryController;
 use App\Http\Controllers\Sarpras\OriginController;
 use App\Http\Controllers\Sarpras\AssetController;
@@ -34,10 +34,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('{id}/profile', [UserProfileController::class, 'index'])->name('admin.profile.index');
-Route::post('{id}/profile/update', [UserProfileController::class, 'update'])->name('admin.profile.index');
-Route::post('{id}/profile/changePassword', [UserProfileController::class, 'changePassword'])->name('admin.profile.changePassword');
-Route::post('{id}/profile/changeImage', [UserProfileController::class, 'changeImage'])->name('admin.profile.changeImage');
+    Route::get('{id}/profile', [BorrowerProfileController::class, 'index'])->name('admin.profile.index');
+Route::post('{id}/profile/update', [BorrowerProfileController::class, 'update'])->name('admin.profile.index');
+Route::post('{id}/profile/changePassword', [BorrowerProfileController::class, 'changePassword'])->name('admin.profile.changePassword');
+Route::post('{id}/profile/changeImage', [BorrowerProfileController::class, 'changeImage'])->name('admin.profile.changeImage');
 });
 
 require __DIR__.'/auth.php';

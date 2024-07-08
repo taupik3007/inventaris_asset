@@ -9,12 +9,14 @@ use App\Http\Controllers\Sarpras\HomeController;
 use App\Http\Controllers\Sarpras\BorrowController;
 use App\Http\Controllers\Sarpras\ManageUserController;
 use App\Http\Controllers\Sarpras\PrintController;
+use App\Http\Controllers\Sarpras\MajorController;
+
 
 use App\Http\Controllers\Peminjam\userHomeController;
 use App\Http\Controllers\Peminjam\userBorrowController;
 
 
-Route::middleware('auth','role:admin')->group(function () {
+Route::middleware('auth','role:sarpras')->group(function () {
     
     //asset kategori
     Route::get('/sarpras/assetCategory', [AssetCategoryController::class, 'index'])->name('admin.category.index');
@@ -50,21 +52,21 @@ Route::middleware('auth','role:admin')->group(function () {
     
     //end origin
     //home
-    Route::get('/admin/home', [HomeController::class, 'home'])->name('admin.home');
+    Route::get('/sarpras/home', [HomeController::class, 'home'])->name('sarpras.home');
     
     //endhome
     
     //user
-    Route::get('/admin/user', [ManageUserController::class, 'index'])->name('admin.user.index');
-    Route::get('/admin/user/{role}/create', [ManageUserController::class, 'create'])->name('admin.user.create');
-    Route::post('/admin/user/{role}/create', [ManageUserController::class, 'store'])->name('admin.user.store');
-    Route::get('/admin/user/{id}/detail', [ManageUserController::class, 'show'])->name('admin.user.show');
-    Route::get('/admin/user/{id}/edit', [ManageUserController::class, 'edit'])->name('admin.user.edit');
-    Route::post('/admin/user/{id}/edit', [ManageUserController::class, 'update'])->name('admin.user.update');
-    Route::get('/admin/user/{id}/destroy', [ManageUserController::class, 'destroy'])->name('admin.user.destroy');
-    Route::get('/admin/user/{id}/resetPassword', [ManageUserController::class, 'resetPassword'])->name('admin.user.resetPassword');
-    Route::post('/admin/user/{id}/resetPassword', [ManageUserController::class, 'storeResetPassword'])->name('admin.user.resetPassword');
-    Route::get('/admin/user/{id}/activate', [ManageUserController::class, 'activate'])->name('admin.user.activate');
+    Route::get('/sarpras/user', [ManageUserController::class, 'index'])->name('admin.user.index');
+    Route::get('/sarpras/user/{role}/create', [ManageUserController::class, 'create'])->name('admin.user.create');
+    Route::post('/sarpras/user/{role}/create', [ManageUserController::class, 'store'])->name('admin.user.store');
+    Route::get('/sarpras/user/{id}/detail', [ManageUserController::class, 'show'])->name('admin.user.show');
+    Route::get('/sarpras/user/{id}/edit', [ManageUserController::class, 'edit'])->name('admin.user.edit');
+    Route::post('/sarpras/user/{id}/edit', [ManageUserController::class, 'update'])->name('admin.user.update');
+    Route::get('/sarpras/user/{id}/destroy', [ManageUserController::class, 'destroy'])->name('admin.user.destroy');
+    Route::get('/sarpras/user/{id}/resetPassword', [ManageUserController::class, 'resetPassword'])->name('admin.user.resetPassword');
+    Route::post('/sarpras/user/{id}/resetPassword', [ManageUserController::class, 'storeResetPassword'])->name('admin.user.resetPassword');
+    Route::get('/sarpras/user/{id}/activate', [ManageUserController::class, 'activate'])->name('admin.user.activate');
 
 
 
@@ -93,6 +95,13 @@ Route::middleware('auth','role:admin')->group(function () {
     Route::get('/admin/print/asset/broken', [PrintController::class, 'assetBroken'])->name('admin.print.asset.broken');
     Route::get('/admin/print/asset/lost', [PrintController::class, 'assetLost'])->name('admin.print.asset.lost');
     Route::get('/admin/print/history', [PrintController::class, 'history'])->name('admin.print.asset.hisory');
+
+    Route::get('/sarpras/major', [MajorController::class, 'index'])->name('sarpras.major.index');
+    Route::get('/sarpras/major/create', [MajorController::class, 'create'])->name('sarpras.major.create');
+    Route::post('/sarpras/major/create', [MajorController::class, 'store'])->name('sarpras.major.store');
+    Route::get('/sarpras/major/{id}/destroy', [MajorController::class, 'destroy'])->name('sarpras.major.destroy');
+
+
 
 
 

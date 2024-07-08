@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
- @include('layout.admin.head')
+ @include('layout.sarpras.head')
 
   <body class="nav-md ">
     <div class="container body">
       <div class="main_container">
-        @include('layout.admin.navbar')
+        @include('layout.sarpras.navbar')
 
         <!-- top navigation -->
-        @include('layout.admin.top_nav')
+        @include('layout.sarpras.top_nav')
         <!-- /top navigation -->
         <div class="right_col" role="main">
           <div class="">
@@ -27,12 +27,12 @@
           </div>
         </div>
         <!-- footer content -->
-         @include('layout.admin.footer')
+         @include('layout.sarpras.footer')
         
         <!-- /footer content -->
       </div>
     </div>
     
-	@include('layout.admin.script')
+	@include('layout.sarpras.script')
   </body>
 </html>
