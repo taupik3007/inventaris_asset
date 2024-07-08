@@ -2,14 +2,14 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserProfileController;
-use App\Http\Controllers\Admin\AssetCategoryController;
-use App\Http\Controllers\Admin\OriginController;
-use App\Http\Controllers\Admin\AssetController;
-use App\Http\Controllers\Admin\HomeController;
-use App\Http\Controllers\Admin\BorrowController;
+use App\Http\Controllers\Sarpras\AssetCategoryController;
+use App\Http\Controllers\Sarpras\OriginController;
+use App\Http\Controllers\Sarpras\AssetController;
+use App\Http\Controllers\Sarpras\HomeController;
+use App\Http\Controllers\Sarpras\BorrowController;
 
-use App\Http\Controllers\User\userHomeController;
-use App\Http\Controllers\User\userBorrowController;
+use App\Http\Controllers\Borrower\userHomeController;
+use App\Http\Controllers\Borrower\userBorrowController;
 
 
 
@@ -41,7 +41,7 @@ Route::post('{id}/profile/changeImage', [UserProfileController::class, 'changeIm
 });
 
 require __DIR__.'/auth.php';
-require __DIR__.'/admin.php';
+require __DIR__.'/sarpras.php';
 
 
 

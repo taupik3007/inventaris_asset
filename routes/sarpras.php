@@ -1,38 +1,38 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Admin\AdminProfileController;
-use App\Http\Controllers\Admin\AssetCategoryController;
-use App\Http\Controllers\Admin\OriginController;
-use App\Http\Controllers\Admin\AssetController;
-use App\Http\Controllers\Admin\HomeController;
-use App\Http\Controllers\Admin\BorrowController;
-use App\Http\Controllers\Admin\ManageUserController;
-use App\Http\Controllers\admin\PrintController;
+use App\Http\Controllers\Sarpras\AdminProfileController;
+use App\Http\Controllers\Sarpras\AssetCategoryController;
+use App\Http\Controllers\Sarpras\OriginController;
+use App\Http\Controllers\Sarpras\AssetController;
+use App\Http\Controllers\Sarpras\HomeController;
+use App\Http\Controllers\Sarpras\BorrowController;
+use App\Http\Controllers\Sarpras\ManageUserController;
+use App\Http\Controllers\Sarpras\PrintController;
 
-use App\Http\Controllers\User\userHomeController;
-use App\Http\Controllers\User\userBorrowController;
+use App\Http\Controllers\Peminjam\userHomeController;
+use App\Http\Controllers\Peminjam\userBorrowController;
 
 
 Route::middleware('auth','role:admin')->group(function () {
     
     //asset kategori
-    Route::get('/admin/assetCategory', [AssetCategoryController::class, 'index'])->name('admin.category.index');
-    Route::get('/admin/assetCategory/create', [AssetCategoryController::class, 'create'])->name('admin.category.create');
-    Route::post('/admin/assetCategory/create', [AssetCategoryController::class, 'store'])->name('admin.category.post');
-    Route::get('/admin/assetCategory/{id}/edit', [AssetCategoryController::class, 'edit'])->name('admin.category.edit');
-    Route::post('/admin/assetCategory/{id}/edit', [AssetCategoryController::class, 'update'])->name('admin.category.update');
-    Route::get('/admin/assetCategory/{id}/destroy', [AssetCategoryController::class, 'destroy'])->name('admin.category.destroy');
+    Route::get('/sarpras/assetCategory', [AssetCategoryController::class, 'index'])->name('admin.category.index');
+    Route::get('/sarpras/assetCategory/create', [AssetCategoryController::class, 'create'])->name('admin.category.create');
+    Route::post('/sarpras/assetCategory/create', [AssetCategoryController::class, 'store'])->name('admin.category.post');
+    Route::get('/sarpras/assetCategory/{id}/edit', [AssetCategoryController::class, 'edit'])->name('admin.category.edit');
+    Route::post('/sarpras/assetCategory/{id}/edit', [AssetCategoryController::class, 'update'])->name('admin.category.update');
+    Route::get('/sarpras/assetCategory/{id}/destroy', [AssetCategoryController::class, 'destroy'])->name('admin.category.destroy');
     //end asset kategori
     
     
     //origin 
-    Route::get('/admin/origin', [OriginController::class, 'index'])->name('admin.origin.index');
-    Route::get('/admin/origin/create', [OriginController::class, 'create'])->name('admin.origin.create');
-    Route::post('/admin/origin/create', [OriginController::class, 'store'])->name('admin.origin.store');
-    Route::get('/admin/origin/{id}/edit', [OriginController::class, 'edit'])->name('admin.origin.edit');
-    Route::post('/admin/origin/{id}/edit', [OriginController::class, 'update'])->name('admin.origin.update');
-    Route::get('/admin/origin/{id}/destroy', [OriginController::class, 'destroy'])->name('admin.origin.destroy');
+    Route::get('/sarpras/origin', [OriginController::class, 'index'])->name('admin.origin.index');
+    Route::get('/sarpras/origin/create', [OriginController::class, 'create'])->name('admin.origin.create');
+    Route::post('/sarpras/origin/create', [OriginController::class, 'store'])->name('admin.origin.store');
+    Route::get('/sarpras/origin/{id}/edit', [OriginController::class, 'edit'])->name('admin.origin.edit');
+    Route::post('/sarpras/origin/{id}/edit', [OriginController::class, 'update'])->name('admin.origin.update');
+    Route::get('/sarpras/origin/{id}/destroy', [OriginController::class, 'destroy'])->name('admin.origin.destroy');
     
     
     
