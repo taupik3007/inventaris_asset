@@ -99,7 +99,17 @@ Route::middleware('auth','role:sarpras')->group(function () {
     Route::get('/sarpras/major', [MajorController::class, 'index'])->name('sarpras.major.index');
     Route::get('/sarpras/major/create', [MajorController::class, 'create'])->name('sarpras.major.create');
     Route::post('/sarpras/major/create', [MajorController::class, 'store'])->name('sarpras.major.store');
+    Route::get('/sarpras/major/{id}/edit', [MajorController::class, 'edit'])->name('sarpras.major.edit');
+    Route::post('/sarpras/major/{id}/edit', [MajorController::class, 'update'])->name('sarpras.major.update');
     Route::delete('/sarpras/major/{id}/destroy', [MajorController::class, 'destroy'])->name('sarpras.major.destroy');
+
+
+    Route::get('/sarpras/classes', [ClassesController::class, 'index'])->name('sarpras.classes.index');
+    Route::get('/sarpras/classes/create', [ClassesController::class, 'create'])->name('sarpras.classes.create');
+    Route::post('/sarpras/classes/create', [ClassesController::class, 'store'])->name('sarpras.classes.store');
+    Route::get('/sarpras/classes/{id}/edit', [ClassesController::class, 'edit'])->name('sarpras.classes.edit');
+    Route::post('/sarpras/classes/{id}/edit', [ClassesController::class, 'update'])->name('sarpras.classes.update');
+    Route::delete('/sarpras/classes/{id}/destroy', [ClassesController::class, 'destroy'])->name('sarpras.classes.destroy');
 
 
 

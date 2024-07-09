@@ -4,6 +4,10 @@ namespace App\Http\Controllers\sarpras;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\major;
+use App\Models\classes;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ClassesController extends Controller
 {
@@ -12,7 +16,11 @@ class ClassesController extends Controller
      */
     public function index()
     {
-        
+        $classes = classes::all();
+        $title = 'hapus Kelas';
+        $text = "Yakin menghapus Kelas?";
+        confirmDelete($title, $text);
+        return view('sarpras.classes.index',compact(['classes'])); 
     }
 
     /**

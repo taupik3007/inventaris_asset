@@ -5,6 +5,7 @@ namespace App\Http\Controllers\sarpras;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\major;
+use App\Models\classes;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -67,7 +68,7 @@ class MajorController extends Controller
      */
     public function show(string $id)
     {
-        //
+       
     }
 
     /**
@@ -75,7 +76,8 @@ class MajorController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $major = major::findOrFail($id);
+        return view('sarpras.major.edit',compact(['major']));
     }
 
     /**
@@ -83,7 +85,29 @@ class MajorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $messages = [
+            'required'  => 'Harap di isi.',
+           
+        ];
+        $validated = $request->validate([
+            
+            'mjr_name' => 'required'
+        ],$messages
+        );
+        $majorCheck = major::where('mjr_name',$request->mjr_name)->where('mjr_id','!=',$id)->first();
+        if($majorCheck){
+        return redirect(route('sarpras.major.edit',['id'=>$id]))->with('error','Jurusan sudah terdaftar');
+
+        }
+
+
+        $majorUpdate = major::findOrFail($id)->update([
+            'mjr_name'=> $request->mjr_name
+        ]);
+        Alert::success('Berhasil Mengupdate', 'berhasil Mengupdate jurusan');
+
+        return redirect(route('sarpras.major.index'));
+        
     }
 
     /**
@@ -91,6 +115,17 @@ class MajorController extends Controller
      */
     public function destroy(string $id)
     {
+
+        $classCheck = classes::where('cls_major_id',$id)->first();
+        if($classCheck){
+        Alert::error('Gagal Menghapus', 'Masih ada kelas pada jurusan');
+        return redirect(route('sarpras.major.index'));
+         
+        }
+
+
+
+
         $majorDestroy = major::findOrFail($id);
         $majorDestroy->mjr_deleted_by = Auth::user()->usr_id;
         $majorDestroy->save();
