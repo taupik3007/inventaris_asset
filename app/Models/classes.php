@@ -14,7 +14,7 @@ class classes extends Model
 
     protected $table = 'classes';
     protected $guarded = [];
-    protected $primarKey = 'cls_id';
+    protected $primaryKey = 'cls_id';
     const CREATED_AT = 'cls_created_at';
     const UPDATED_AT = 'cls_updated_at';
     const DELETED_AT = 'cls_deleted_at';

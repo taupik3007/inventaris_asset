@@ -93,6 +93,9 @@ class ClassesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $classesDestroy = classes::findOrFail($id)->delete();
+        Alert::success('berhasil Menghapus', 'Kelas berhasil Dihapus');
+        return redirect(route('sarpras.classes.index'));
+
     }
 }
