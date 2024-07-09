@@ -19,9 +19,13 @@ return new class extends Migration
             $table->softDeletes();
             $table->renameColumn('updated_at', 'brw_updated_at');
             $table->renameColumn('created_at', 'brw_created_at');
+            $table->renameColumn('deleted_at', 'brw_deleted_at');
+
             $table->unsignedBigInteger('brw_created_by')->unsigned()->nullable();
             $table->unsignedBigInteger('brw_deleted_by')->unsigned()->nullable();
             $table->unsignedBigInteger('brw_updated_by')->unsigned()->nullable();
+            $table->string('brw_sys_note');
+
 
             $table->foreign('brw_user_id')->references('usr_id')->on('users')->onDelete('cascade');
             $table->foreign('brw_created_by')->references('usr_id')->on('users')->onDelete('cascade');

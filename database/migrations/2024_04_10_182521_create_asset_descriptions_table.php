@@ -20,9 +20,13 @@ return new class extends Migration
             $table->softDeletes();
             $table->renameColumn('updated_at', 'asd_updated_at');
             $table->renameColumn('created_at', 'asd_created_at');
+            $table->renameColumn('deleted_at', 'asd_deleted_at');
+
             $table->unsignedBigInteger('asd_created_by')->unsigned()->nullable();
             $table->unsignedBigInteger('asd_deleted_by')->unsigned()->nullable();
             $table->unsignedBigInteger('asd_updated_by')->unsigned()->nullable();
+            $table->string('asd_sys_note');
+
 
             // foreign key
             $table->foreign('asd_asset_id')->references('ass_id')->on('assets')->onDelete('cascade');

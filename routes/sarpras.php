@@ -99,7 +99,7 @@ Route::middleware('auth','role:sarpras')->group(function () {
     Route::get('/sarpras/major', [MajorController::class, 'index'])->name('sarpras.major.index');
     Route::get('/sarpras/major/create', [MajorController::class, 'create'])->name('sarpras.major.create');
     Route::post('/sarpras/major/create', [MajorController::class, 'store'])->name('sarpras.major.store');
-    Route::get('/sarpras/major/{id}/destroy', [MajorController::class, 'destroy'])->name('sarpras.major.destroy');
+    Route::delete('/sarpras/major/{id}/destroy', [MajorController::class, 'destroy'])->name('sarpras.major.destroy');
 
 
 

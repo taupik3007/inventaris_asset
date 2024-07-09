@@ -63,7 +63,7 @@ Jurusan
                               <td>{{$major->mjr_name}} </td>
                               <td>
                                 <a href="/sarpras/major/{{$major->mjr_id}}/edit" class="btn btn-primary">Edit Jurusan</a>
-                                 <a href="/sarpras/major/{{$major->mjr_id}}/destroy" class="btn btn-info">Hapus Jurusan</a>
+                                 <a href="/sarpras/major/{{$major->mjr_id}}/destroy" class="btn btn-info" data-confirm-delete="true">Hapus Jurusan</a>
                               </td>
                           </tr>
                               

@@ -17,6 +17,18 @@ return new class extends Migration
             $table->timestamps();
             $table->renameColumn('updated_at', 'mjr_updated_at');
             $table->renameColumn('created_at', 'mjr_created_at');
+            $table->unsignedBigInteger('mjr_created_by')->unsigned()->nullable();
+            $table->unsignedBigInteger('mjr_deleted_by')->unsigned()->nullable();
+            $table->unsignedBigInteger('mjr_updated_by')->unsigned()->nullable();
+      
+            $table->softDeletes();
+            $table->renameColumn('deleted_at', 'mjr_deleted_at');
+            $table->string('mjr_sys_note');
+
+
+            $table->foreign('mjr_created_by')->references('usr_id')->on('users')->onDelete('cascade');
+            $table->foreign('mjr_updated_by')->references('usr_id')->on('users')->onDelete('cascade');
+            $table->foreign('mjr_deleted_by')->references('usr_id')->on('users')->onDelete('cascade');
         });
     }
 

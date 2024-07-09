@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+  @include('sweetalert::alert')
+
  @include('layout.sarpras.head')
 
   <body class="nav-md ">

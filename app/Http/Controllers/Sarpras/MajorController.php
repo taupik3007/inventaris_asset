@@ -14,6 +14,9 @@ class MajorController extends Controller
     public function index()
     {
         $major = major::all();
+        $title = 'Delete User!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
         return view('sarpras.major.index',compact(['major'])); 
     }
 

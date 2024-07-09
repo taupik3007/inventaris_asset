@@ -25,9 +25,13 @@ return new class extends Migration
             $table->softDeletes();
             $table->renameColumn('updated_at', 'ass_updated_at');
             $table->renameColumn('created_at', 'ass_created_at');
+            $table->renameColumn('deleted_at', 'uss_deleted_at');
+
             $table->unsignedBigInteger('ass_created_by')->unsigned()->nullable();
             $table->unsignedBigInteger('ass_deleted_by')->unsigned()->nullable();
             $table->unsignedBigInteger('ass_updated_by')->unsigned()->nullable();
+            $table->string('ass_sys_note');
+
 
             //foreign key
             $table->foreign('ass_category_id')->references('ctg_id')->on('categories')->onDelete('cascade');
