@@ -5,6 +5,12 @@ namespace App\Http\Controllers\sarpras;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\major;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
+
+
+
+
 
 class MajorController extends Controller
 {
@@ -14,8 +20,8 @@ class MajorController extends Controller
     public function index()
     {
         $major = major::all();
-        $title = 'Delete User!';
-        $text = "Are you sure you want to delete?";
+        $title = 'hapus Jurusan';
+        $text = "Yakin menghapus Jurusan?";
         confirmDelete($title, $text);
         return view('sarpras.major.index',compact(['major'])); 
     }
@@ -36,17 +42,22 @@ class MajorController extends Controller
     {
         $messages = [
             'required'  => 'Harap di isi.',
-            'unique'    => 'Jurusan Sudah Terdaftar',
+           
         ];
         $validated = $request->validate([
             
-            'mjr_name' => 'required|unique:majors'
+            'mjr_name' => 'required'
         ],$messages
         );
+        $majorCheck = major::where('mjr_name',$request->mjr_name)->first();
+        if($majorCheck){
+        return redirect(route('sarpras.major.create'))->with('error','Jurusan sudah terdaftar');
 
+        }
 
         $majorCreate = major::create([
-            'mjr_name'=>$request->mjr_name
+            'mjr_name'=>$request->mjr_name,
+            'mjr_created_by' => Auth::user()->usr_id
         ]);
         return redirect(route('sarpras.major.index'));
     }
@@ -80,8 +91,14 @@ class MajorController extends Controller
      */
     public function destroy(string $id)
     {
-        $majorDestroy = major::findOrFail($id)->delete();
+        $majorDestroy = major::findOrFail($id);
+        $majorDestroy->mjr_deleted_by = Auth::user()->usr_id;
+        $majorDestroy->save();
+        $majorDestroy->delete();
+        Alert::success('Berhasil Menghapus', 'berhasil Menghapus jurusan');
+
         return redirect(route('sarpras.major.index'));
+
 
     }
 }

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  @include('sweetalert::alert')
 
  @include('layout.sarpras.head')
 
@@ -34,6 +33,7 @@
         <!-- /footer content -->
       </div>
     </div>
+  @include('sweetalert::alert')
     
 	@include('layout.sarpras.script')
   </body>
