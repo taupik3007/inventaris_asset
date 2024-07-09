@@ -25,7 +25,7 @@ return new class extends Migration
             $table->unsignedBigInteger('bas_created_by')->unsigned()->nullable();
             $table->unsignedBigInteger('bas_deleted_by')->unsigned()->nullable();
             $table->unsignedBigInteger('bas_updated_by')->unsigned()->nullable();
-            $table->string('bas_sys_note');
+            $table->string('bas_sys_note')->nullable();
 
 
 

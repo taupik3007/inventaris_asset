@@ -30,7 +30,7 @@ return new class extends Migration
             $table->unsignedBigInteger('ass_created_by')->unsigned()->nullable();
             $table->unsignedBigInteger('ass_deleted_by')->unsigned()->nullable();
             $table->unsignedBigInteger('ass_updated_by')->unsigned()->nullable();
-            $table->string('ass_sys_note');
+            $table->string('ass_sys_note')->nullable();
 
 
             //foreign key

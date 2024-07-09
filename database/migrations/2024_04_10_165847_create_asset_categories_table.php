@@ -23,7 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('ctg_created_by')->unsigned()->nullable();
             $table->unsignedBigInteger('ctg_deleted_by')->unsigned()->nullable();
             $table->unsignedBigInteger('ctg_updated_by')->unsigned()->nullable();
-            $table->string('ctg_sys_note');
+            $table->string('ctg_sys_note')->nullable();
 
             $table->renameColumn('updated_at', 'ctg_updated_at');
             $table->renameColumn('created_at', 'ctg_created_at');

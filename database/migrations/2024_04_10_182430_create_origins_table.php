@@ -24,7 +24,7 @@ return new class extends Migration
             $table->renameColumn('created_at', 'ori_created_at');
             $table->renameColumn('deleted_at', 'ori_deleted_at');
 
-            $table->string('ori_sys_note');
+            $table->string('ori_sys_note')->nullable();
 
 
             //foreign key

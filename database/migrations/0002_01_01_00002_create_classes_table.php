@@ -23,7 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('cls_deleted_by')->unsigned()->nullable();
             $table->unsignedBigInteger('cls_updated_by')->unsigned()->nullable();
             $table->softDeletes();
-            $table->string('cls_sys_note');
+            $table->string('cls_sys_note')->nullable();
 
             $table->renameColumn('deleted_at', 'cls_deleted_at');
             $table->foreign('cls_created_by')->references('usr_id')->on('users')->onDelete('cascade');

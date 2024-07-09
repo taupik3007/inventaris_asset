@@ -23,7 +23,7 @@ return new class extends Migration
       
             $table->softDeletes();
             $table->renameColumn('deleted_at', 'mjr_deleted_at');
-            $table->string('mjr_sys_note');
+            $table->string('mjr_sys_note')->nullable();
 
 
             $table->foreign('mjr_created_by')->references('usr_id')->on('users')->onDelete('cascade');

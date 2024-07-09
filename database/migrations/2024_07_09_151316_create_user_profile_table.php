@@ -36,7 +36,7 @@ return new class extends Migration
             $table->renameColumn('updated_at', 'usp_updated_at');
             $table->renameColumn('created_at', 'usp_created_at');
             $table->renameColumn('deleted_at', 'usp_deleted_at');
-            $table->string('usp_sys_note');
+            $table->string('usp_sys_note')->nullable();
 
 
             $table->foreign('usp_classes_id')->references('cls_id')->on('classes')->onDelete('cascade');

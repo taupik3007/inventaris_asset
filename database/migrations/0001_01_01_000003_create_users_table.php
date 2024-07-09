@@ -25,7 +25,7 @@ return new class extends Migration
             $table->bigInteger('usr_deleted_by')->nullable();
             $table->bigInteger('usr_updated_by')->nullable();
             $table->bigInteger('usr_created_by')->nullable();
-            $table->string('usr_sys_note');
+            $table->string('usr_sys_note')->nullable();
 
 
             $table->renameColumn('deleted_at', 'usr_deleted_at');

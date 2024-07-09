@@ -24,7 +24,7 @@ return new class extends Migration
             $table->unsignedBigInteger('brw_created_by')->unsigned()->nullable();
             $table->unsignedBigInteger('brw_deleted_by')->unsigned()->nullable();
             $table->unsignedBigInteger('brw_updated_by')->unsigned()->nullable();
-            $table->string('brw_sys_note');
+            $table->string('brw_sys_note')->nullable();
 
 
             $table->foreign('brw_user_id')->references('usr_id')->on('users')->onDelete('cascade');

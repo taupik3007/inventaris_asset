@@ -25,7 +25,7 @@ return new class extends Migration
             $table->unsignedBigInteger('asd_created_by')->unsigned()->nullable();
             $table->unsignedBigInteger('asd_deleted_by')->unsigned()->nullable();
             $table->unsignedBigInteger('asd_updated_by')->unsigned()->nullable();
-            $table->string('asd_sys_note');
+            $table->string('asd_sys_note')->nullable();
 
 
             // foreign key
