@@ -28,7 +28,8 @@ class ClassesController extends Controller
      */
     public function create()
     {
-        //
+        $major = major::all();
+        return view('sarpras.classes.create',compact(['major']));
     }
 
     /**
@@ -36,7 +37,31 @@ class ClassesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'required'  => 'Harap di isi.',
+           
+        ];
+        $validated = $request->validate([
+            
+            'cls_level' => 'required',
+            'cls_major_id' =>'required',
+            'cls_number' =>'required'
+        ],$messages
+        );
+
+        $classesCheck = classes::where('cls_level',$request->cls_level)->where('cls_major_id',$request->cls_major_id)->where('cls_number',$request->cls_number)->first();
+        if($classesCheck){
+        Alert::error('Gagal Menambah', 'Kelas Sudah Terdaftar');
+        return redirect(route('sarpras.classes.index'));
+        }
+
+        $classesCreate = classes::create([
+            'cls_level' => $request->cls_level,
+            'cls_major_id' => $request->cls_major_id,
+            'cls_number' => $request->cls_number
+        ]);
+        Alert::success('berhasil Menambah', 'Kelas berhasil Ditambah');
+        return redirect(route('sarpras.classes.index'));
     }
 
     /**

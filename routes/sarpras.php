@@ -10,6 +10,8 @@ use App\Http\Controllers\Sarpras\BorrowController;
 use App\Http\Controllers\Sarpras\ManageUserController;
 use App\Http\Controllers\Sarpras\PrintController;
 use App\Http\Controllers\Sarpras\MajorController;
+use App\Http\Controllers\Sarpras\ClassesController;
+
 
 
 use App\Http\Controllers\Peminjam\userHomeController;
