@@ -4,8 +4,8 @@ namespace App\Http\Controllers\sarpras;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\major;
-use App\Models\classes;
+use App\Models\Major;
+use App\Models\Classes;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -16,7 +16,7 @@ class ClassesController extends Controller
      */
     public function index()
     {
-        $classes = classes::all();
+        $classes = Classes::all();
         $title = 'hapus Kelas';
         $text = "Yakin menghapus Kelas?";
         confirmDelete($title, $text);
@@ -28,7 +28,7 @@ class ClassesController extends Controller
      */
     public function create()
     {
-        $major = major::all();
+        $major = Major::all();
         return view('sarpras.classes.create',compact(['major']));
     }
 
@@ -49,16 +49,17 @@ class ClassesController extends Controller
         ],$messages
         );
 
-        $classesCheck = classes::where('cls_level',$request->cls_level)->where('cls_major_id',$request->cls_major_id)->where('cls_number',$request->cls_number)->first();
+        $classesCheck = Classes::where('cls_level',$request->cls_level)->where('cls_major_id',$request->cls_major_id)->where('cls_number',$request->cls_number)->first();
         if($classesCheck){
         Alert::error('Gagal Menambah', 'Kelas Sudah Terdaftar');
         return redirect(route('sarpras.classes.index'));
         }
 
-        $classesCreate = classes::create([
+        $classesCreate = Classes::create([
             'cls_level' => $request->cls_level,
             'cls_major_id' => $request->cls_major_id,
-            'cls_number' => $request->cls_number
+            'cls_number' => $request->cls_number,
+            'cls_created_by' => Auth()->user()->usr_id
         ]);
         Alert::success('berhasil Menambah', 'Kelas berhasil Ditambah');
         return redirect(route('sarpras.classes.index'));
@@ -77,7 +78,10 @@ class ClassesController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $classes  = Classes::findOrFail($id);
+        $major = Major::where('mjr_id','!=',$classes->cls_major_id)->get();
+        // dd($major);
+        return view('sarpras.classes.edit',compact(['classes','major']));
     }
 
     /**
@@ -85,7 +89,32 @@ class ClassesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $messages = [
+            'required'  => 'Harap di isi.',
+           
+        ];
+        $validated = $request->validate([
+            
+            'cls_level' => 'required',
+            'cls_major_id' =>'required',
+            'cls_number' =>'required'
+        ],$messages
+        );
+
+        $classesCheck = Classes::where('cls_level',$request->cls_level)->where('cls_major_id',$request->cls_major_id)->where('cls_number',$request->cls_number)->where('cls_id','!=',$id)->first();
+        if($classesCheck){
+        Alert::error('Gagal Mengubah', 'Kelas Sudah Terdaftar');
+        return redirect(route('sarpras.classes.index'));
+        }
+
+        $classesUpdate = Classes::findOrFail($id)->update([
+            'cls_level' => $request->cls_level,
+            'cls_major_id' => $request->cls_major_id,
+            'cls_number' => $request->cls_number,
+            'cls_updated_by' => Auth()->user()->usr_id
+        ]);
+        Alert::success('berhasil Mengubah', 'Kelas berhasil Diubah');
+        return redirect(route('sarpras.classes.index'));
     }
 
     /**
@@ -93,7 +122,10 @@ class ClassesController extends Controller
      */
     public function destroy(string $id)
     {
-        $classesDestroy = classes::findOrFail($id)->delete();
+        $classesDestroy = Classes::findOrFail($id);
+        $classesDestroy->cls_deleted_by = Auth::user()->usr_id;
+        $classesDestroy->save();
+        $classesDestroy->delete();
         Alert::success('berhasil Menghapus', 'Kelas berhasil Dihapus');
         return redirect(route('sarpras.classes.index'));
 

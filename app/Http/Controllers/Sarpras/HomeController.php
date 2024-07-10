@@ -15,9 +15,9 @@ class HomeController extends Controller
     public function home(){
         $user = User::role(['peminjam'])->count();
         $borrow = Borrow::count();
-        $asset = Asset::count();
+        $asset = 1;
 
         // dd($user);
-        return view('admin.home',compact('user','borrow','asset'));
+        return view('sarpras.home',compact('user','borrow','asset'));
     }
 }

@@ -17,8 +17,10 @@ class Borrow extends Model
 
     protected $primaryKey = 'brw_id';
     protected $guarded = [];
-    const CREATED_AT = 'asd_created_at';
-    const UPDATED_AT = 'asd_updated_at';
+    const CREATED_AT = 'brw_created_at';
+    const UPDATED_AT = 'brw_updated_at';
+    const DELETED_AT = 'brw_deleted_at';
+
 
     public function brw_user(): BelongsTo
     {

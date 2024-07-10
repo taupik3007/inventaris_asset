@@ -4,8 +4,8 @@ namespace App\Http\Controllers\sarpras;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\major;
-use App\Models\classes;
+use App\Models\Major;
+use App\Models\Classes;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -20,7 +20,7 @@ class MajorController extends Controller
      */
     public function index()
     {
-        $major = major::all();
+        $major = Major::all();
         $title = 'hapus Jurusan';
         $text = "Yakin menghapus Jurusan?";
         confirmDelete($title, $text);
@@ -50,13 +50,13 @@ class MajorController extends Controller
             'mjr_name' => 'required'
         ],$messages
         );
-        $majorCheck = major::where('mjr_name',$request->mjr_name)->first();
+        $majorCheck = Major::where('mjr_name',$request->mjr_name)->first();
         if($majorCheck){
         return redirect(route('sarpras.major.create'))->with('error','Jurusan sudah terdaftar');
 
         }
 
-        $majorCreate = major::create([
+        $majorCreate = Major::create([
             'mjr_name'=>$request->mjr_name,
             'mjr_created_by' => Auth::user()->usr_id
         ]);
@@ -76,7 +76,7 @@ class MajorController extends Controller
      */
     public function edit(string $id)
     {
-        $major = major::findOrFail($id);
+        $major = Major::findOrFail($id);
         return view('sarpras.major.edit',compact(['major']));
     }
 
@@ -94,15 +94,16 @@ class MajorController extends Controller
             'mjr_name' => 'required'
         ],$messages
         );
-        $majorCheck = major::where('mjr_name',$request->mjr_name)->where('mjr_id','!=',$id)->first();
+        $majorCheck = Major::where('mjr_name',$request->mjr_name)->where('mjr_id','!=',$id)->first();
         if($majorCheck){
         return redirect(route('sarpras.major.edit',['id'=>$id]))->with('error','Jurusan sudah terdaftar');
 
         }
 
 
-        $majorUpdate = major::findOrFail($id)->update([
-            'mjr_name'=> $request->mjr_name
+        $majorUpdate = Major::findOrFail($id)->update([
+            'mjr_name'=> $request->mjr_name,
+            'mjr_updated_at',Auth::user()->usr_id
         ]);
         Alert::success('Berhasil Mengupdate', 'berhasil Mengupdate jurusan');
 
@@ -116,7 +117,7 @@ class MajorController extends Controller
     public function destroy(string $id)
     {
 
-        $classCheck = classes::where('cls_major_id',$id)->first();
+        $classCheck = Classes::where('cls_major_id',$id)->first();
         if($classCheck){
         Alert::error('Gagal Menghapus', 'Masih ada kelas pada jurusan');
         return redirect(route('sarpras.major.index'));
@@ -126,7 +127,7 @@ class MajorController extends Controller
 
 
 
-        $majorDestroy = major::findOrFail($id);
+        $majorDestroy = Major::findOrFail($id);
         $majorDestroy->mjr_deleted_by = Auth::user()->usr_id;
         $majorDestroy->save();
         $majorDestroy->delete();
