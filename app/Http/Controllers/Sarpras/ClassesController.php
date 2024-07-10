@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Major;
 use App\Models\Classes;
-use App\Models\userProfile;
+use App\Models\UserProfile;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -125,7 +125,7 @@ class ClassesController extends Controller
     public function destroy(string $id)
     {
 
-        $userCheck = userProfile::where('usp_classes_id',$id)->first();
+        $userCheck = UserProfile::where('usp_classes_id',$id)->first();
         // dd($userCheck);
         if($userCheck){
         Alert::error('Gagal Menhapus', 'masih ada user pada kelas');

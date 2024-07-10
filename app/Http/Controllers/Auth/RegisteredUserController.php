@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\userProfile;
+use App\Models\UserProfile;
 use App\Models\Classes;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -45,7 +45,7 @@ class RegisteredUserController extends Controller
             'usp_phone'                 => ['required'],
             'usp_gender'                => ['required'],
             'usp_class'                 => ['required'],
-            'usp_nis'            => ['required','unique:'.userProfile::class]
+            'usp_nis'            => ['required','unique:'.UserProfile::class]
         ],$messages);
         // dd($request);
 
@@ -55,7 +55,7 @@ class RegisteredUserController extends Controller
             'password'          => Hash::make($request->password),
             
         ]);
-        $userProfile = userProfile::create([
+        $userProfile = UserProfile::create([
             'usp_user_id'       =>$user->usr_id,
             'usp_name'          => $request->usp_name,
             'usp_phone'         =>$request->usp_phone,

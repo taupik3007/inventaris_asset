@@ -61,7 +61,6 @@ Manage User
                             <th>nomor</th>
                             <th>Nama</th>
                             <th>Email</th>
-                            <th>role</th>
                             <th>aksi</th>
 
                           </tr>
@@ -69,28 +68,20 @@ Manage User
                         @foreach ($user as $no=>$user)
                         <tr>
                           <td>{{$no+1}}</td>
-                          <td>{{$user->usr_name}}</td>
+                          <td>{{$user->usr_userprofile->usp_name}}</td>
                           <td>{{$user->email}}</td>
                           
-                          <td>
-                            @if($user->roles->pluck('name')->first() == 'admin')
-                            admin
-                            @elseif($user->roles->pluck('name')->first() == 'userLv1')
-                            siswa
-                            @else
-                            Guru
-                            @endif
-                          </td>
+                          
                           <td>
                             @if($user->usr_status == 1)
-                            <a href="/admin/user/{{$user->usr_id}}/activate" ><input type="checkbox" class="js-switch" checked /></a>
+                            <a href="/sarpras/borrower/{{$user->usr_id}}/activate" ><input type="checkbox" class="js-switch" checked /></a>
                             @else
-                            <a href="/admin/user/{{$user->usr_id}}/activate" ><input type="checkbox" class="js-switch"  /></a>
+                            <a href="/sarpras/borrower/{{$user->usr_id}}/activate" ><input type="checkbox" class="js-switch"  /></a>
                             @endif
                             <a href="/{{$user->usr_id}}/profile" class="btn btn-primary">Detail</a>
-                            <a href="/admin/user/{{$user->usr_id}}/edit" class="btn btn-primary">Edit</a>
+                            <a href="/sarpras/borrower/{{$user->usr_id}}/edit" class="btn btn-primary">Edit</a>
 
-                            <a href="/admin/user/{{$user->usr_id}}/resetPassword" class="btn btn-primary">Reset Password</a>
+                            <a href="/sarpras/borrower/{{$user->usr_id}}/resetPassword" class="btn btn-primary">Reset Password</a>
 
                           </td>
                         </tr>

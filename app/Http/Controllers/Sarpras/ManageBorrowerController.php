@@ -10,11 +10,12 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 
 
-class ManageUserController extends Controller
+class ManageBorrowerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,7 +23,7 @@ class ManageUserController extends Controller
     public function index()
     {
         $user = User::role(['peminjam'])->get();
-        return view('admin.manageUser.index',compact('user'));
+        return view('sarpras.manageBorrower.index',compact('user'));
     }
 
     /**
@@ -110,7 +111,7 @@ class ManageUserController extends Controller
     {
 
         $user = User::findOrFail($id);
-        return view('admin.manageUser.edit',compact(['user']));
+        return view('sarpras.manageborrower.edit',compact(['user']));
     }
 
     /**
@@ -165,7 +166,7 @@ class ManageUserController extends Controller
     public function resetPassword(){
        
 
-        return view('admin.manageUser.resetPassword');
+        return view('sarpras.manageBorrower.resetPassword');
     }
     public function storeResetPassword(Request $request,$id){
         $request->validate([
@@ -176,16 +177,13 @@ class ManageUserController extends Controller
             'password' => Hash::make($request->password)
 
         ]);
-        $sysNote = SysNote::create([
-            'note_user_id' => $id,
-            'note_text' => 'reset password',
-            'created_by' => Auth::user()->usr_id
-        ]);
+       
 
        
 
 
-        return redirect('/admin/user')->with('succes','Berhasil mereset password ');
+        Alert::success('berhasil Diubah', 'Password Berhasil Diubah');
+        return redirect(route('sarpras.borrower.index'));
     }
 
 
@@ -196,12 +194,16 @@ class ManageUserController extends Controller
             $user->update([
                 'usr_status' => 1
             ]);
+            Alert::success('berhasil Mengaktivasi', 'Peminjam Berhasil Diaktivasi');
+             return redirect(route('sarpras.borrower.index'));
         }else{
             $user->update([
                 'usr_status' => 0
             ]);
+            Alert::success('berhasil Menonaktifkan', 'Peminjam Berhasil Dinonaktifkan');
+             return redirect(route('sarpras.borrower.index'));
         }
-        return redirect('/admin/user')->with('succes','Berhasil mengubah status aktivasi user ');
+        
 
 
     }

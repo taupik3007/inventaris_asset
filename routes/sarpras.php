@@ -7,7 +7,7 @@ use App\Http\Controllers\Sarpras\OriginController;
 use App\Http\Controllers\Sarpras\AssetController;
 use App\Http\Controllers\Sarpras\HomeController;
 use App\Http\Controllers\Sarpras\BorrowController;
-use App\Http\Controllers\Sarpras\ManageUserController;
+use App\Http\Controllers\Sarpras\ManageBorrowerController;
 use App\Http\Controllers\Sarpras\PrintController;
 use App\Http\Controllers\Sarpras\MajorController;
 use App\Http\Controllers\Sarpras\ClassesController;
@@ -59,16 +59,16 @@ Route::middleware('auth','role:sarpras')->group(function () {
     //endhome
     
     //user
-    Route::get('/sarpras/borrower', [ManageBorrowerController::class, 'index'])->name('admin.borrower.index');
-    Route::get('/sarpras/borrower/{role}/create', [ManageBorrowerController::class, 'create'])->name('admin.borrower.create');
-    Route::post('/sarpras/borrower/{role}/create', [ManageBorrowerrController::class, 'store'])->name('admin.borrower.store');
-    Route::get('/sarpras/borrower/{id}/detail', [ManageBorrowerController::class, 'show'])->name('admin.borrower.show');
-    Route::get('/sarpras/borrower/{id}/edit', [ManageBorrowerController::class, 'edit'])->name('admin.borrower.edit');
-    Route::post('/sarpras/borrower/{id}/edit', [ManageBorrowerController::class, 'update'])->name('admin.borrower.update');
-    Route::get('/sarpras/borrower/{id}/destroy', [ManageBorrowerController::class, 'destroy'])->name('admin.borrower.destroy');
-    Route::get('/sarpras/borrower/{id}/resetPassword', [ManageBorrowerController::class, 'resetPassword'])->name('admin.borrower.resetPassword');
-    Route::post('/sarpras/borrower/{id}/resetPassword', [ManageBorrowerController::class, 'storeResetPassword'])->name('admin.borrower.resetPassword');
-    Route::get('/sarpras/borrower/{id}/activate', [ManageBorrowerController::class, 'activate'])->name('admin.borrower.activate');
+    Route::get('/sarpras/borrower', [ManageBorrowerController::class, 'index'])->name('sarpras.borrower.index');
+    Route::get('/sarpras/borrower/{role}/create', [ManageBorrowerController::class, 'create'])->name('sarpras.borrower.create');
+    Route::post('/sarpras/borrower/{role}/create', [ManageBorrowerrController::class, 'store'])->name('sarpras.borrower.store');
+    Route::get('/sarpras/borrower/{id}/detail', [ManageBorrowerController::class, 'show'])->name('sarpras.borrower.show');
+    Route::get('/sarpras/borrower/{id}/edit', [ManageBorrowerController::class, 'edit'])->name('sarpras.borrower.edit');
+    Route::post('/sarpras/borrower/{id}/edit', [ManageBorrowerController::class, 'update'])->name('sarpras.borrower.update');
+    Route::get('/sarpras/borrower/{id}/destroy', [ManageBorrowerController::class, 'destroy'])->name('sarpras.borrower.destroy');
+    Route::get('/sarpras/borrower/{id}/resetPassword', [ManageBorrowerController::class, 'resetPassword'])->name('sarpras.borrower.resetPassword');
+    Route::post('/sarpras/borrower/{id}/resetPassword', [ManageBorrowerController::class, 'storeResetPassword'])->name('sarpras.borrower.resetPassword');
+    Route::get('/sarpras/borrower/{id}/activate', [ManageBorrowerController::class, 'activate'])->name('sarpras.borrower.activate');
 
 
 
