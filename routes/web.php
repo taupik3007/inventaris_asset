@@ -8,8 +8,8 @@ use App\Http\Controllers\Sarpras\AssetController;
 use App\Http\Controllers\Sarpras\HomeController;
 use App\Http\Controllers\Sarpras\BorrowController;
 
-use App\Http\Controllers\Borrower\userHomeController;
-use App\Http\Controllers\Borrower\userBorrowController;
+use App\Http\Controllers\Borrower\borrowerHomeController;
+use App\Http\Controllers\Borrower\borrowerBorrowController;
 
 
 
@@ -51,12 +51,12 @@ require __DIR__.'/sarpras.php';
 
 
 
-Route::middleware('auth','role:userLv1|userLv2')->group(function () {
+Route::middleware('auth','role:peminjam')->group(function () {
 
-Route::get('/user/home', [userHomeController::class, 'index'])->name('user.home');
-Route::get('/user/borrow', [userBorrowController::class, 'index'])->name('user.borrow.index');
-Route::get('/user/borrow/{id}/detail', [userBorrowController::class, 'show'])->name('user.borrow.detail');
-Route::get('/user/borrow/history', [userBorrowController::class, 'history'])->name('user.borrow.detail');
+Route::get('/peminjam/home', [borrowerHomeController::class, 'index'])->name('peminjam.home');
+Route::get('/peminjam/borrow', [borrowerBorrowController::class, 'index'])->name('peminjam.borrow.index');
+Route::get('/peminjam/borrow/{id}/detail', [borrowerBorrowController::class, 'show'])->name('peminjam.borrow.detail');
+Route::get('/peminjmam/borrow/history', [borrowerBorrowController::class, 'history'])->name('peminjam.borrow.detail');
 
 
 });

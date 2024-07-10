@@ -33,7 +33,7 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended(route('sarpras.home', absolute: false));
 
         }else{
-            return redirect()->intended(route('user.home', absolute: false));
+            return redirect()->intended(route('peminjam.home', absolute: false));
 
         }
      

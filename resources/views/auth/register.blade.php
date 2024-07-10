@@ -20,8 +20,8 @@
         <!-- Name -->
         <div>
             <x-input-label for="usr_name" :value="__('Name')" />
-            <x-text-input id="usr_name" class="block mt-1 w-full" type="text" name="usr_name" :value="old('usr_name')"  required autofocus autocomplete="usr_name" />
-            <x-input-error :messages="$errors->get('usr_name')" class="mt-2" />
+            <x-text-input id="usp_name" class="block mt-1 w-full" type="text" name="usp_name" :value="old('usp_name')"  required autofocus autocomplete="usp_name" />
+            <x-input-error :messages="$errors->get('usp_name')" class="mt-2" />
         </div>
 
         <!-- Email Address -->
@@ -31,26 +31,32 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
         <div class="mt-4">
-            <x-input-label for="usr_regis_number" :value="__('NIS')" />
-            <x-text-input id="usr_regis_number" class="block mt-1 w-full" type="number" name="usr_regis_number" :value="old('usr_regis_number')" required autocomplete="usr_regis_number" />
-            <x-input-error :messages="$errors->get('usr_regis_number')" class="mt-2" />
+            <x-input-label for="usp_nis" :value="__('NIS')" />
+            <x-text-input id="usp_nis" class="block mt-1 w-full" type="number" name="usp_nis" :value="old('usp_nis')" required autocomplete="usp_nis" />
+            <x-input-error :messages="$errors->get('usp_nis')" class="mt-2" />
         </div>
 
         <div class="mt-4">
-            <x-input-label for="usr_class" :value="__('Kelas')" />
-            <x-text-input id="usr_class" class="block mt-1 w-full" type="text" name="usr_class" :value="old('usr_class')" required autocomplete="usr_class" />
-            <x-input-error :messages="$errors->get('usr_class')" class="mt-2" />
+            <x-input-label for="usp_class" :value="__('Kelas')" />
+            <x-select name="usp_class" id="usp_class" class="block mt-1 w-full " :value="old('usp_class')" required autocomplete="usp_class">
+                <option value="">--</option>
+                @foreach ($classes as $classes)
+                <option value="{{$classes->cls_id}}">{{$classes->cls_level." ".$classes->cls_major->mjr_name." ".$classes->cls_number }}</option>
+                @endforeach
+                
+            </x-select>
+            <x-input-error :messages="$errors->get('usp_class')" class="mt-2" />
         </div>
 
         <div class="mt-4">
-            <x-input-label for="usr_phone" :value="__('Phone')" />
-            <x-text-input id="usr_phone" class="block mt-1 w-full" type="number" name="usr_phone" :value="old('usr_phone')" required autocomplete="usr_phone" />
-            <x-input-error :messages="$errors->get('usr_phone')" class="mt-2" />
+            <x-input-label for="usp_phone" :value="__('Phone')" />
+            <x-text-input id="usp_phone" class="block mt-1 w-full" type="number" name="usp_phone" :value="old('usp_phone')" required autocomplete="usp_phone" />
+            <x-input-error :messages="$errors->get('usp_phone')" class="mt-2" />
         </div>
 
         <div class="mt-4">
-            <x-input-label for="usr_gender" :value="__('Gender')"  />
-            <x-select name="usr_gender" id="usr_gender" class="block mt-1 w-full " :value="old('usr_gender')" required autocomplete="usr_gender">
+            <x-input-label for="usp_gender" :value="__('Gender')"  />
+            <x-select name="usp_gender" id="usp_gender" class="block mt-1 w-full " :value="old('usp_gender')" required autocomplete="usp_gender">
                 <option value="">--</option>
                 <option value="laki-laki">laki laki</option>
                 <option value="prempuan"> perempuan </option>
@@ -58,7 +64,7 @@
 
 
             {{-- <x-text-input id="usr_Gender" class="block mt-1 w-full" type="text" name="usr_gender" :value="old('usr_gender')" required autocomplete="usr_gender" /> --}}
-            <x-input-error :messages="$errors->get('usr_gender')" class="mt-2" />
+            <x-input-error :messages="$errors->get('usp_gender')" class="mt-2" />
         </div>
         
 

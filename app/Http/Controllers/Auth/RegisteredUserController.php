@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\userProfile;
+use App\Models\Classes;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -19,7 +21,9 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+
+        $classes = Classes::all();
+        return view('auth.register',compact(['classes']));
     }
 
     /**
@@ -30,31 +34,41 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         // dd($request);
+        $messages = [
+            'required'  => 'Harap di isi.',
+           
+        ];
         $request->validate([
-            'usr_name'                  => ['required', 'string', 'max:255'],
+            'usp_name'                  => ['required', 'string', 'max:255'],
             'email'                     => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password'                  => ['required', 'confirmed', Rules\Password::defaults()],
-            'usr_phone'                 => ['required'],
-            'usr_gender'                => ['required'],
-            'usr_class'                 => ['required'],
-            'usr_regis_number'            => ['required','unique:'.User::class]
-        ]);
+            'usp_phone'                 => ['required'],
+            'usp_gender'                => ['required'],
+            'usp_class'                 => ['required'],
+            'usp_nis'            => ['required','unique:'.userProfile::class]
+        ],$messages);
+        // dd($request);
 
         $user = User::create([
-            'usr_name'          => $request->usr_name,
+            
             'email'             => $request->email,
             'password'          => Hash::make($request->password),
-            'usr_phone'         =>$request->usr_phone,
-            'usr_gender'        =>$request->usr_gender,
-            'usr_regis_number'  =>$request->usr_regis_number,
-            'usr_class'         =>$request->usr_class
+            
         ]);
-        $user->assignRole('userLv1');
+        $userProfile = userProfile::create([
+            'usp_user_id'       =>$user->usr_id,
+            'usp_name'          => $request->usp_name,
+            'usp_phone'         =>$request->usp_phone,
+            'usp_gender'        =>$request->usp_gender,
+            'usp_nis'           =>$request->usp_nis,
+            'usp_classes_id'    =>$request->usp_class
+        ]);
+        $user->assignRole('peminjam');
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('user.home', absolute: false));
+        return redirect(route('peminjam.home', absolute: false));
     }
 }

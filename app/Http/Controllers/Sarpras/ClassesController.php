@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Major;
 use App\Models\Classes;
+use App\Models\userProfile;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+
 
 class ClassesController extends Controller
 {
@@ -122,6 +124,14 @@ class ClassesController extends Controller
      */
     public function destroy(string $id)
     {
+
+        $userCheck = userProfile::where('usp_classes_id',$id)->first();
+        // dd($userCheck);
+        if($userCheck){
+        Alert::error('Gagal Menhapus', 'masih ada user pada kelas');
+        return redirect(route('sarpras.classes.index'));
+        }
+
         $classesDestroy = Classes::findOrFail($id);
         $classesDestroy->cls_deleted_by = Auth::user()->usr_id;
         $classesDestroy->save();

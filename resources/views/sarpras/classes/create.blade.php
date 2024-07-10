@@ -49,8 +49,14 @@
                         <div class="form-group row ">
                             <label class="control-label col-md-3 col-sm-3 ">Tingkatan</label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input type="text"name="cls_level" class="form-control" placeholder="Tingkatan "
-                                    wire:model="cls_level">
+                                <select id="choose" class="form-control" name="cls_level" onchange="yesnoCheck(this);" wire:model="cls_level">
+                                    <option value="">--</option>
+                                    <option value="XI">X</option>
+                                    <option value="XI">XI</option>
+                                    <option value="XI">XII</option>
+
+                                 
+                                </select>
                                 @error('cls_level')
                                     <span class="error text-">{{ $message }}</span>
                                 @enderror
